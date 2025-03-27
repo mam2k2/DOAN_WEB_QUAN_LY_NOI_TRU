@@ -1,0 +1,14 @@
+/* Reset */
+@import "tailwindcss/base";
+@import "reset";
+
+/* Components */
+@import "tailwindcss/components";
+@import "buttons";
+@import "form";
+@import "nprogress";
+
+/* Utilities */
+@import "tailwindcss/utilities";
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3Jlc291cmNlcy9jc3MvYXBwLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxVQUFVO0FBQ1YsMEJBQTBCO0FBQzFCLGVBQWU7O0FBRWYsZUFBZTtBQUNmLGdDQUFnQztBQUNoQyxpQkFBaUI7QUFDakIsY0FBYztBQUNkLG1CQUFtQjs7QUFFbkIsY0FBYztBQUNkLCtCQUErQiIsImZpbGUiOiJhcHAubWluLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIFJlc2V0ICovXHJcbkBpbXBvcnQgXCJ0YWlsd2luZGNzcy9iYXNlXCI7XHJcbkBpbXBvcnQgXCJyZXNldFwiO1xyXG5cclxuLyogQ29tcG9uZW50cyAqL1xyXG5AaW1wb3J0IFwidGFpbHdpbmRjc3MvY29tcG9uZW50c1wiO1xyXG5AaW1wb3J0IFwiYnV0dG9uc1wiO1xyXG5AaW1wb3J0IFwiZm9ybVwiO1xyXG5AaW1wb3J0IFwibnByb2dyZXNzXCI7XHJcblxyXG4vKiBVdGlsaXRpZXMgKi9cclxuQGltcG9ydCBcInRhaWx3aW5kY3NzL3V0aWxpdGllc1wiO1xyXG4iXX0= */

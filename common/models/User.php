@@ -1,0 +1,99 @@
+<?php
+
+namespace common\models;
+
+use common\libs\Constants;
+use Yii;
+
+/**
+ * This is the model class for table "user".
+ *
+ * @property int $id user id(auto increment)
+ * @property string $username username
+ * @property string $auth_key auth key for generate logged in cookie
+ * @property string $password_hash crypt password
+ * @property string $password_reset_token reset password temp token
+ * @property string $email user email
+ * @property string $avatar avatar url
+ * @property string $access_token token
+ * @property int $status user status, (normal:10)
+ * @property int $branch_id Branch
+ * @property int $created_at created at
+ * @property int $updated_at updated at
+ */
+class User extends BaseModel implements \yii\web\IdentityInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return '{{%user}}';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function rules()
+    {
+        return [
+            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
+            [['status', 'created_at', 'updated_at', 'branch_id'], 'integer'],
+            [['username', 'password_hash', 'password_reset_token', 'email', 'avatar'], 'string', 'max' => 255],
+            [['auth_key'], 'string', 'max' => 32],
+            [['access_token'], 'string', 'max' => 42],
+            [['username'], 'unique'],
+            [['email'], 'unique'],
+            [['password_reset_token'], 'unique'],
+        ];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('app', 'user id(auto increment)'),
+            'username' => Yii::t('app', 'username'),
+            'auth_key' => Yii::t('app', 'auth key for generate logged in cookie'),
+            'password_hash' => Yii::t('app', 'crypt password'),
+            'password_reset_token' => Yii::t('app', 'reset password temp token'),
+            'email' => Yii::t('app', 'user email'),
+            'avatar' => Yii::t('app', 'avatar url'),
+            'access_token' => Yii::t('app', 'token'),
+            'status' => Yii::t('app', 'user status, (normal:10)'),
+            'created_at' => Yii::t('app', 'created at'),
+            'updated_at' => Yii::t('app', 'updated at'),
+            'branch_id' => Yii::t('app', 'Branch'),
+        ];
+    }
+
+    public static function findIdentity($id)
+    {
+        return User::findOne(['id' => $id, 'status' => Constants::YesNo_Yes]);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return User::findOne(['auth_key' => $token, 'status' => Constants::YesNo_Yes]);
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getAuthKey()
+    {
+        return $this->auth_key;
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        if ($this->auth_key == $authKey) {
+            return true;
+        }
+        return false;
+    }
+}
