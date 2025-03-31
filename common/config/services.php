@@ -51,4 +51,22 @@ return [
     \common\services\UserServiceInterface::ServiceName=>[
         'class' => \common\services\UserService::className(),
     ],
+    \common\services\KhuKtxServiceInterface::ServiceName=>[
+        'class' => \common\services\KhuKtxService::className(),
+    ],
+    \common\services\PhongOServiceInterface::ServiceName=>[
+        'class' => \common\services\PhongOService::className(),
+    ],
+    \common\services\ThietBiKtxServiceInterface::ServiceName=>[
+        'class' => \common\services\ThietBiKtxService::className(),
+    ],
+    \common\services\ThongBaoHeThongServiceInterface::ServiceName=>[
+        'class' => \common\services\ThongBaoHeThongService::className(),
+    ],
+    \common\services\ThuPhiNoiTruServiceInterface::ServiceName=>[
+        'class' => \common\services\ThuPhiNoiTruService::className(),
+    ],
+    \common\services\ViPhamNoiQuyServiceInterface::ServiceName=>[
+        'class' => \common\services\ViPhamNoiQuyService::className(),
+    ],
 ];

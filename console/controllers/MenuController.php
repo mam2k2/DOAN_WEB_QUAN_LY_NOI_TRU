@@ -34,39 +34,54 @@ class MenuController extends Controller
                 "url" => '',
                 'child' => [
                     [
-                        "label" => 'Frontend Menu',
-                        "url" => 'frontend-menu/index',
-                    ],
-                    [
                         "label" => 'Backend Menu',
                         "url" => 'menu/index',
                     ],
                 ]
             ],
             [
-                "label" => 'Gym Manager',
+                "label" => 'Quản lý KTX',
                 "url" => '',
                 'child' => [
                     [
-                        "label" => 'Branch',
-                        "url" => 'branch/index',
+                        "label" => 'Quản lý khu',
+                        "url" => 'khu-ktx/index',
                     ],
                     [
-                        "label" => 'Product',
-                        "url" => 'product/index',
+                        "label" => 'Quản lý phòng ở',
+                        "url" => 'phong-o/index',
                     ],
                     [
-                        "label" => 'Category',
-                        "url" => 'category/index',
+                        "label" => 'Quản lý thiết bị',
+                        "url" => 'thiet-bi-ktx/index',
+                    ],
+
+                ]
+            ],
+            [
+                "label" => 'Thu phí nội trú',
+                "url" => 'thu-phi-noi-tru/index',
+            ],
+            [
+                "label" => 'Quản lý học sinh',
+                "url" => '',
+                'child' => [
+                    [
+                        "label" => 'Quản lý học sinh',
+                        "url" => 'khu-ktx/index',
+                    ],
+                    [
+                        "label" => 'Quản lý vi phạm',
+                        "url" => 'phong-o/index',
                     ],
                 ]
             ],
             [
-                "label" => 'Order',
-                "url" => 'order/index',
+                "label" => 'Quản lý thông báo',
+                "url" => 'thong-bao-he-thong/index',
             ],
             [
-                "label" => 'RBAC',
+                "label" => 'Phân Quyền',
                 "url" => '',
                 'child' => [
                     [
