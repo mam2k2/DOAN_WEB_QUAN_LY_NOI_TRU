@@ -55,7 +55,7 @@ class m250327_104602_add_all_function_sql extends Migration
         // 2. Quản lý thu phí nội trú
         $this->createTable('{{%thu_phi_noi_tru}}', [
             'id' => $this->primaryKey(),
-            'user_id' => $this->integer()->notNull(),
+            'user_id' => $this->integer(),
             'khoan_phi_id' => $this->integer()->notNull(),
             'phong_id' => $this->integer()->notNull(),
             'so_tien' => $this->decimal(10,2)->notNull(),
@@ -66,14 +66,8 @@ class m250327_104602_add_all_function_sql extends Migration
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
         ],$tableOptions);
-        $this->addForeignKey(
-            'fk_thuphi_user',
-            '{{%thu_phi_noi_tru}}',
-            'user_id',
-            '{{%da_user}}',
-            'id',
-            'CASCADE'
-        );
+
+
         // 3. Quản lý vi phạm nội quy
         $this->createTable('{{%vi_pham_noi_quy}}', [
             'id' => $this->primaryKey(),
@@ -86,7 +80,6 @@ class m250327_104602_add_all_function_sql extends Migration
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
         ],$tableOptions);
-        $this->addForeignKey('fk_vipham_user', '{{%vi_pham_noi_quy}}', 'user_id', '{{%user}}', 'id', 'CASCADE');
 
         // 4. Quản lý thiết bị ký túc xá
         $this->createTable('{{%thiet_bi_ktx}}', [
@@ -100,7 +93,6 @@ class m250327_104602_add_all_function_sql extends Migration
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
         ],$tableOptions);
-        $this->addForeignKey('fk_thietbi_phongo', '{{%thiet_bi_ktx}}', 'phong_o_id', '{{%phong_o}}', 'id', 'SET NULL');
 
         // 5. Gửi thông báo hệ thống
         $this->createTable('{{%thong_bao_he_thong}}', [
@@ -113,7 +105,6 @@ class m250327_104602_add_all_function_sql extends Migration
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
         ],$tableOptions);
-        $this->addForeignKey('fk_phongo_khu', '{{%phong_o}}', 'khu_id', '{{%khu_ktx}}', 'id', 'SET NULL');
 
     }
 
