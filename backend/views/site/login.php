@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="card-body">
                         <!-- Logo -->
                         <div class="app-brand justify-content-center mb-4 mt-2">
-                            <img class="logo-name" style="width: 100%"  src="<?=Yii::$app->params['site']['url'].'/admin/static/img/logo.png'?>"/>
+                            <img class="logo-name" style="width: 100%"  src="<?=Yii::$app->params['site']['url'].'/admin/static/img/logo-gtvt-duong-thuy.png'?>"/>
                         </div>
                         <h4 class="mb-1 pt-2"><?= Yii::t('app', 'Welcome to') ?> </h4>
                         <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
@@ -81,8 +81,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p class="text-muted text-center">
                             <a href="<?= Url::to(['admin-user/request-password-reset']) ?>">
                                 <small><?= Yii::t('app', 'Forgot password') ?></small>
-                            </a> |
-                            <?= $this->render("/widgets/_language-select") ?>
+                            </a> 
+<!--                            --><?php //= $this->render("/widgets/_language-select") ?>
                         </p>
 
                         <?php ActiveForm::end(); ?>
