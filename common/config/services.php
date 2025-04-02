@@ -69,4 +69,25 @@ return [
     \common\services\ViPhamNoiQuyServiceInterface::ServiceName=>[
         'class' => \common\services\ViPhamNoiQuyService::className(),
     ],
+    \common\services\KhoaServiceInterface::ServiceName=>[
+        'class' => \common\services\KhoaService::className(),
+    ],
+    \common\services\LopServiceInterface::ServiceName=>[
+        'class' => \common\services\LopService::className(),
+    ],
+    \common\services\ThongTinHocSinhServiceInterface::ServiceName=>[
+        'class' => \common\services\ThongTinHocSinhService::className(),
+    ],
+    \common\services\MonHocServiceInterface::ServiceName=>[
+        'class' => \common\services\MonHocService::className(),
+    ],
+    \common\services\DiemMonHocServiceInterface::ServiceName=>[
+        'class' => \common\services\DiemMonHocService::className(),
+    ],
+    \common\services\YTeServiceInterface::ServiceName=>[
+        'class' => \common\services\YTeService::className(),
+    ],
+    \common\services\LichHocServiceInterface::ServiceName=>[
+        'class' => \common\services\LichHocService::className(),
+    ],
 ];

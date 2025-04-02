@@ -391,7 +391,7 @@ return [
     'Verification Code' => 'Mã xác nhận',
     'View' => 'Xem',
     'Website Setting' => 'Cấu hình website',
-    'Welcome to' => 'Chào mừng đến với',
+    'Welcome to' => 'Chào mừng đến với Hệ Thống Quản Lý Nội Trú Trường Cao Đăng GTVT Đường Thuỷ',
     'Withdraw Wallet' => 'Ví rút',
     'cancel' => 'hủy',
     'first' => 'đầu',
