@@ -11,7 +11,7 @@ class BaseModel extends \yii\db\ActiveRecord{
     {
         return [
             TimestampBehavior::className(),
-            \yii\behaviors\BlameableBehavior::className()
+//            \yii\behaviors\BlameableBehavior::className()
         ];
     }
 

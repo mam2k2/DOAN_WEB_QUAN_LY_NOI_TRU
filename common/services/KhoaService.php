@@ -6,6 +6,7 @@ namespace common\services;
 
 use backend\models\search\KhoaSearch;
 use common\models\Khoa;
+use yii\helpers\ArrayHelper;
 
 class KhoaService extends Service implements KhoaServiceInterface{
     public function getSearchModel(array $query=[], array $options=[])
@@ -23,5 +24,19 @@ class KhoaService extends Service implements KhoaServiceInterface{
         $model = new Khoa($options);
         $model->loadDefaultValues();
         return $model;
+    }
+    public function getOptionsKhoa($options = [])
+    {
+        $list = ArrayHelper::map(
+            Khoa::find()
+                ->select(['id', 'ten_khoa'])
+                ->where($options)
+                ->asArray()
+                ->all(),
+            'id',
+            function ($row) {
+                return  $row['ten_khoa'];
+            });
+        return $list;
     }
 }

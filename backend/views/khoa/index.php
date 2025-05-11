@@ -9,8 +9,8 @@ use backend\grid\GridView;
 /* @var $searchModel backend\models\search\KhoaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Khoas');
-$this->params['breadcrumbs'][] = yii::t('app', 'Khoa');
+$this->title = 'Khoas';
+$this->params['breadcrumbs'][] = yii::t('app', 'Quản lý khóa');
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -27,8 +27,14 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Khoa');
 
                         'id',
                         'ten_khoa',
-                        'created_at',
-                        'updated_at',
+                       [
+                               'attribute' => 'created_at',
+                           'format' => ['date', 'php:d-m-Y H:i:s'],
+                       ],
+                      [
+                              'attribute' => 'updated_at',
+                              'format' => ['date', 'php:d-m-Y H:i:s'],
+                        ],
 
                         ['class' => ActionColumn::className(),],
                     ],

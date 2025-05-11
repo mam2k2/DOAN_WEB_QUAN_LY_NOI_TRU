@@ -29,16 +29,7 @@ class MenuController extends Controller
                     ],
                 ]
             ],
-            [
-                "label" => 'Menu',
-                "url" => '',
-                'child' => [
-                    [
-                        "label" => 'Backend Menu',
-                        "url" => 'menu/index',
-                    ],
-                ]
-            ],
+
             [
                 "label" => 'Quản lý KTX',
                 "url" => '',
@@ -62,25 +53,37 @@ class MenuController extends Controller
                 "label" => 'Thu phí nội trú',
                 "url" => 'thu-phi-noi-tru/index',
             ],
-            [
-                "label" => 'Quản lý Y tế',
-                "url" => 'y-te/index',
-            ],
+
             [
                 "label" => 'Quản lý học sinh',
                 "url" => '',
                 'child' => [
                     [
-                        "label" => 'Quản lý học sinh',
-                        "url" => 'users/index',
+                        "label" => 'Danh sách học sinh',
+                        "url" => 'thong-tin-hoc-sinh/index',
                     ],
-
+                    [
+                        "label" => 'Quản lý Y tế',
+                        "url" => 'y-te/index',
+                    ],
+                    [
+                        "label" => 'Điểm danh',
+                        "url" => 'category/index',
+                    ],
                 ]
             ],
             [
-                "label" => 'Quản lý học tập',
+                "label" => 'Quản lý thông báo',
+                "url" => 'thong-bao-he-thong/index',
+            ],
+            [
+                "label" => 'Quản lý danh mục',
                 "url" => '',
                 'child' => [
+                    [
+                        "label" => 'Danh Mục',
+                        "url" => 'category/index',
+                    ],
                     [
                         "label" => 'Quản lý Khoá',
                         "url" => 'khoa/index',
@@ -90,14 +93,14 @@ class MenuController extends Controller
                         "url" => 'lop/index',
                     ],
                     [
-                        "label" => 'Quản lý Lịch Học',
-                        "url" => 'lich-hoc/index',
+                        "label" => 'Quản lý Giáo Viên',
+                        "url" => 'giao-vien/index',
                     ],
+                    [
+                        "label" => 'Backend Menu',
+                        "url" => 'menu/index',
+                    ]
                 ]
-            ],
-            [
-                "label" => 'Quản lý thông báo',
-                "url" => 'thong-bao-he-thong/index',
             ],
             [
                 "label" => 'Phân Quyền',

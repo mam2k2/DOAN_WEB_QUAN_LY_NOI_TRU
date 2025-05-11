@@ -2,6 +2,8 @@
 
 namespace backend\controllers;
 
+use common\models\PhongO;
+use common\services\PhongOServiceInterface;
 use Yii;
 use common\services\ThietBiKtxServiceInterface;
 use common\services\ThietBiKtxService;
@@ -33,12 +35,17 @@ class ThietBiKtxController extends \yii\web\Controller
             'create' => [
                 'class' => CreateAction::className(),
                 'doCreate' => function($postData, $createAction) use($service){
+
                     return $service->create($postData);
                 },
                 'data' => function($createResultModel, $createAction) use($service){
                     $model = $createResultModel === null ? $service->newModel() : $createResultModel;
+                    /** @var PhongOServiceInterface $phongOService */
+                    $phongOService = Yii::$app->get(PhongOServiceInterface::ServiceName);
+                    $phongOList = $phongOService->getAllNamePhong();
                     return [
                         'model' => $model,
+                        'phongOList' => $phongOList,
                     ];
                 }
             ],
@@ -49,8 +56,11 @@ class ThietBiKtxController extends \yii\web\Controller
                 },
                 'data' => function($id, $updateResultModel, $updateAction) use($service){
                     $model = $updateResultModel === null ? $service->getDetail($id) : $updateResultModel;
+                    $phongOService = Yii::$app->get(PhongOServiceInterface::ServiceName);
+                    $phongOList = $phongOService->getAllNamePhong();
                     return [
                         'model' => $model,
+                        'phongOList' => $phongOList,
                     ];
                 }
             ],

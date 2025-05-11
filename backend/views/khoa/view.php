@@ -7,20 +7,26 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Khoa */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Khoas'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Khoas', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="khoa-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>Thông tin khóa #<?= Html::encode($this->title) ?></h1>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
             'ten_khoa',
-            'created_at',
-            'updated_at',
+            [
+                    'attribute' => 'created_at',
+                'format' => ['date', 'php:d-m-Y H:i:s'],
+            ],
+            [
+                    'attribute' => 'updated_at',
+                'format' => ['date', 'php:d-m-Y H:i:s'],
+            ]
         ],
     ]) ?>
 

@@ -17,13 +17,29 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'ma_khu',
-            'ten_khu',
-            'vi_tri',
-            'ghi_chu:ntext',
-            'created_at',
-            'updated_at',
+            [
+                'attribute' => 'id',
+                'label' => 'ID',
+            ],
+            [
+                'attribute' => 'ma_khu',
+                'label' => 'Mã Khu',
+            ],
+            [
+                'attribute' => 'ten_khu',
+                'label' => 'Tên Khu',
+            ],
+            [
+                'attribute' => 'vi_tri',
+                'label' => 'Vị trí',
+            ],
+            [
+                'attribute' => 'ghi_chu',
+                'label' => 'Ghi chú',
+                'format' => 'ntext',
+            ],
+//            'created_at',
+//            'updated_at',
         ],
     ]) ?>
 

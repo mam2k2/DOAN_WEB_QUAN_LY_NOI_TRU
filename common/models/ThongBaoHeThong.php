@@ -16,7 +16,7 @@ use Yii;
  * @property int $created_at
  * @property int $updated_at
  */
-class ThongBaoHeThong extends \yii\db\ActiveRecord
+class ThongBaoHeThong extends BaseModel
 {
     /**
      * {@inheritdoc}

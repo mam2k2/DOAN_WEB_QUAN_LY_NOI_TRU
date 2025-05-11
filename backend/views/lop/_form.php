@@ -15,26 +15,31 @@ use backend\widgets\ActiveForm;
                     'options' => [
                     ]
                 ]); ?>
-                <div class="hr-line-dashed"></div>
-                    <?= $form->field($model, 'khoa_id')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
+                        <?=$form->field($model, 'khoa_id')->widget(\kartik\select2\Select2::class, [
+                            'data' => $listKhoa,
+                            'options' => ['placeholder' => 'Chọn khoa'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]);?>
+                         <div class="hr-line-dashed"></div>
+                        <?=$form->field($model, 'chu_nghiem_id')->widget(\kartik\select2\Select2::class, [
+                            'data' => $listGiaoVien,
+                            'options' => ['placeholder' => 'Chọn Giáo Viên Chủ Nghiệm'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]);?>
 
-                        <?= $form->field($model, 'chu_nghiem_id')->textInput() ?>
                         <div class="hr-line-dashed"></div>
 
                         <?= $form->field($model, 'ten_lop')->textInput(['maxlength' => true]) ?>
                         <div class="hr-line-dashed"></div>
 
-                        <?= $form->field($model, 'ngay_bat_dau')->textInput() ?>
+                        <?= $form->field($model, 'ngay_bat_dau')->textInput(['type' => 'date']) ?>
                         <div class="hr-line-dashed"></div>
 
                         <?= $form->field($model, 'ghi_chu')->textarea(['rows' => 6]) ?>
-                        <div class="hr-line-dashed"></div>
-
-                        <?= $form->field($model, 'created_at')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
-
-                        <?= $form->field($model, 'updated_at')->textInput() ?>
                         <div class="hr-line-dashed"></div>
 
                         <?= $form->defaultButtons() ?>

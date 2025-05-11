@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\services\LopServiceInterface;
 use Yii;
 use common\services\ThongTinHocSinhServiceInterface;
 use common\services\ThongTinHocSinhService;
@@ -37,8 +38,12 @@ class ThongTinHocSinhController extends \yii\web\Controller
                 },
                 'data' => function($createResultModel, $createAction) use($service){
                     $model = $createResultModel === null ? $service->newModel() : $createResultModel;
+                    /** @var LopServiceInterface $lopService */
+                    $lopService = Yii::$app->get(LopServiceInterface::ServiceName);
+                    $lopList = $lopService->getLopOptions();
                     return [
                         'model' => $model,
+                        'listLop' => $lopList,
                     ];
                 }
             ],
@@ -49,8 +54,12 @@ class ThongTinHocSinhController extends \yii\web\Controller
                 },
                 'data' => function($id, $updateResultModel, $updateAction) use($service){
                     $model = $updateResultModel === null ? $service->getDetail($id) : $updateResultModel;
+                    /** @var LopServiceInterface $lopService */
+                    $lopService = Yii::$app->get(LopServiceInterface::ServiceName);
+                    $lopList = $lopService->getLopOptions();
                     return [
                         'model' => $model,
+                        'listLop' => $lopList,
                     ];
                 }
             ],

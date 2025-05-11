@@ -7,6 +7,8 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model backend\models\search\PhongOSearch */
 /* @var $form yii\widgets\ActiveForm */
+/* @var $listKhu common\models\KhuKtx */
+
 ?>
 
 <div class="phong-o-search ibox-heading row search" style="margin-top: 5px;padding-top:5px">
@@ -18,7 +20,13 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'id', ['options'=>['class'=>'col-sm-3']]) ?>
 
-    <?= $form->field($model, 'khu_id', ['options'=>['class'=>'col-sm-3']]) ?>
+    <?=$form->field($model, 'khu_id',['options'=>['class'=>'col-sm-3']])->widget(\kartik\select2\Select2::class, [
+        'data' => $listKhu,
+        'options' => ['placeholder' => 'Chọn khu'],
+        'pluginOptions' => [
+            'allowClear' => true
+        ],
+    ]);?>
 
     <?= $form->field($model, 'ma_phong', ['options'=>['class'=>'col-sm-3']]) ?>
 

@@ -23,6 +23,6 @@ $this->params['breadcrumbs'] = [
     'model' => $model,
     'assignModel' => $assignModel,
     'permissions' => $permissions,
-    'branchOptions' => $branchOptions,
+//    'branchOptions' => $branchOptions,
     'roles' => $roles,
 ]); ?>

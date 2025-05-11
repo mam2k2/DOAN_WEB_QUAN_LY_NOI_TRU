@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\ViPhamNoiQuy */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Vi Pham Noi Quies'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Vi Pham Noi Quies', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="vi-pham-noi-quy-view">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'user_id',
+            'hoc_sinh_id',
             'loai_vi_pham',
             'mo_ta:ntext',
             'ngay_vi_pham',

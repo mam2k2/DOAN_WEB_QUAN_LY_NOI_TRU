@@ -61,10 +61,11 @@ class KhoaSearch extends Khoa implements \backend\models\search\SearchInterface
         // grid filtering conditions
         $query->andFilterWhere([
             self::tableName().'.id' => $this->id,
-            self::tableName().'.ten_khoa' => $this->ten_khoa,
             self::tableName().'.created_at' => $this->created_at,
             self::tableName().'.updated_at' => $this->updated_at,
         ]);
+
+        $query->andFilterWhere(['like', self::tableName().'.ten_khoa', $this->ten_khoa]);
 
         return $dataProvider;
     }

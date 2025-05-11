@@ -18,7 +18,7 @@ class ViPhamNoiQuySearch extends ViPhamNoiQuy implements \backend\models\search\
     public function rules()
     {
         return [
-            [['id', 'user_id', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'hoc_sinh_id', 'created_at', 'updated_at'], 'integer'],
             [['loai_vi_pham', 'mo_ta', 'ngay_vi_pham', 'hinh_thuc_xu_ly', 'nguoi_xu_ly'], 'safe'],
         ];
     }
@@ -61,7 +61,7 @@ class ViPhamNoiQuySearch extends ViPhamNoiQuy implements \backend\models\search\
         // grid filtering conditions
         $query->andFilterWhere([
             self::tableName().'.id' => $this->id,
-            self::tableName().'.user_id' => $this->user_id,
+            self::tableName().'.hoc_sinh_id' => $this->hoc_sinh_id,
             self::tableName().'.ngay_vi_pham' => $this->ngay_vi_pham,
             self::tableName().'.created_at' => $this->created_at,
             self::tableName().'.updated_at' => $this->updated_at,

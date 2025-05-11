@@ -387,7 +387,7 @@ return [
     'User Shops' => 'Thành viên - Cửa hàng',
     'User Transactions' => '',
     'Users' => 'Thành viên',
-    'VODY Manage' => 'Quản trị - Tiêu dùng thông minh',
+    'VODY Manage' => 'QUẢN LÝ HỌC SINH NỘI TRÚ - TRƯỜNG CAO ĐẲNG GIAO THÔNG VẬN TẢI ĐƯỜNG THỦY I',
     'Verification Code' => 'Mã xác nhận',
     'View' => 'Xem',
     'Website Setting' => 'Cấu hình website',

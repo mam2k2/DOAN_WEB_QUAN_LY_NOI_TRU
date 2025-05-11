@@ -19,7 +19,7 @@ use Yii;
  * @property int $created_at
  * @property int $updated_at
  */
-class ThuPhiNoiTru extends \yii\db\ActiveRecord
+class ThuPhiNoiTru extends BaseModel
 {
     /**
      * {@inheritdoc}

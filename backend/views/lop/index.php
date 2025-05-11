@@ -26,8 +26,8 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Lop');
                         ['class' => CheckboxColumn::className()],
 
                         'id',
-                        'khoa_id',
-                        'chu_nghiem_id',
+                        'tenKhoa',
+                        'tenChuNghiem',
                         'ten_lop',
                         'ngay_bat_dau',
                         // 'ghi_chu:ntext',

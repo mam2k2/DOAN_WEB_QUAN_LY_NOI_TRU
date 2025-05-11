@@ -56,4 +56,20 @@ class Lop extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
+    public  function getChuNghiem()
+    {
+        return $this->hasOne(AdminUser::className(), ['id' => 'chu_nghiem_id']);
+    }
+    public function getTenChuNghiem()
+    {
+        return $this->chuNghiem->ho_va_ten;
+    }
+    public function getKhoa()
+    {
+        return $this->hasOne(Khoa::className(), ['id' => 'khoa_id']);
+    }
+    public function getTenKhoa()
+    {
+        return $this->khoa->ten_khoa;
+    }
 }

@@ -16,13 +16,7 @@ use backend\widgets\ActiveForm;
                     ]
                 ]); ?>
                 <div class="hr-line-dashed"></div>
-                    <?= $form->field($model, 'ten_khoa')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
-
-                        <?= $form->field($model, 'created_at')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
-
-                        <?= $form->field($model, 'updated_at')->textInput() ?>
+                    <?= $form->field($model, 'ten_khoa')->textInput(['maxlength' => true]) ?>
                         <div class="hr-line-dashed"></div>
 
                         <?= $form->defaultButtons() ?>

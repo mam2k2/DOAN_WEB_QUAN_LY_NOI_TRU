@@ -4,7 +4,7 @@ use backend\widgets\Bar;
 use backend\grid\CheckboxColumn;
 use backend\grid\ActionColumn;
 use backend\grid\GridView;
-
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\ThietBiKtxSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Thiet Bi Ktx');
             <div class="ibox-content">
                 <?= Bar::widget() ?>
                 <?=$this->render('_search', ['model' => $searchModel]); ?>
-                <?= GridView::widget([
+    <?php Pjax::begin(); ?>            <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
                     'columns' => [
@@ -27,6 +27,28 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Thiet Bi Ktx');
 
                         'id',
                         'ma_thiet_bi',
+                        [
+                            'attribute' => 'hinh_anh',
+                            'label' => 'Hình Ảnh',
+                            'format' => 'raw',
+                            'value' => function ($model) {
+                                $imgId = 'img_' . $model->id;
+                                $modalId = 'modal_' . $model->id;
+                                return \yii\helpers\Html::a(
+                                    \yii\helpers\Html::img($model->hinh_anh, ['style' => 'width: 100%; height: auto; cursor: pointer;']),
+                                    'javascript:void(0)',
+                                    [
+                                        'title' => 'Xem ảnh',
+                                        'data-pjax' => '0',
+                                        'class' => 'btn-sm',
+                                        //['thiet-bi-ktx/index', 'ThietBiKtxSearch[phong_o_id]' => $model->id]
+                                        'onclick' => "viewLayer('$model->hinh_anh', $(this))",
+                                    ]
+                                );
+
+                            },
+                            'contentOptions' => ['style' => 'width: 50px!important; text-align: center;'],
+                        ],
                         'ten_thiet_bi',
                         'phong_o_id',
                         'tinh_trang',
@@ -38,7 +60,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Thiet Bi Ktx');
                         ['class' => ActionColumn::className(),],
                     ],
                 ]); ?>
-            </div>
+<?php Pjax::end(); ?>            </div>
         </div>
     </div>
 </div>

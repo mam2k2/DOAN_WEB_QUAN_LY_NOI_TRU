@@ -26,14 +26,45 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Thong Tin Hoc Sinh');
                         ['class' => CheckboxColumn::className()],
 
                         'id',
-                        'user_id',
-                        'lop_id',
-                        'ngay_sinh',
+                        [
+                            'attribute' => 'anh_chan_dung',
+                            'label' => 'Ảnh chân dung',
+                            'format' => 'raw',
+                            'value' => function ($model) {
+                                $imgId = 'img_' . $model->id;
+                                $modalId = 'modal_' . $model->id;
+                                return \yii\helpers\Html::a(
+                                    \yii\helpers\Html::img($model->anh_chan_dung, ['style' => 'width: 66px; height: 100px; cursor: pointer;']),
+                                    'javascript:void(0)',
+                                    [
+                                        'title' => 'Xem ảnh',
+                                        'data-pjax' => '0',
+                                        'class' => 'btn-sm',
+                                        //['thiet-bi-ktx/index', 'ThietBiKtxSearch[phong_o_id]' => $model->id]
+                                        'onclick' => "viewLayer('$model->anh_chan_dung', $(this))",
+                                    ]
+                                );
+
+                            },
+                            'contentOptions' => ['style' => 'width: 50px!important; text-align: center;'],
+                        ],
+                        'ho_va_ten',
+                        'email:email',
+                        [
+                                'attribute' => 'ngay_sinh',
+                                'format' => ['date', 'php:d-m-Y'],
+                        ],
                         'que_quan',
-                        // 'trang_thai',
-                        // 'diem_trung_binh',
-                        // 'ngay_bat_dau',
-                        // 'ghi_chu:ntext',
+                         [
+                             'attribute' => 'trang_thai',
+                             'label' => 'Trạng thái'
+                         ],
+                         'diem_trung_binh',
+                        [
+                            'attribute' => 'ngay_bat_dau',
+                            'format' => ['date', 'php:d-m-Y'],
+                        ],
+                         'ghi_chu:ntext',
                         // 'created_at',
                         // 'updated_at',
 

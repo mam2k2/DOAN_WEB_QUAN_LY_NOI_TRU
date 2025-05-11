@@ -49,10 +49,10 @@ class KhuKtx extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'ma_khu' => Yii::t('app', 'Ma Khu'),
-            'ten_khu' => Yii::t('app', 'Ten Khu'),
-            'vi_tri' => Yii::t('app', 'Vi Tri'),
-            'ghi_chu' => Yii::t('app', 'Ghi Chu'),
+            'ma_khu' => Yii::t('app', 'Mã khu'),
+            'ten_khu' => Yii::t('app', 'Tên Khu'),
+            'vi_tri' => Yii::t('app', 'Vị Trí'),
+            'ghi_chu' => Yii::t('app', 'Ghi Chú'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

@@ -69,6 +69,23 @@ class AdminUserService extends Service implements AdminUserServiceInterface
             return $model;
         }
     }
+    public function getGiaoVienOptions($options = [])
+    {
+        $list = ArrayHelper::map(
+            AdminUser::find()
+                ->select(['id', 'ho_va_ten'])
+                ->where($options)
+                ->andWhere([
+                    'type' => AdminUser::TYPE_GIAO_VIEN
+                ])
+                ->asArray()
+                ->all(),
+            'id',
+            function ($row) {
+                return  $row['ho_va_ten'];
+            });
+        return $list;
+    }
 
     public function update($id, array $postData, array $options = [])
     {

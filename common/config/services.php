@@ -90,4 +90,25 @@ return [
     \common\services\LichHocServiceInterface::ServiceName=>[
         'class' => \common\services\LichHocService::className(),
     ],
+    \common\services\HocSinhServiceInterface::ServiceName=>[
+        'class' => \common\services\HocSinhService::className(),
+    ],
+    \common\services\ThietBiKtxServiceInterface::ServiceName=>[
+        'class' => \common\services\ThietBiKtxService::className(),
+    ],
+    \common\services\ThietBiKtxServiceInterface::ServiceName=>[
+        'class' => \common\services\ThietBiKtxService::className(),
+    ],
+    \common\services\ViPhamNoiQuyServiceInterface::ServiceName=>[
+        'class' => \common\services\ViPhamNoiQuyService::className(),
+    ],
+    \common\services\DiemDanhServiceInterface::ServiceName=>[
+        'class' => \common\services\DiemDanhService::className(),
+    ],
+    \common\services\PhongOHocSinhServiceInterface::ServiceName=>[
+        'class' => \common\services\PhongOHocSinhService::className(),
+    ],
+    \common\services\KhoaServiceInterface::ServiceName=>[
+        'class' => \common\services\KhoaService::className(),
+    ],
 ];

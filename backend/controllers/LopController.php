@@ -2,6 +2,8 @@
 
 namespace backend\controllers;
 
+use common\services\AdminUserServiceInterface;
+use common\services\KhoaServiceInterface;
 use Yii;
 use common\services\LopServiceInterface;
 use common\services\LopService;
@@ -37,8 +39,17 @@ class LopController extends \yii\web\Controller
                 },
                 'data' => function($createResultModel, $createAction) use($service){
                     $model = $createResultModel === null ? $service->newModel() : $createResultModel;
+                    /** @var KhoaServiceInterface $khoaService */
+                    $khoaService = Yii::$app->get(KhoaServiceInterface::ServiceName);
+                    $listKhoa = $khoaService->getOptionsKhoa();
+                    /** @var AdminUserServiceInterface $giaoVienService */
+                    $giaoVienService = Yii::$app->get(AdminUserServiceInterface::ServiceName);
+                    $listKhoa = $khoaService->getOptionsKhoa();
+                    $listGiaoVien = $giaoVienService->getGiaoVienOptions();
                     return [
                         'model' => $model,
+                        'listKhoa' => $listKhoa,
+                        'listGiaoVien' => $listGiaoVien
                     ];
                 }
             ],
@@ -49,8 +60,17 @@ class LopController extends \yii\web\Controller
                 },
                 'data' => function($id, $updateResultModel, $updateAction) use($service){
                     $model = $updateResultModel === null ? $service->getDetail($id) : $updateResultModel;
+                    /** @var KhoaServiceInterface $khoaService */
+                    $khoaService = Yii::$app->get(KhoaServiceInterface::ServiceName);
+                    $listKhoa = $khoaService->getOptionsKhoa();
+                    /** @var AdminUserServiceInterface $giaoVienService */
+                    $giaoVienService = Yii::$app->get(AdminUserServiceInterface::ServiceName);
+                    $listKhoa = $khoaService->getOptionsKhoa();
+                    $listGiaoVien = $giaoVienService->getGiaoVienOptions();
                     return [
                         'model' => $model,
+                        'listKhoa' => $listKhoa,
+                        'listGiaoVien' => $listGiaoVien
                     ];
                 }
             ],

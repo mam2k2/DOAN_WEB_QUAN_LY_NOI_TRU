@@ -16,22 +16,16 @@ use backend\widgets\ActiveForm;
                     ]
                 ]); ?>
                 <div class="hr-line-dashed"></div>
-                    <?= $form->field($model, 'ma_khu')->textInput(['maxlength' => true]) ?>
+                    <?= $form->field($model, 'ma_khu')->textInput(['maxlength' => true])->label("Mã khu") ?>
                         <div class="hr-line-dashed"></div>
 
-                        <?= $form->field($model, 'ten_khu')->textInput(['maxlength' => true]) ?>
+                        <?= $form->field($model, 'ten_khu')->textInput(['maxlength' => true])->label("Tên khu") ?>
                         <div class="hr-line-dashed"></div>
 
-                        <?= $form->field($model, 'vi_tri')->textInput(['maxlength' => true]) ?>
+                        <?= $form->field($model, 'vi_tri')->textInput(['maxlength' => true])->label("Vị trí") ?>
                         <div class="hr-line-dashed"></div>
 
-                        <?= $form->field($model, 'ghi_chu')->textarea(['rows' => 6]) ?>
-                        <div class="hr-line-dashed"></div>
-
-                        <?= $form->field($model, 'created_at')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
-
-                        <?= $form->field($model, 'updated_at')->textInput() ?>
+                        <?= $form->field($model, 'ghi_chu')->textarea(['rows' => 6])->label("Ghi chú") ?>
                         <div class="hr-line-dashed"></div>
 
                         <?= $form->defaultButtons() ?>

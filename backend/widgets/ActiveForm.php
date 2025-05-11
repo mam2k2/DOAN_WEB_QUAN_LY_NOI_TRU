@@ -32,8 +32,8 @@ class ActiveForm extends \yii\widgets\ActiveForm
         $options['size'] = isset($options['size']) ? $options['size'] : 2;
         return '<div class="form-group">
                     <div class="col-sm-' . $options['size'] . ' col-sm-offset-5">
-                        <button class="btn btn-primary" type="submit">' . Yii::t('app', 'Save') . '</button>
-                        <button class="btn btn-white" type="reset">' . Yii::t('app', 'Reset') . '</button>
+                        <button class="btn btn-primary mb-2 w-100" type="submit">' . Yii::t('app', 'Save') . '</button>
+                        <button class="btn btn-white mb-2  w-100" type="reset">' . Yii::t('app', 'Reset') . '</button>
                     </div>
                 </div>';
     }

@@ -6,6 +6,7 @@ namespace common\services;
 
 use backend\models\search\PhongOSearch;
 use common\models\PhongO;
+use yii\helpers\ArrayHelper;
 
 class PhongOService extends Service implements PhongOServiceInterface{
     public function getSearchModel(array $query=[], array $options=[])
@@ -24,4 +25,18 @@ class PhongOService extends Service implements PhongOServiceInterface{
         $model->loadDefaultValues();
         return $model;
     }
+    public function getAllNamePhong(array $options=[]){
+        $list = ArrayHelper::map(
+            PhongO::find()
+                ->select(['id', 'ma_phong', 'ten_phong'])
+                ->where($options)
+                ->asArray()
+                ->all(),
+            'id',
+            function ($row) {
+                return  $row['ma_phong']. " - ". $row['ten_phong'];
+            });
+        return $list;
+    }
+
 }

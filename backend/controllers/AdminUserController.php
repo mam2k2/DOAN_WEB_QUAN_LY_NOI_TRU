@@ -21,6 +21,7 @@ use backend\actions\IndexAction;
 use backend\actions\DeleteAction;
 use backend\actions\SortAction;
 use yii\base\InvalidParamException;
+use yii\helpers\VarDumper;
 use yii\web\BadRequestHttpException;
 use backend\actions\ViewAction;
 
@@ -100,7 +101,7 @@ class AdminUserController extends \yii\web\Controller
                         'model' => $service->newModel(['scenario' => AdminUserServiceInterface::scenarioCreate]),
                         'assignModel' => $rbacService->newAssignPermissionModel(),
                         'permissions' => $rbacService->getPermissionsGroups(),
-                        'branchOptions' => $branchService->getOptions(),
+//                        'branchOptions' => $branchService->getOptions(),
                         'roles' => $rbacService->getRoles(),
                     ];
                 }
@@ -115,7 +116,7 @@ class AdminUserController extends \yii\web\Controller
                         'model' => $updateResultModel === null ? $service->getDetail($id, ['scenario' => AdminUserServiceInterface::scenarioUpdate]) : $updateResultModel,
                         'assignModel' => $rbacService->getAssignPermissionDetail($id),
                         'permissions' => $rbacService->getPermissionsGroups(),
-                        'branchOptions' => $branchService->getOptions(),
+//                        'branchOptions' => $branchService->getOptions(),
                         'roles' => $rbacService->getRoles(),
                     ];
                 }

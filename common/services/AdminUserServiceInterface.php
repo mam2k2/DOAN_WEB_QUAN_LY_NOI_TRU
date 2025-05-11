@@ -30,4 +30,5 @@ interface AdminUserServiceInterface extends ServiceInterface
      * @return array
      */
     public function getAdminUserOptions();
+    public function getGiaoVienOptions($options = []);
 }

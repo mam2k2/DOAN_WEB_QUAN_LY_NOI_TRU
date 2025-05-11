@@ -2,6 +2,12 @@
 
 namespace backend\controllers;
 
+use common\models\HocSinh;
+use common\services\HocSinhService;
+use common\services\HocSinhServiceInterface;
+use common\services\KhuKtxServiceInterface;
+use common\services\ThongTinHocSinhService;
+use common\services\ThongTinHocSinhServiceInterface;
 use Yii;
 use common\services\PhongOServiceInterface;
 use common\services\PhongOService;
@@ -20,14 +26,20 @@ class PhongOController extends \yii\web\Controller
     {
         /** @var PhongOServiceInterface $service */
         $service = Yii::$app->get(PhongOServiceInterface::ServiceName);
+        /** @var KhuKtxServiceInterface $khuService */
+
         return [
             'index' => [
                 'class' => IndexAction::className(),
                 'data' => function($query, $indexAction) use($service){
                     $result = $service->getList($query);
+                    $khuService = Yii::$app->get(KhuKtxServiceInterface::ServiceName);
+                    $listKhu = $khuService->getAllNameKhu();
                     return [
                         'dataProvider' => $result['dataProvider'],
-                        'searchModel' => $result['searchModel'],                    ];
+                        'searchModel' => $result['searchModel'],
+                        'listKhu' => $listKhu,
+                    ];
                 }
             ],
             'create' => [
@@ -37,8 +49,12 @@ class PhongOController extends \yii\web\Controller
                 },
                 'data' => function($createResultModel, $createAction) use($service){
                     $model = $createResultModel === null ? $service->newModel() : $createResultModel;
+                    $khuService = Yii::$app->get(KhuKtxServiceInterface::ServiceName);
+                    /** @var KhuKtxServiceInterface $khuService */
+                    $listKhu = $khuService->getAllNameKhu();
                     return [
                         'model' => $model,
+                        'listKhu' => $listKhu,
                     ];
                 }
             ],
@@ -48,9 +64,12 @@ class PhongOController extends \yii\web\Controller
                     return $service->update($id, $postData);
                 },
                 'data' => function($id, $updateResultModel, $updateAction) use($service){
+                    $khuService = Yii::$app->get(KhuKtxServiceInterface::ServiceName);
+                    $listKhu = $khuService->getAllNameKhu();
                     $model = $updateResultModel === null ? $service->getDetail($id) : $updateResultModel;
                     return [
                         'model' => $model,
+                        'listKhu' => $listKhu,
                     ];
                 }
             ],
@@ -75,5 +94,9 @@ class PhongOController extends \yii\web\Controller
                 },
             ],
         ];
+    }
+    public  function  actionThietBiPhongO($id)
+    {
+
     }
 }

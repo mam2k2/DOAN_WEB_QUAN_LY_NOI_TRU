@@ -19,6 +19,7 @@ use yii\web\UploadedFile;
  * AdminUser model
  *
  * @property integer $id
+ * @property integer $type
  * @property string $username
  * @property string $password_hash
  * @property string $password_reset_token
@@ -36,6 +37,8 @@ class AdminUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfa
 
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE = 10;
+    const TYPE_GIAO_VIEN = 2;
+    const TYPE_ADMIN= 1;
 
     public $password;
 
@@ -60,13 +63,13 @@ class AdminUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfa
     public function rules()
     {
         return [
-            [['username', 'password', 'repassword', 'password_hash'], 'string'],
+            [['username', 'password', 'repassword', 'password_hash','ho_va_ten'], 'string'],
             ['email', 'email'],
             ['email', 'unique'],
-            ['branch_id', 'integer'],
             [['repassword'], 'compare', 'compareAttribute' => 'password'],
             [['avatar'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, gif, webp'],
             [['status'], 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            [['type'], 'in', 'range' => [self::TYPE_ADMIN, self::TYPE_GIAO_VIEN]],
             [['username', 'email', 'password', 'repassword'], 'required', 'on' => ['create']],
             [['username', 'email'], 'required', 'on' => ['update', 'self-update']],
             [['username'], 'unique', 'on' => 'create'],
@@ -88,8 +91,8 @@ class AdminUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfa
     {
         return [
             'default' => ['username', 'email'],
-            'create' => ['username', 'email', 'password', 'avatar', 'status', 'roles', 'permissions','branch_id'],
-            'update' => ['username', 'email', 'password', 'avatar', 'status', 'roles', 'permissions','branch_id'],
+            'create' => ['username','ho_va_ten','type', 'email', 'password', 'avatar', 'status', 'roles', 'permissions'],
+            'update' => ['username','ho_va_ten','type', 'email', 'password', 'avatar', 'status', 'roles', 'permissions'],
             'self-update' => ['email', 'password', 'avatar', 'old_password', 'repassword'],
         ];
     }
@@ -102,6 +105,7 @@ class AdminUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfa
         return [
             'username' => Yii::t('app', 'Username'),
             'email' => Yii::t('app', 'Email'),
+            'ho_va_ten' => Yii::t('app', 'Họ và tên'),
             'old_password' => Yii::t('app', 'Old Password'),
             'password' => Yii::t('app', 'Password'),
             'repassword' => Yii::t('app', 'Repeat Password'),
@@ -109,7 +113,7 @@ class AdminUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfa
             'status' => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
-            'branch_id' => Yii::t('app', 'Branch'),
+//            'branch_id' => Yii::t('app', 'Branch'),
         ];
     }
 
@@ -198,7 +202,13 @@ class AdminUser extends \yii\db\ActiveRecord implements \yii\web\IdentityInterfa
             self::STATUS_DELETED => Yii::t('app', 'Disabled'),
         ];
     }
-
+    public static function getTypes()
+    {
+        return [
+            self::TYPE_GIAO_VIEN => Yii::t('app', 'Giáo viên'),
+            self::TYPE_ADMIN => Yii::t('app', 'Hệ thống'),
+        ];
+    }
     /**
      * @inheritdoc
      */

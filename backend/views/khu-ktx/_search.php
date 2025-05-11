@@ -16,15 +16,15 @@ use yii\helpers\Url;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id', ['options'=>['class'=>'col-sm-3']]) ?>
+    <?= $form->field($model, 'id', ['options'=>['class'=>'col-sm-3']])->label("ID") ?>
 
-    <?= $form->field($model, 'ma_khu', ['options'=>['class'=>'col-sm-3']]) ?>
+    <?= $form->field($model, 'ma_khu', ['options'=>['class'=>'col-sm-3']])->label("Mã khu") ?>
 
-    <?= $form->field($model, 'ten_khu', ['options'=>['class'=>'col-sm-3']]) ?>
+    <?= $form->field($model, 'ten_khu', ['options'=>['class'=>'col-sm-3']])->label("Tên khu") ?>
 
-    <?= $form->field($model, 'vi_tri', ['options'=>['class'=>'col-sm-3']]) ?>
+    <?= $form->field($model, 'vi_tri', ['options'=>['class'=>'col-sm-3']])->label("Vị trí") ?>
 
-    <?= $form->field($model, 'ghi_chu', ['options'=>['class'=>'col-sm-3']]) ?>
+    <?= $form->field($model, 'ghi_chu', ['options'=>['class'=>'col-sm-3']])->label("Ghi chú") ?>
 
     <?php // echo $form->field($model, 'created_at', ['options'=>['class'=>'col-sm-3']]) ?>
 

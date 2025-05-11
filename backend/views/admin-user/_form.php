@@ -34,14 +34,17 @@ $this->title = "Admin";
                 ]); ?>
                 <?= $form->field($model, 'username')->textInput(['maxlength' => 64]) ?>
                 <div class="hr-line-dashed"></div>
+                <?= $form->field($model, 'ho_va_ten')->textInput(['maxlength' => 64]) ?>
+                <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'avatar')->imgInput() ?>
-                <?= $form->field($model, 'branch_id')->chosenSelect($branchOptions) ?>
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'email')->textInput(['maxlength' => 64]) ?>
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'password')->passwordInput(['maxlength' => 512]) ?>
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'status')->radioList( AdminUser::getStatuses() ) ?>
+                <div class="hr-line-dashed"></div>
+                <?= $form->field($model, 'type')->radioList( AdminUser::getTypes() ) ?>
                 <div class="hr-line-dashed"></div>
                 <?php
                     $itemsOptions = [];
