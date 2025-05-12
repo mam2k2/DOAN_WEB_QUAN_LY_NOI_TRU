@@ -111,4 +111,7 @@ return [
     \common\services\KhoaServiceInterface::ServiceName=>[
         'class' => \common\services\KhoaService::className(),
     ],
+    \common\services\YTeServiceInterface::ServiceName=>[
+        'class' => \common\services\YTeService::className(),
+    ],
 ];

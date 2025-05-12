@@ -16,7 +16,7 @@ use Yii;
  *
  * @property ThongTinHocSinh $hocSinh
  */
-class YTe extends BaseModel
+class YTe extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}

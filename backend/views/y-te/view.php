@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\YTe */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Y Tes'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Y Tes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="yte-view">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'user_id',
+            'hoc_sinh_id',
             'ngay_bi_benh',
             'ghi_chu:ntext',
             'created_at',

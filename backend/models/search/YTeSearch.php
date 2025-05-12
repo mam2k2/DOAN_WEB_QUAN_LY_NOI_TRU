@@ -18,7 +18,7 @@ class YTeSearch extends YTe implements \backend\models\search\SearchInterface
     public function rules()
     {
         return [
-            [['id', 'user_id', 'ngay_bi_benh', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'hoc_sinh_id', 'ngay_bi_benh', 'created_at', 'updated_at'], 'integer'],
             [['ghi_chu'], 'safe'],
         ];
     }
@@ -61,7 +61,7 @@ class YTeSearch extends YTe implements \backend\models\search\SearchInterface
         // grid filtering conditions
         $query->andFilterWhere([
             self::tableName().'.id' => $this->id,
-            self::tableName().'.user_id' => $this->user_id,
+            self::tableName().'.hoc_sinh_id' => $this->hoc_sinh_id,
             self::tableName().'.ngay_bi_benh' => $this->ngay_bi_benh,
             self::tableName().'.created_at' => $this->created_at,
             self::tableName().'.updated_at' => $this->updated_at,

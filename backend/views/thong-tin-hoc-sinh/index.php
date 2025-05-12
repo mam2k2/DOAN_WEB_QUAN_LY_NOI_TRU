@@ -49,7 +49,19 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Thong Tin Hoc Sinh');
                             'contentOptions' => ['style' => 'width: 50px!important; text-align: center;'],
                         ],
                         'ho_va_ten',
-                        'email:email',
+                        'email',
+                        'tenPhong',
+                        [
+                            'attribute' => 'daDiemDanh',
+                            'format' => 'raw',
+                            'value' => function ($model) {
+                                return $model->daDiemDanh
+                                    ? '<span style="color:green;">✔️</span>'
+                                    : '<span style="color:red;">❌</span>';
+                            },
+                            'label' => 'Điểm danh hôm nay',
+                            'contentOptions' => ['style' => 'text-align: center;'],
+                        ],
                         [
                                 'attribute' => 'ngay_sinh',
                                 'format' => ['date', 'php:d-m-Y'],
@@ -65,10 +77,51 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Thong Tin Hoc Sinh');
                             'format' => ['date', 'php:d-m-Y'],
                         ],
                          'ghi_chu:ntext',
+
                         // 'created_at',
                         // 'updated_at',
 
-                        ['class' => ActionColumn::className(),],
+                        [
+                            'class' => ActionColumn::className(),
+                            'template' => '{view} {update} {delete} {hocsinh} {check}', // thêm tên nút
+                            'buttons' => [
+                                'view' => function ($url, $model, $key) {
+                                    return \yii\helpers\Html::a('<i class="fa fa-folder"></i>', 'javascript:void(0)', [
+                                        'class' => 'btn-sm',
+                                        'title' => 'Xem thiết bị',
+                                        'data-pjax' => '0',
+                                        'onclick' => "viewLayer('/admin/index.php?r=phong-o/view-layer&id={$model->id}', $(this))",
+                                    ]);
+                                },
+
+                                'hocsinh' => function ($url, $model, $key) {
+                                    return \yii\helpers\Html::a(
+                                        '<i class="glyphicon glyphicon-user"></i>', "javascript:void(0)"// icon hoặc text
+                                        , // đường dẫn
+                                        [
+                                            'title' => 'Lịch sử vi phạm',
+                                            'data-pjax' => '0',
+                                            'class' => 'btn-sm',
+                                            //['thiet-bi-ktx/index', 'ThietBiKtxSearch[phong_o_id]' => $model->id]
+                                            'onclick' => "viewLayer('/admin/index.php?r=thong-tin-hoc-sinh/index&ThietBiKtxSearch[phong_o_id]={$model->id}', $(this))",
+                                        ]
+                                    );
+                                },
+                                'check' => function ($url, $model, $key) {
+                                    return \yii\helpers\Html::a(
+                                        '<i class="glyphicon glyphicon-check"></i>', "javascript:void(0)"// icon hoặc text
+                                        , // đường dẫn
+                                        [
+                                            'title' => 'Điểm danh',
+                                            'data-pjax' => '0',
+                                            'class' => 'btn-sm',
+                                            //['thiet-bi-ktx/index', 'ThietBiKtxSearch[phong_o_id]' => $model->id]
+                                            'onclick' => "viewLayer('/admin/index.php?r=thong-tin-hoc-sinh/index&ThietBiKtxSearch[phong_o_id]={$model->id}', $(this))",
+                                        ]
+                                    );
+                                },
+                            ],
+                        ],
                     ],
                 ]); ?>
             </div>

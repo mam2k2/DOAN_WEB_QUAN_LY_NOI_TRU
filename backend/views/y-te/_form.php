@@ -16,7 +16,7 @@ use backend\widgets\ActiveForm;
                     ]
                 ]); ?>
                 <div class="hr-line-dashed"></div>
-                    <?= $form->field($model, 'user_id')->textInput() ?>
+                    <?= $form->field($model, 'hoc_sinh_id')->textInput() ?>
                         <div class="hr-line-dashed"></div>
 
                         <?= $form->field($model, 'ngay_bi_benh')->textInput() ?>
