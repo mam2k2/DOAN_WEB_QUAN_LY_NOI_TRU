@@ -29,26 +29,46 @@ use backend\widgets\ActiveForm;
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'cccd')->textInput(['type' => 'number']) ?>
                 <div class="hr-line-dashed"></div>
+                <?=$form->field($model, 'phong_id')->widget(\kartik\select2\Select2::class, [
+                    'data' => $phongList,
+                    'options' => ['placeholder' => 'Chọn phòng'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]);?>
+                <div class="hr-line-dashed"></div>
+
+                <?=$form->field($model, 'lop_id')->widget(\kartik\select2\Select2::class, [
+                    'data' => $listLop,
+                    'options' => ['placeholder' => 'Chọn khoa'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]);?>
+                <div class="hr-line-dashed"></div>
                         <?= $form->field($model, 'username')->textInput(['id' => 'username', 'readonly' => true]) ?>
                             <div class="hr-line-dashed"></div>
                     <?= $form->field($model, 'password')->textInput() ?>
-                    <div class="hr-line-dashed"></div>
-                        <?=$form->field($model, 'lop_id')->widget(\kartik\select2\Select2::class, [
-                            'data' => $listLop,
-                            'options' => ['placeholder' => 'Chọn khoa'],
-                            'pluginOptions' => [
-                                'allowClear' => true
-                            ],
-                        ]);?>
-                        <div class="hr-line-dashed"></div>
+                <div class="hr-line-dashed"></div>
 
                         <?= $form->field($model, 'ngay_sinh')->textInput(['type' => 'date']) ?>
                         <div class="hr-line-dashed"></div>
 
                         <?= $form->field($model, 'que_quan')->textInput(['maxlength' => true]) ?>
                         <div class="hr-line-dashed"></div>
-
-                        <?= $form->field($model, 'trang_thai')->textInput() ?>
+<!--                '0-Đã Tốt nghiệp,1-Đã rời đi, 2 chờ duyệt-->
+                        <?=$form->field($model, 'trang_thai')->widget(\kartik\select2\Select2::class, [
+                            'data' => [
+                                0=>"Đã Tốt nghiệp",
+                                1 => "Đang học",
+                                2 => "Bảo lưu",
+                                3 => "Chờ duyệt",
+                            ],
+                            'options' => ['placeholder' => 'Trạng thái'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]);?>
                         <div class="hr-line-dashed"></div>
 
                         <?= $form->field($model, 'diem_trung_binh')->textInput(['maxlength' => true]) ?>

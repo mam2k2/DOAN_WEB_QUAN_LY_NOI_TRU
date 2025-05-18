@@ -28,7 +28,7 @@ use backend\widgets\ActiveForm;
                         <?= $form->field($model, 'ngay_gui')->textInput() ?>
                         <div class="hr-line-dashed"></div>
 
-                        <?= $form->field($model, 'doi_tuong_nhan')->textInput(['maxlength' => true]) ?>
+                        <?= $form->field($model, 'user_id')->textInput() ?>
                         <div class="hr-line-dashed"></div>
 
                         <?= $form->field($model, 'created_at')->textInput() ?>

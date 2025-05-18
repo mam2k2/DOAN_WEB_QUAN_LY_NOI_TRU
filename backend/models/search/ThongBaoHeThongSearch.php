@@ -18,8 +18,8 @@ class ThongBaoHeThongSearch extends ThongBaoHeThong implements \backend\models\s
     public function rules()
     {
         return [
-            [['id', 'nguoi_gui_id', 'ngay_gui', 'created_at', 'updated_at'], 'integer'],
-            [['tieu_de', 'noi_dung', 'doi_tuong_nhan'], 'safe'],
+            [['id', 'nguoi_gui_id', 'user_id', 'created_at', 'updated_at'], 'integer'],
+            [['tieu_de', 'noi_dung', 'ngay_gui'], 'safe'],
         ];
     }
 
@@ -63,13 +63,13 @@ class ThongBaoHeThongSearch extends ThongBaoHeThong implements \backend\models\s
             self::tableName().'.id' => $this->id,
             self::tableName().'.nguoi_gui_id' => $this->nguoi_gui_id,
             self::tableName().'.ngay_gui' => $this->ngay_gui,
+            self::tableName().'.user_id' => $this->user_id,
             self::tableName().'.created_at' => $this->created_at,
             self::tableName().'.updated_at' => $this->updated_at,
         ]);
 
         $query->andFilterWhere(['like', self::tableName().'.tieu_de', $this->tieu_de])
-            ->andFilterWhere(['like', self::tableName().'.noi_dung', $this->noi_dung])
-            ->andFilterWhere(['like', self::tableName().'.doi_tuong_nhan', $this->doi_tuong_nhan]);
+            ->andFilterWhere(['like', self::tableName().'.noi_dung', $this->noi_dung]);
 
         return $dataProvider;
     }

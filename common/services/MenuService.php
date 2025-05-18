@@ -15,6 +15,7 @@ use common\models\Menu;
 use yii\base\Exception;
 use yii\caching\FileDependency;
 use yii\helpers\ArrayHelper;
+use yii\helpers\VarDumper;
 
 class MenuService extends Service  implements MenuServiceInterface
 {
@@ -73,14 +74,22 @@ class MenuService extends Service  implements MenuServiceInterface
         $tempMenus = [];
         foreach ($menus as $menu) {
             /** @var Menu $menu */
-            $url = $menu->url;
+            $url = $menu->url ;
+            // Bước 1: bỏ escape dư
+            $url = stripslashes($url); // → ["\/log\/index"]
+
+            $url = json_decode($url, true);
+
             $temp = @json_decode($menu->url, true);
             if ($temp !== null) {//menu url store json format
                 $url = $temp[0];
             }
             if (strpos($url, '/') !== 0) $url = '/' . $url;//ensure url must start with '/'
             $url = $url . ':GET';
+//            VarDumper::dump($url,10,true);
+
             if (in_array($url, $permissions)) {
+
                 $menu = $menu->getAncestors($menu->id) + [$menu];
                 $tempMenus = array_merge($tempMenus, $menu);
             }
@@ -97,6 +106,8 @@ class MenuService extends Service  implements MenuServiceInterface
             $existMenuIds[] = $v->id;
         }
         ArrayHelper::multisort($hasPermissionMenus, 'sort', SORT_ASC);
+//        VarDumper::dump($hasPermissionMenus,10,true);
+//        exit();
         return $hasPermissionMenus;
     }
 

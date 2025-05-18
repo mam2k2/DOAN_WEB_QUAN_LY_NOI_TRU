@@ -18,7 +18,7 @@ class ThuPhiNoiTruSearch extends ThuPhiNoiTru implements \backend\models\search\
     public function rules()
     {
         return [
-            [['id', 'user_id', 'khoan_phi_id', 'phong_id', 'trang_thai', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'hoc_sinh_id', 'khoan_phi_id', 'phong_id', 'trang_thai', 'created_at', 'updated_at'], 'integer'],
             [['so_tien'], 'number'],
             [['ngay_thu', 'nguoi_thu', 'ghi_chu'], 'safe'],
         ];
@@ -62,7 +62,7 @@ class ThuPhiNoiTruSearch extends ThuPhiNoiTru implements \backend\models\search\
         // grid filtering conditions
         $query->andFilterWhere([
             self::tableName().'.id' => $this->id,
-            self::tableName().'.user_id' => $this->user_id,
+            self::tableName().'.hoc_sinh_id' => $this->hoc_sinh_id,
             self::tableName().'.khoan_phi_id' => $this->khoan_phi_id,
             self::tableName().'.phong_id' => $this->phong_id,
             self::tableName().'.so_tien' => $this->so_tien,

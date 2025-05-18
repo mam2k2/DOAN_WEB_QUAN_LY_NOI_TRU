@@ -117,7 +117,7 @@ class ThongTinHocSinhService extends Service implements ThongTinHocSinhServiceIn
                 ->all(),
             'id',
             function ($row) {
-                return $row['cmnd'] . ' - ' . $row['ten'];
+                return $row['cccd'] . ' - ' . $row['ho_va_ten'];
             });
         return $list;
     }

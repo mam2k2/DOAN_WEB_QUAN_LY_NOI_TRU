@@ -114,4 +114,19 @@ return [
     \common\services\YTeServiceInterface::ServiceName=>[
         'class' => \common\services\YTeService::className(),
     ],
+    \common\services\DiemDanhServiceInterface::ServiceName=>[
+        'class' => \common\services\DiemDanhService::className(),
+    ],
+    \common\services\ThuPhiNoiTruServiceInterface::ServiceName=>[
+        'class' => \common\services\ThuPhiNoiTruService::className(),
+    ],
+    \common\services\KhoanPhiServiceInterface::ServiceName=>[
+        'class' => \common\services\KhoanPhiService::className(),
+    ],
+    \common\services\ChiTietKhoanThuServiceInterface::ServiceName=>[
+        'class' => \common\services\ChiTietKhoanThuService::className(),
+    ],
+    \common\services\ThongBaoHeThongServiceInterface::ServiceName=>[
+        'class' => \common\services\ThongBaoHeThongService::className(),
+    ],
 ];

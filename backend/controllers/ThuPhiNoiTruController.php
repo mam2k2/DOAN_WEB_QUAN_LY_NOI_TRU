@@ -2,6 +2,12 @@
 
 namespace backend\controllers;
 
+use common\models\ChiTietKhoanThu;
+use common\models\PhongO;
+use common\services\KhoanPhiServiceInterface;
+use common\services\LopServiceInterface;
+use common\services\PhongOServiceInterface;
+use common\services\ThongTinHocSinhServiceInterface;
 use Yii;
 use common\services\ThuPhiNoiTruServiceInterface;
 use common\services\ThuPhiNoiTruService;
@@ -37,8 +43,25 @@ class ThuPhiNoiTruController extends \yii\web\Controller
                 },
                 'data' => function($createResultModel, $createAction) use($service){
                     $model = $createResultModel === null ? $service->newModel() : $createResultModel;
+
+                    $modelsChiTiet = [new ChiTietKhoanThu()];
+                    /** @var KhoanPhiServiceInterface $khoanPhiService */
+                    $khoanPhiService = Yii::$app->get(KhoanPhiServiceInterface::ServiceName);
+                    $listKhoan = $khoanPhiService->getOptionsKhoanPhi();
+                    $listGia = $khoanPhiService->getGiaKhoanPhi();
+                    /** @var ThongTinHocSinhServiceInterface $tTHSService */
+                    $tTHSService = Yii::$app->get(ThongTinHocSinhServiceInterface::ServiceName);
+                    $listTTHS = $tTHSService->getAllNameHocSinh();
+                    /** @var PhongOServiceInterface $phongOService */
+                    $phongOService = Yii::$app->get(PhongOServiceInterface::ServiceName);
+                    $listPhongO= $phongOService->getAllNamePhong();
                     return [
                         'model' => $model,
+                        'modelsChiTiet' => $modelsChiTiet,
+                        'listKhoan' => $listKhoan,
+                        'listTTHS' => $listTTHS,
+                        'listPhongO' => $listPhongO,
+                        'listGia' => $listGia,
                     ];
                 }
             ],
@@ -49,8 +72,24 @@ class ThuPhiNoiTruController extends \yii\web\Controller
                 },
                 'data' => function($id, $updateResultModel, $updateAction) use($service){
                     $model = $updateResultModel === null ? $service->getDetail($id) : $updateResultModel;
+                    $modelsChiTiet = ChiTietKhoanThu::findAll(['thu_phi_noi_tru_id' => $id]);
+                    /** @var KhoanPhiServiceInterface $khoanPhiService */
+                    $khoanPhiService = Yii::$app->get(KhoanPhiServiceInterface::ServiceName);
+                    $listKhoan = $khoanPhiService->getOptionsKhoanPhi();
+                    $listGia = $khoanPhiService->getGiaKhoanPhi();
+                    /** @var ThongTinHocSinhServiceInterface $tTHSService */
+                    $tTHSService = Yii::$app->get(ThongTinHocSinhServiceInterface::ServiceName);
+                    $listTTHS = $tTHSService->getAllNameHocSinh();
+                    /** @var PhongOServiceInterface $phongOService */
+                    $phongOService = Yii::$app->get(PhongOServiceInterface::ServiceName);
+                    $listPhongO= $phongOService->getAllNamePhong();
                     return [
                         'model' => $model,
+                        'modelsChiTiet' => $modelsChiTiet,
+                        'listKhoan' => $listKhoan,
+                        'listTTHS' => $listTTHS,
+                        'listPhongO' => $listPhongO,
+                        'listGia' => $listGia,
                     ];
                 }
             ],

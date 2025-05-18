@@ -50,8 +50,18 @@ class MenuController extends Controller
                 ]
             ],
             [
-                "label" => 'Thu phí nội trú',
-                "url" => 'thu-phi-noi-tru/index',
+                "label" => 'Quản lý thu phí nội trú',
+                "url" => '',
+                'child' => [
+                    [
+                        "label" => 'Thu phí',
+                        "url" => 'thu-phi-noi-tru/index',
+                    ],
+                    [
+                        "label" => 'Khoản phí',
+                        "url" => 'khoan-phi/index',
+                    ],
+                ]
             ],
 
             [
@@ -68,7 +78,11 @@ class MenuController extends Controller
                     ],
                     [
                         "label" => 'Điểm danh',
-                        "url" => 'category/index',
+                        "url" => 'diem-danh/index',
+                    ],
+                    [
+                        "label" => 'Vi phạm',
+                        "url" => 'vi-pham-noi-quy/index',
                     ],
                 ]
             ],

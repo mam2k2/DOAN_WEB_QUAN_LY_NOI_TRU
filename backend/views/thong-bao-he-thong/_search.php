@@ -26,7 +26,7 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'ngay_gui', ['options'=>['class'=>'col-sm-3']]) ?>
 
-    <?php // echo $form->field($model, 'doi_tuong_nhan', ['options'=>['class'=>'col-sm-3']]) ?>
+    <?php // echo $form->field($model, 'user_id', ['options'=>['class'=>'col-sm-3']]) ?>
 
     <?php // echo $form->field($model, 'created_at', ['options'=>['class'=>'col-sm-3']]) ?>
 
@@ -34,10 +34,10 @@ use yii\helpers\Url;
 
     <div class="col-sm-3">
         <div class="col-sm-6">
-            <?= Html::submitButton(Yii::t("app", Yii::t('app', 'Search')), ['class' => 'btn btn-primary btn-block']) ?>
+            <?= Html::submitButton(Yii::t("app", 'Search'), ['class' => 'btn btn-primary btn-block']) ?>
         </div>
         <div class="col-sm-6">
-            <?= Html::a(Yii::t("app", Yii::t('app', 'Reset')), Url::to(['index']), ['class' => 'btn btn-default btn-block']) ?>
+            <?= Html::a(Yii::t("app", 'Reset'), Url::to(['index']), ['class' => 'btn btn-default btn-block']) ?>
         </div>
     </div>
 

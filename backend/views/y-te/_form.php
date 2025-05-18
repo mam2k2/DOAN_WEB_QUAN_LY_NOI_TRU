@@ -16,20 +16,26 @@ use backend\widgets\ActiveForm;
                     ]
                 ]); ?>
                 <div class="hr-line-dashed"></div>
-                    <?= $form->field($model, 'hoc_sinh_id')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
+                    <?=$form->field($model, 'hoc_sinh_id')->widget(\kartik\select2\Select2::class, [
+                        'data' => $listTTHS,
+                        'options' => ['placeholder' => 'Chọn học sinh'],
+                        'pluginOptions' => [
+                            'allowClear' => true
+                        ],
+                    ]);?>
+                    <div class="hr-line-dashed"></div>
 
-                        <?= $form->field($model, 'ngay_bi_benh')->textInput() ?>
+                        <?= $form->field($model, 'ngay_bi_benh')->textInput(['type' => 'date']) ?>
                         <div class="hr-line-dashed"></div>
 
                         <?= $form->field($model, 'ghi_chu')->textarea(['rows' => 6]) ?>
                         <div class="hr-line-dashed"></div>
 
-                        <?= $form->field($model, 'created_at')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
-
-                        <?= $form->field($model, 'updated_at')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
+<!--                        --><?php //= $form->field($model, 'created_at')->textInput() ?>
+<!--                        <div class="hr-line-dashed"></div>-->
+<!---->
+<!--                        --><?php //= $form->field($model, 'updated_at')->textInput() ?>
+<!--                        <div class="hr-line-dashed"></div>-->
 
                         <?= $form->defaultButtons() ?>
                     <?php ActiveForm::end(); ?>

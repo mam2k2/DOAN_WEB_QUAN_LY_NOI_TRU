@@ -37,7 +37,7 @@ class PhongOHocSinh extends \yii\db\ActiveRecord
         return [
             [['hoc_sinh_id', 'phong_id', 'trang_thai', 'created_at', 'updated_at'], 'integer'],
             [['phong_id', 'thoi_gian_bat_dau'], 'required'],
-            [['thoi_gian_bat_dau'], 'number'],
+            [['thoi_gian_bat_dau'], 'date', 'format' => 'php:Y-m-d'],
             [['ghi_chu'], 'string'],
             [['phong_id'], 'exist', 'skipOnError' => true, 'targetClass' => PhongO::className(), 'targetAttribute' => ['phong_id' => 'id']],
             [['hoc_sinh_id'], 'exist', 'skipOnError' => true, 'targetClass' => ThongTinHocSinh::className(), 'targetAttribute' => ['hoc_sinh_id' => 'id']],

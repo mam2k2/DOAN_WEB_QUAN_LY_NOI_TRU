@@ -36,7 +36,7 @@ class ViPhamNoiQuy extends BaseModel
     {
         return [
             [['hoc_sinh_id', 'created_at', 'updated_at'], 'integer'],
-            [['loai_vi_pham'], 'required'],
+            [['loai_vi_pham','hoc_sinh_id','ngay_vi_pham'], 'required'],
             [['mo_ta'], 'string'],
             [['ngay_vi_pham'], 'safe'],
             [['loai_vi_pham', 'hinh_thuc_xu_ly'], 'string', 'max' => 255],

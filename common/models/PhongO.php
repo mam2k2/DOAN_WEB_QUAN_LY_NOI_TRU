@@ -108,4 +108,10 @@ class PhongO extends \yii\db\ActiveRecord
         }
         return $avatarUrl;
     }
+    public function getSoLuongHienTaiPhong()
+    {
+        $this->so_luong_hien_tai = ThongTinHocSinh::find()->where(['phong_o_id' => $this->id])->count();
+        $this->save();
+        return $this->so_luong_hien_tai;
+    }
 }

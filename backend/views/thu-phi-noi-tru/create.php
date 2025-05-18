@@ -13,5 +13,10 @@ $this->params['breadcrumbs'] = [
 ?>
 <?= $this->render('_form', [
     'model' => $model,
+    'modelsChiTiet' => $modelsChiTiet,
+    'listKhoan' => $listKhoan,
+    'listTTHS' => $listTTHS,
+    'listPhongO' => $listPhongO,
+    'listGia' => $listGia,
 ]) ?>
 

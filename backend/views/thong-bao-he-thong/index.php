@@ -9,7 +9,7 @@ use backend\grid\GridView;
 /* @var $searchModel backend\models\search\ThongBaoHeThongSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Thong Bao He Thongs');
+$this->title = 'Thong Bao He Thongs';
 $this->params['breadcrumbs'][] = yii::t('app', 'Thong Bao He Thong');
 ?>
 <div class="row">
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Thong Bao He Thong');
                         'noi_dung:ntext',
                         'nguoi_gui_id',
                         'ngay_gui',
-                        // 'doi_tuong_nhan',
+                        // 'user_id',
                         // 'created_at',
                         // 'updated_at',
 

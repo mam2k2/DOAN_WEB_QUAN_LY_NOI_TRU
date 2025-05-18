@@ -86,7 +86,7 @@ class m250327_104602_add_all_function_sql extends Migration
         $this->createTable('{{%thu_phi_noi_tru}}', [
             'id' => $this->primaryKey(),
             'hoc_sinh_id' => $this->integer()->unsigned(),
-            'khoan_phi_id' => $this->integer()->notNull(),
+//            'khoan_phi_id' => $this->integer()->notNull(),
             'phong_id' => $this->integer()->notNull(),
             'so_tien' => $this->decimal(10,2)->notNull(),
             'ngay_thu' => $this->date()->notNull(),
@@ -152,13 +152,13 @@ class m250327_104602_add_all_function_sql extends Migration
             'id',
         );
 
-        $this->addForeignKey(
-            'fk_thu_phi_khoan_phi_id',
-            '{{%thu_phi_noi_tru}}',
-            'khoan_phi_id',
-            '{{%khoan_phi}}',
-            'id',
-        );
+//        $this->addForeignKey(
+//            'fk_thu_phi_khoan_phi_id',
+//            '{{%thu_phi_noi_tru}}',
+//            'khoan_phi_id',
+//            '{{%khoan_phi}}',
+//            'id',
+//        );
 
         $this->addForeignKey(
             'fk_thu_phi_phong_id',

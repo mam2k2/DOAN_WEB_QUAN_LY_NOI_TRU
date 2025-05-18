@@ -69,9 +69,13 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Thong Tin Hoc Sinh');
                         'que_quan',
                          [
                              'attribute' => 'trang_thai',
-                             'label' => 'Trạng thái'
+                             'label' => 'Trạng thái',
+                             'format' => 'raw',
+                             'value' => function ($model) {
+                                return $model->trangThaiText;
+                             }
                          ],
-                         'diem_trung_binh',
+//                         'diem_trung_binh',
                         [
                             'attribute' => 'ngay_bat_dau',
                             'format' => ['date', 'php:d-m-Y'],
@@ -108,15 +112,17 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Thong Tin Hoc Sinh');
                                     );
                                 },
                                 'check' => function ($url, $model, $key) {
+                                    if ($model->daDiemDanh) {
+                                        return ''; // không hiển thị nút nếu đã điểm danh
+                                    }
+
                                     return \yii\helpers\Html::a(
-                                        '<i class="glyphicon glyphicon-check"></i>', "javascript:void(0)"// icon hoặc text
-                                        , // đường dẫn
+                                        '<i class="glyphicon glyphicon-check"></i>',
+                                        "/admin/index.php?r=thong-tin-hoc-sinh/diem-danh&id={$model->id}",
                                         [
                                             'title' => 'Điểm danh',
                                             'data-pjax' => '0',
                                             'class' => 'btn-sm',
-                                            //['thiet-bi-ktx/index', 'ThietBiKtxSearch[phong_o_id]' => $model->id]
-                                            'onclick' => "viewLayer('/admin/index.php?r=thong-tin-hoc-sinh/index&ThietBiKtxSearch[phong_o_id]={$model->id}', $(this))",
                                         ]
                                     );
                                 },

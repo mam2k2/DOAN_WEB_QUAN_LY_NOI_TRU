@@ -27,7 +27,8 @@
         "antkaz/yii2-vue": "^1.0",
         "tebe/yii2-inertia": "^1.0",
         "kartik-v/yii2-tree-manager": "dev-master",
-        "kartik-v/yii2-widget-select2": "^2.2"
+        "kartik-v/yii2-widget-select2": "^2.2",
+        "wbraganca/yii2-dynamicform": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

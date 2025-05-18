@@ -158,7 +158,7 @@ $this->title = Yii::t('app', 'VODY Manage');
                         <?= Html::a('<i class="fa fa fa-sign-out"></i>', Url::toRoute('site/logout'), ['data-method'=>'post', 'class'=>'roll-nav roll-right J_tabExit'])?>
                     </div>
                     <div class="row J_mainContent" id="content-main">
-                        <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="<?= Url::to(['site/main']) ?>" frameborder="0" data-id="<?= Url::to(['site/main']) ?>" seamless></iframe>
+                        <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="<?= Url::to(['site/main']) ?>" frameborder="0" data-id="<?= Url::to(['site/main']) ?>" TEST></iframe>
                     </div>
                 </div>
                 <!-- Footer -->

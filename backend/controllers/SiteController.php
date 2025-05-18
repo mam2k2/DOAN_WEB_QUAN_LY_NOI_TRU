@@ -108,6 +108,9 @@ class SiteController extends \yii\web\Controller
     public function actionMain()
     {
 
+        return $this->render('main', [
+
+        ]);
     }
 
     /**

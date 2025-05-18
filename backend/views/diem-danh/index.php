@@ -4,9 +4,9 @@ use backend\widgets\Bar;
 use backend\grid\CheckboxColumn;
 use backend\grid\ActionColumn;
 use backend\grid\GridView;
-
+use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\search\DiemDanhySearch */
+/* @var $searchModel backend\models\search\DiemDanhSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Diem Danhs';
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Diem Danh');
             <div class="ibox-content">
                 <?= Bar::widget() ?>
                 <?=$this->render('_search', ['model' => $searchModel]); ?>
-                <?= GridView::widget([
+    <?php Pjax::begin(); ?>            <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
                     'columns' => [
@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Diem Danh');
                         ['class' => ActionColumn::className(),],
                     ],
                 ]); ?>
-            </div>
+<?php Pjax::end(); ?>            </div>
         </div>
     </div>
 </div>

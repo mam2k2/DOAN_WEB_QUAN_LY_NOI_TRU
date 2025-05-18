@@ -2,6 +2,9 @@
 
 namespace backend\controllers;
 
+use common\models\DiemDanh;
+use common\services\DiemDanhService;
+use common\services\DiemDanhServiceInterface;
 use Yii;
 use common\services\HocSinhServiceInterface;
 use common\services\HocSinhService;
@@ -77,4 +80,5 @@ class HocSinhController extends \yii\web\Controller
             ],
         ];
     }
+
 }

@@ -16,8 +16,14 @@ use backend\widgets\ActiveForm;
                     ]
                 ]); ?>
                 <div class="hr-line-dashed"></div>
-                    <?= $form->field($model, 'hoc_sinh_id')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
+                <?=$form->field($model, 'hoc_sinh_id')->widget(\kartik\select2\Select2::class, [
+                    'data' => $listTTHS,
+                    'options' => ['placeholder' => 'Chọn học sinh'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]);?>
+                <div class="hr-line-dashed"></div>
 
                         <?= $form->field($model, 'loai_vi_pham')->textInput(['maxlength' => true]) ?>
                         <div class="hr-line-dashed"></div>
@@ -31,14 +37,14 @@ use backend\widgets\ActiveForm;
                         <?= $form->field($model, 'hinh_thuc_xu_ly')->textInput(['maxlength' => true]) ?>
                         <div class="hr-line-dashed"></div>
 
-                        <?= $form->field($model, 'nguoi_xu_ly')->textInput(['maxlength' => true]) ?>
-                        <div class="hr-line-dashed"></div>
-
-                        <?= $form->field($model, 'created_at')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
-
-                        <?= $form->field($model, 'updated_at')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
+<!--                        --><?php //= $form->field($model, 'nguoi_xu_ly')->textInput(['maxlength' => true]) ?>
+<!--                        <div class="hr-line-dashed"></div>-->
+<!---->
+<!--                        --><?php //= $form->field($model, 'created_at')->textInput() ?>
+<!--                        <div class="hr-line-dashed"></div>-->
+<!---->
+<!--                        --><?php //= $form->field($model, 'updated_at')->textInput() ?>
+<!--                        <div class="hr-line-dashed"></div>-->
 
                         <?= $form->defaultButtons() ?>
                     <?php ActiveForm::end(); ?>

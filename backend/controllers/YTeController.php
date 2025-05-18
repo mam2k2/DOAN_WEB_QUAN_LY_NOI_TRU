@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use common\services\ThongTinHocSinhServiceInterface;
 use Yii;
 use common\services\YTeServiceInterface;
 use common\services\YTeService;
@@ -37,8 +38,12 @@ class YTeController extends \yii\web\Controller
                 },
                 'data' => function($createResultModel, $createAction) use($service){
                     $model = $createResultModel === null ? $service->newModel() : $createResultModel;
+                    /** @var ThongTinHocSinhServiceInterface $tTHSService */
+                    $tTHSService = Yii::$app->get(ThongTinHocSinhServiceInterface::ServiceName);
+                    $listTTHS = $tTHSService->getAllNameHocSinh();
                     return [
                         'model' => $model,
+                        'listTTHS' => $listTTHS,
                     ];
                 }
             ],
@@ -49,8 +54,12 @@ class YTeController extends \yii\web\Controller
                 },
                 'data' => function($id, $updateResultModel, $updateAction) use($service){
                     $model = $updateResultModel === null ? $service->getDetail($id) : $updateResultModel;
+                    /** @var ThongTinHocSinhServiceInterface $tTHSService */
+                    $tTHSService = Yii::$app->get(ThongTinHocSinhServiceInterface::ServiceName);
+                    $listTTHS = $tTHSService->getAllNameHocSinh();
                     return [
                         'model' => $model,
+                        'listTTHS' => $listTTHS,
                     ];
                 }
             ],

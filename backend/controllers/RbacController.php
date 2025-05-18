@@ -87,6 +87,7 @@ class RbacController extends \yii\web\Controller
                 "doUpdate" => function($name, $postData) use($service){
                     return $service->updatePermission($name, $postData);
                 },
+                'successRedirect' => ['rbac/permissions'],
                 "data" => function($name, $updateResultModel) use($service){
                     $model = $updateResultModel === null ? $service->getPermissionDetail($name) : $updateResultModel;
                     return [

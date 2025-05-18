@@ -1,110 +1,173 @@
 <?php
-/**
- * Author: lf
- * Blog: https://blog.feehi.com
- * Email: job@feehi.com
- * Created at: 2016-03-31 14:17
- */
 
-use common\models\UnitTransaction;
-use common\widgets\JsBlock;
-use yii\helpers\Url;
+use backend\widgets\Bar;
+use backend\grid\CheckboxColumn;
+use backend\grid\ActionColumn;
+use backend\grid\GridView;
+use yii\widgets\Pjax;
+/* @var $this yii\web\View */
+/* @var $searchModel backend\models\search\YTeSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+$topVang = [
+    ['ho_va_ten' => 'Nguyễn Văn A', 'lop' => '12A1', 'so_vang' => 10],
+    ['ho_va_ten' => 'Trần Thị B', 'lop' => '11B2', 'so_vang' => 9],
+];
 
-/**
- * @var $statics array
- * @var $this yii\web\View
- * @var array $comments latest comments
- */
-$this->registerCss("
-     .environment .list-group-item > .badge {float: left}
-     .environment  li.list-group-item strong {margin-left: 15px}
-     ul#notify .list-group-item{line-height:15px}
-")
+$topVipham = [
+    ['ho_va_ten' => 'Lê Văn C', 'lop' => '10A3', 'so_vp' => 6],
+    ['ho_va_ten' => 'Phạm Thị D', 'lop' => '12C1', 'so_vp' => 5],
+];
+$this->title = 'Tổng quan';
+$this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
 ?>
 <div class="row">
-    <div class="col-sm-3">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <span class="label label-success pull-right"><?php //= //Yii::t('app', 'Month') ?></span>
-                <h5><?= Yii::t('app', 'Products') ?></h5>
-            </div>
-            <div class="ibox-content openContab" href="<?=Url::to(['product/index'])?>" title="<?= Yii::t('app', 'Products')?>" style="cursor: pointer">
-                <h1 class="no-margins"><?= $statics['PRODUCT'][0] ?></h1>
-                <div class="stat-percent font-bold text-success"><?= $statics['PRODUCT'][1] ?>% <i class="fa fa-bolt"></i></div>
-                <small><?= Yii::t('app', 'Total') ?></small>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <span class="label label-info pull-right"><?= Yii::t('app', 'Today') ?></span>
-                <h5><?= Yii::t('app', 'Tickets') ?></h5>
-            </div>
-            <div class="ibox-content openContab" href="<?=Url::to(['unit-transaction/index',  'UnitTransactionSearch' => ['unit' => UnitTransaction::UNIT_TICKET]])?>" title="<?= Yii::t('app', 'Tickets')?>" style="cursor: pointer">
-                <h1 class="no-margins"><?= $statics['TICKET'][0] ?></h1>
-                <div class="stat-percent font-bold text-info"><?= $statics['TICKET'][1] ?>% <i class="fa fa-level-up"></i></div>
-                <small><?= Yii::t('app', 'Total') ?></small>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <span class="label label-primary pull-right"><?= Yii::t('app', 'Today') ?></span>
-                <h5><?= Yii::t('app', 'NFTs') ?></h5>
-            </div>
-            <div class="ibox-content openContab" href="<?=Url::to(['unit-transaction/index', 'UnitTransactionSearch' => ['unit' => UnitTransaction::UNIT_NFT]])?>" title="<?= Yii::t('app', 'NFTs')?>" style="cursor: pointer">
-                <h1 class="no-margins"><?= $statics['NFT'][0] ?></h1>
-                <div class="stat-percent font-bold text-navy"><?= $statics['NFT'][1] ?>% <i class="fa fa-level-up"></i></div>
-                <small><?= Yii::t('app', 'Total') ?></small>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <span class="label label-success pull-right"><?= Yii::t('app', 'Today') ?></span>
-                <h5><?= Yii::t('app', 'Orders') ?></h5>
-            </div>
-            <div class="ibox-content openContab" href="<?=Url::to(['order/index'])?>" title="<?= Yii::t('app', 'Orders')?>" style="cursor: pointer">
-                <h1 class="no-margins"><?= $statics['ORDER'][0] ?></h1>
-                <div class="stat-percent font-bold text-info"><?= $statics['ORDER'][1] ?>% <i class="fa fa-level-up"></i></div>
-                <small><?= Yii::t('app', 'Total') ?></small>
+    <div class="col-sm-12">
+        <div class="ibox">
+            <div class="container mt-4">
+                <h2 class="mb-4">📊 Thống kê tháng <?= date('m/Y') ?></h2>
+
+                <div class="row g-4">
+                    <!-- Số học sinh -->
+                    <div class="col-md-4">
+                        <div class="card shadow border-left-primary h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3 text-primary">
+                                    <i class="fas fa-users fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 text-muted">Số học sinh</h6>
+                                    <h4 class="mb-0">120</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tổng tiền đã thu -->
+                    <div class="col-md-4">
+                        <div class="card shadow border-left-success h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3 text-success">
+                                    <i class="fas fa-wallet fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 text-muted">Đã thu tháng này</h6>
+                                    <h4 class="mb-0">75.000.000đ</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Số tiền còn nợ -->
+                    <div class="col-md-4">
+                        <div class="card shadow border-left-danger h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3 text-danger">
+                                    <i class="fas fa-money-bill-wave fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 text-muted">Số tiền còn nợ</h6>
+                                    <h4 class="mb-0">12.000.000đ</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tổng doanh thu -->
+                    <div class="col-md-4">
+                        <div class="card shadow border-left-dark h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3 text-dark">
+                                    <i class="fas fa-coins fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 text-muted">Tổng doanh thu (thu + nợ)</h6>
+                                    <h4 class="mb-0">87.000.000đ</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Số vi phạm -->
+                    <div class="col-md-4">
+                        <div class="card shadow border-left-warning h-100">
+                            <div class="card-body d-flex align-items-center">
+                                <div class="me-3 text-warning">
+                                    <i class="fas fa-exclamation-triangle fa-2x"></i>
+                                </div>
+                                <div>
+                                    <h6 class="mb-0 text-muted">Tổng vi phạm tháng</h6>
+                                    <h4 class="mb-0">18 lượt</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Học sinh vi phạm nhiều nhất -->
+                    <div class="row mt-5">
+                        <!-- Top 10 vắng mặt -->
+                        <div class="col-md-6">
+                            <div class="card shadow">
+                                <div class="card-header bg-warning text-white">
+                                    <i class="fas fa-user-clock"></i> Top 10 học sinh vắng mặt nhiều nhất
+                                </div>
+                                <div class="card-body p-0">
+                                    <table class="table table-striped mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Họ tên</th>
+                                            <th>Lớp</th>
+                                            <th>Số ngày</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php foreach ($topVang as $i => $hs): ?>
+                                            <tr>
+                                                <td><?= $i + 1 ?></td>
+                                                <td><?= \yii\helpers\Html::encode($hs['ho_va_ten']) ?></td>
+                                                <td><?= \yii\helpers\Html::encode($hs['lop']) ?></td>
+                                                <td><span class="badge bg-warning text-dark"><?= $hs['so_vang'] ?> ngày</span></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Top 10 vi phạm -->
+                        <div class="col-md-6">
+                            <div class="card shadow">
+                                <div class="card-header bg-danger text-white">
+                                    <i class="fas fa-user-shield"></i> Top 10 học sinh vi phạm nhiều nhất
+                                </div>
+                                <div class="card-body p-0">
+                                    <table class="table table-striped mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Họ tên</th>
+                                            <th>Lớp</th>
+                                            <th>Lượt vi phạm</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php foreach ($topVipham as $i => $hs): ?>
+                                            <tr>
+                                                <td><?= $i + 1 ?></td>
+                                                <td><?= \yii\helpers\Html::encode($hs['ho_va_ten']) ?></td>
+                                                <td><?= \yii\helpers\Html::encode($hs['lop']) ?></td>
+                                                <td><span class="badge bg-danger"><?= $hs['so_vp'] ?> lần</span></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-<?php JsBlock::begin() ?>
-<script>
-//$(document).ready(function () {
-//    var notify = $("#notify");
-//    $.ajax({
-//        dataType:"jsonp",
-//        url:"//api.feehi.com/cms/notify?ver=<?//=Yii::$app->getVersion()?>//",
-//        success:function (dataAll) {
-//            data = dataAll.rows;
-//            notify.empty();
-//            var lis = "";
-//            for(var index in data){
-//                var label = '';
-//                if( data[index].label ){
-//                    label = data[index].label;
-//                }
-//                lis += "<li class='list-group-item'> \
-//                                <a target='_blank' class='' href=\" " + data[index].href +" \"> " + data[index].title + " </a>\
-//                                " + label +  "\
-//                                <small class='pull-right block'>" + data[index].createdAt + "</small> \
-//                        </li>"
-//            }
-//            notify.append(lis);
-//        },
-//        error:function (data) {
-//            notify.empty();
-//            notify.append("<li class='list-group-item'>Connect error</li>");
-//        }
-//    });
-//})
-</script>
-<?php JsBlock::end() ?>

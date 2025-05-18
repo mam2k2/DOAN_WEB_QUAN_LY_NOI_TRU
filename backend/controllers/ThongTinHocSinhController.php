@@ -2,7 +2,11 @@
 
 namespace backend\controllers;
 
+use common\models\DiemDanh;
+use common\models\ThongTinHocSinh;
+use common\services\DiemDanhServiceInterface;
 use common\services\LopServiceInterface;
+use common\services\PhongOServiceInterface;
 use Yii;
 use common\services\ThongTinHocSinhServiceInterface;
 use common\services\ThongTinHocSinhService;
@@ -12,11 +16,25 @@ use backend\actions\IndexAction;
 use backend\actions\DeleteAction;
 use backend\actions\SortAction;
 use backend\actions\ViewAction;
+use yii\filters\VerbFilter;
+
 /**
  * ThongTinHocSinhController implements the CRUD actions for ThongTinHocSinh model.
  */
 class ThongTinHocSinhController extends \yii\web\Controller
 {
+    public function behaviors()
+    {
+        return array_merge(parent::behaviors(), [
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'diem-danh' => ['GET'], // chỉ chấp nhận GET
+                ],
+            ],
+        ]);
+    }
+
     public function actions()
     {
         /** @var ThongTinHocSinhServiceInterface $service */
@@ -41,9 +59,13 @@ class ThongTinHocSinhController extends \yii\web\Controller
                     /** @var LopServiceInterface $lopService */
                     $lopService = Yii::$app->get(LopServiceInterface::ServiceName);
                     $lopList = $lopService->getLopOptions();
+                    /** @var PhongOServiceInterface $PhongOService */
+                    $PhongOService = Yii::$app->get(PhongOServiceInterface::ServiceName);
+                    $phongList = $PhongOService->getAllNamePhong();
                     return [
                         'model' => $model,
                         'listLop' => $lopList,
+                        'phongList' => $phongList,
                     ];
                 }
             ],
@@ -57,9 +79,13 @@ class ThongTinHocSinhController extends \yii\web\Controller
                     /** @var LopServiceInterface $lopService */
                     $lopService = Yii::$app->get(LopServiceInterface::ServiceName);
                     $lopList = $lopService->getLopOptions();
+                    /** @var PhongOServiceInterface $PhongOService */
+                    $PhongOService = Yii::$app->get(PhongOServiceInterface::ServiceName);
+                    $phongList = $PhongOService->getAllNamePhong();
                     return [
                         'model' => $model,
                         'listLop' => $lopList,
+                        'phongList' => $phongList,
                     ];
                 }
             ],
@@ -84,5 +110,32 @@ class ThongTinHocSinhController extends \yii\web\Controller
                 },
             ],
         ];
+    }
+    public function actionDiemDanh($id)
+    {
+        /** @var DiemDanhServiceInterface $diemDanhService */
+
+        $diemDanhService = Yii::$app->get(DiemDanhServiceInterface::ServiceName);
+        /** @var ThongTinHocSinhServiceInterface $service */
+        $service = Yii::$app->get(ThongTinHocSinhServiceInterface::ServiceName);
+        /** @var ThongTinHocSinh $tTHS */
+        $tTHS = $service->getDetail($id);
+        if($tTHS != null)
+        {
+            if($tTHS->trang_thai != 1)
+            {
+                return Yii::$app->getResponse()->redirect(['thong-tin-hoc-sinh/index']);
+            }
+            if($tTHS->daDiemDanh == false)
+            {
+                $model = new DiemDanh();
+                $model->hoc_sinh_id = $id;
+                $model->phong_id = $tTHS->phong_id;
+                $model->ngay_diem_danh =date('Y-m-d H:i:s');
+                $model->thoi_gian = date('Y-m-d H:i:s');
+                $model->save();
+            }
+        }
+        return Yii::$app->getResponse()->redirect(['thong-tin-hoc-sinh/index']);
     }
 }
