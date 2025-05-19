@@ -18,7 +18,7 @@ class ThongTinHocSinhSearch extends ThongTinHocSinh implements \backend\models\s
     public function rules()
     {
         return [
-            [['id', 'user_id', 'lop_id', 'trang_thai', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'user_id', 'lop_id', 'phong_id', 'trang_thai', 'created_at', 'updated_at'], 'integer'],
             [['ngay_sinh', 'que_quan', 'ngay_bat_dau', 'ghi_chu'], 'safe'],
             [['diem_trung_binh'], 'number'],
         ];
@@ -64,6 +64,7 @@ class ThongTinHocSinhSearch extends ThongTinHocSinh implements \backend\models\s
             self::tableName().'.id' => $this->id,
             self::tableName().'.user_id' => $this->user_id,
             self::tableName().'.lop_id' => $this->lop_id,
+            self::tableName().'.phong_id' => $this->phong_id,
             self::tableName().'.ngay_sinh' => $this->ngay_sinh,
             self::tableName().'.trang_thai' => $this->trang_thai,
             self::tableName().'.diem_trung_binh' => $this->diem_trung_binh,
