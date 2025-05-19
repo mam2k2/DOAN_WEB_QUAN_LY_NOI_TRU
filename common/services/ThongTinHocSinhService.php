@@ -6,6 +6,7 @@ namespace common\services;
 
 use backend\models\search\ThongTinHocSinhSearch;
 use common\models\HocSinh;
+use common\models\PhongO;
 use common\models\ThongTinHocSinh;
 use common\models\User;
 use yii\helpers\ArrayHelper;

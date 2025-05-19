@@ -20,7 +20,6 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'hoc_sinh_id', ['options'=>['class'=>'col-sm-3']]) ?>
 
-    <?= $form->field($model, 'khoan_phi_id', ['options'=>['class'=>'col-sm-3']]) ?>
 
     <?= $form->field($model, 'phong_id', ['options'=>['class'=>'col-sm-3']]) ?>
 

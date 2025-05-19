@@ -229,11 +229,37 @@ class ThongTinHocSinh extends \yii\db\ActiveRecord
             $phongOHocSinh->trang_thai = 1;
             $phongOHocSinh->thoi_gian_bat_dau = date('Y-m-d');
             $phongOHocSinh->save();
+
 //            VarDumper::dump($phongOHocSinh,10,true);
 //            exit();
         }
     }
+    public function validateSucChua($attribute, $params)
+    {
+        $phong = \common\models\PhongO::findOne($this->phong_id); // đổi namespace nếu cần
 
+        if ($phong === null) {
+            $this->addError($attribute, 'Phòng được chọn không tồn tại.');
+            return;
+        }
+        $phongOHocSinh = PhongOHocSinh::find()->where([
+            'hoc_sinh_id' => $this->id,
+            'phong_id' => $this->phong_id,
+            'trang_thai' => 1
+        ])->one();
+
+        if($phongOHocSinh == null)
+        {
+            $soLuongHienTai = PhongO::find()
+                ->where(['id' => $this->phong_id])
+                ->count();
+
+            if ($soLuongHienTai + 1 > $phong->suc_chua) {
+                $this->addError($attribute, "Phòng đã đầy. Sức chứa tối đa: {$phong->suc_chua}.");
+            }
+        }
+
+    }
     public function getTrangThaiText()
     {
         return $this->TrangThaiList()[$this->trang_thai];
