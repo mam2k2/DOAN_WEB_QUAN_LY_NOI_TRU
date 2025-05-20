@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="../js/script.js" defer></script>
 </head>
+<script>
+  function loadPage(page) {
+    document.getElementById('page-frame').src = page;
+  }
+</script>
 <body>
     <header>
         <img src="../img/logo.png" alt="Logo" />
@@ -40,8 +45,8 @@
                 <span class="arrow">❯</span>
                 </div>
                 <div class="submenu">
-                    <div class="submenu-item">Thu phí</div>
-                    <div class="submenu-item">Khoản phí</div>
+                    <div class="submenu-item" onclick="loadPage('thu_phi.html')">Thu phí</div>
+                    <div class="submenu-item" onclick="loadPage('khoan_phi.html')">Khoản phí</div>
                 </div>
             </div>
             <div class="menu-item collapsible">
@@ -50,14 +55,13 @@
                 <span class="arrow">❯</span>
                 </div>
                 <div class="submenu">
-                    <div class="submenu-item">Danh sách học sinh</div>
-                    <div class="submenu-item">Quản lý y tế</div>
-                    <div class="submenu-item">Điểm danh</div>
-                    <div class="submenu-item">Vi phạm</div>
+                    <div class="submenu-item" onclick="loadPage('thong_ke_hoc_sinh.html')">Danh sách học sinh</div>
+                    <div class="submenu-item" onclick="loadPage('quan_ly_y_te.html')">Quản lý y tế</div>
+                    <div class="submenu-item" onclick="loadPage('quan_ly_vi_pham.html')">Vi phạm</div>
                 </div>
             </div>
             <div class="menu-item collapsible">
-                <div class="menu-title">
+                <div class="menu-title" onclick="loadPage('quan_ly_thong_bao.html')">
                 <span>Quản lý thông báo</span>
             </div>
             </div>
@@ -67,10 +71,10 @@
                 <span class="arrow">❯</span>
                 </div>
                 <div class="submenu">
-                    <div class="submenu-item">Danh mục</div>
-                    <div class="submenu-item">Quản lý khóa</div>
-                    <div class="submenu-item">Quản lý lớp</div>
-                    <div class="submenu-item">Quản lý giáo viên</div>
+                    <div class="submenu-item" onclick="loadPage('danh_muc.html')">Danh mục</div>
+                    <div class="submenu-item" onclick="loadPage('quan_ly_khoa.html')">Quản lý khóa</div>
+                    <div class="submenu-item" onclick="loadPage('quan_ly_lop.html')">Quản lý lớp</div>
+                    <div class="submenu-item" onclick="loadPage('quan_ly_giao_vien.html')">Quản lý giáo viên</div>
                 </div>
             </div>
             <div class="menu-item collapsible">
@@ -79,9 +83,9 @@
                 <span class="arrow">❯</span>
                 </div>
                 <div class="submenu">
-                    <div class="submenu-item">Permissions</div>
-                    <div class="submenu-item">Roles</div>
-                    <div class="submenu-item">Admin user</div>
+                    <div class="submenu-item" onclick="loadPage('permission.html')">Permissions</div>
+                    <div class="submenu-item" onclick="loadPage('roles.html')">Roles</div>
+                    <div class="submenu-item" onclick="loadPage('admin_user.html')">Admin user</div>
                 </div>
             </div>
 
@@ -89,8 +93,7 @@
         </nav>
 
         <section class="content-area">
-        <!-- Nội dung các trang con sẽ được hiển thị ở đây -->
-        <p>Chào mừng bạn đến với hệ thống quản lý nội trú.</p>
+            <iframe id="page-frame" src="" frameborder="0"></iframe>
         </section>
     </main>
 </body>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý thông báo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <style>
+    .table-actions i {
+      cursor: pointer;
+      margin: 0 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h3 class="mb-4">📢 Quản lý thông báo gửi đến học sinh</h3>
+
+    <!-- Form thông báo -->
+    <form id="notificationForm" class="row g-3 mb-4">
+      <div class="col-md-8">
+        <input type="text" class="form-control" id="messageInput" placeholder="Nhập nội dung thông báo" required>
+      </div>
+      <div class="col-md-4 d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary" id="submitBtn">Thêm thông báo</button>
+        <button type="button" class="btn btn-secondary d-none" id="cancelEditBtn">Hủy sửa</button>
+      </div>
+    </form>
+
+    <!-- Bảng thông báo -->
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Nội dung</th>
+          <th>Ngày tạo</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody id="notificationTable"></tbody>
+    </table>
+  </div>
+
+  <script>
+    let notifications = [];
+    let editingIndex = null;
+
+    const form = document.getElementById('notificationForm');
+    const messageInput = document.getElementById('messageInput');
+    const tableBody = document.getElementById('notificationTable');
+    const submitBtn = document.getElementById('submitBtn');
+    const cancelEditBtn = document.getElementById('cancelEditBtn');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const message = messageInput.value.trim();
+      if (!message) return;
+
+      const now = new Date().toLocaleString();
+
+      if (editingIndex !== null) {
+        // Cập nhật
+        notifications[editingIndex].message = message;
+        notifications[editingIndex].date = now;
+        editingIndex = null;
+        submitBtn.textContent = "Thêm thông báo";
+        cancelEditBtn.classList.add("d-none");
+      } else {
+        // Thêm mới
+        notifications.push({ message, date: now });
+      }
+
+      messageInput.value = "";
+      renderTable();
+    });
+
+    cancelEditBtn.addEventListener("click", () => {
+      editingIndex = null;
+      messageInput.value = "";
+      submitBtn.textContent = "Thêm thông báo";
+      cancelEditBtn.classList.add("d-none");
+    });
+
+    function renderTable() {
+      tableBody.innerHTML = "";
+      notifications.forEach((notif, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${notif.message}</td>
+          <td>${notif.date}</td>
+          <td class="table-actions">
+            <i class="bi bi-pencil-square text-primary" onclick="editNotification(${index})"></i>
+            <i class="bi bi-trash text-danger" onclick="deleteNotification(${index})"></i>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    function editNotification(index) {
+      messageInput.value = notifications[index].message;
+      editingIndex = index;
+      submitBtn.textContent = "Cập nhật";
+      cancelEditBtn.classList.remove("d-none");
+    }
+
+    function deleteNotification(index) {
+      if (confirm("Bạn có chắc chắn muốn xóa thông báo này?")) {
+        notifications.splice(index, 1);
+        renderTable();
+      }
+    }
+  </script>
+</body>
+</html>
