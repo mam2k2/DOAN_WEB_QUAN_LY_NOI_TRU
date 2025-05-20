@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý Khu KTX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    .table-actions i {
+      cursor: pointer;
+      margin: 0 8px;
+    }
+    .card {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="container mt-5">
+  <h4>🏢 Quản lý Khu Ký Túc Xá</h4>
+
+  <!-- Bộ lọc -->
+  <div class="card">
+    <div class="card-body">
+      <form class="row g-3">
+        <div class="col-md-4">
+          <label for="searchName" class="form-label">Tên khu</label>
+          <input type="text" class="form-control" id="searchName" placeholder="Nhập tên khu...">
+        </div>
+        <div class="col-md-4">
+          <label for="searchRooms" class="form-label">Số phòng</label>
+          <input type="number" class="form-control" id="searchRooms" placeholder="Tối thiểu...">
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+          <button type="button" class="btn btn-primary me-2" onclick="searchZone()">Tìm kiếm</button>
+          <button type="reset" class="btn btn-secondary">Đặt lại</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Bảng danh sách khu KTX -->
+  <div class="card">
+    <div class="card-body">
+      <div class="d-flex justify-content-between mb-3">
+        <h5 class="mb-0">Danh sách khu KTX</h5>
+        <button class="btn btn-success btn-sm" onclick="addZone()">+ Thêm khu mới</button>
+      </div>
+      <table class="table table-bordered table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>#</th>
+            <th>Tên khu</th>
+            <th>Số phòng</th>
+            <th>Giới tính</th>
+            <th>Ghi chú</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody id="zoneTable">
+          <tr>
+            <td>1</td>
+            <td>Khu A</td>
+            <td>20</td>
+            <td>Nam</td>
+            <td>-</td>
+            <td class="table-actions">
+              <i class="bi bi-pencil-square text-primary" onclick="editZone(this)"></i>
+              <i class="bi bi-trash text-danger" onclick="deleteZone(this)"></i>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Khu B</td>
+            <td>15</td>
+            <td>Nữ</td>
+            <td>Khu yên tĩnh</td>
+            <td class="table-actions">
+              <i class="bi bi-pencil-square text-primary" onclick="editZone(this)"></i>
+              <i class="bi bi-trash text-danger" onclick="deleteZone(this)"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="text-muted">Tổng số khu: <span id="zoneCount">2</span></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  function searchZone() {
+    alert("Tính năng tìm kiếm đang được phát triển.");
+  }
+
+  function addZone() {
+    alert("Tính năng thêm khu KTX đang được phát triển.");
+  }
+
+  function editZone(btn) {
+    alert("Chỉnh sửa thông tin khu KTX.");
+  }
+
+  function deleteZone(btn) {
+    if (confirm("Bạn có chắc chắn muốn xóa khu này không?")) {
+      const row = btn.closest('tr');
+      row.remove();
+      updateZoneCount();
+    }
+  }
+
+  function updateZoneCount() {
+    const count = document.querySelectorAll("#zoneTable tr").length;
+    document.getElementById("zoneCount").textContent = count;
+  }
+</script>
+</body>
+</html>

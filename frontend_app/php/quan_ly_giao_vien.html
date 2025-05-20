@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý giáo viên</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <style>
+    .table-actions i {
+      cursor: pointer;
+      margin: 0 5px;
+    }
+    .form-inline input {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h3 class="mb-4">👩‍🏫 Quản lý giáo viên</h3>
+
+    <!-- Form thêm/sửa giáo viên -->
+    <form id="teacherForm" class="row g-3 mb-4">
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="nameInput" placeholder="Tên giáo viên" required>
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="subjectInput" placeholder="Môn giảng dạy" required>
+      </div>
+      <div class="col-md-3">
+        <input type="text" class="form-control" id="emailInput" placeholder="Email" required>
+      </div>
+      <div class="col-md-3 d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary" id="submitBtn">Thêm giáo viên</button>
+        <button type="button" class="btn btn-secondary d-none" id="cancelEditBtn">Hủy sửa</button>
+      </div>
+    </form>
+
+    <!-- Bảng danh sách giáo viên -->
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>#</th>
+          <th>Tên giáo viên</th>
+          <th>Môn giảng dạy</th>
+          <th>Email</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody id="teacherTable"></tbody>
+    </table>
+  </div>
+
+  <script>
+    let teachers = [];
+    let editingIndex = null;
+
+    const form = document.getElementById("teacherForm");
+    const nameInput = document.getElementById("nameInput");
+    const subjectInput = document.getElementById("subjectInput");
+    const emailInput = document.getElementById("emailInput");
+    const tableBody = document.getElementById("teacherTable");
+    const submitBtn = document.getElementById("submitBtn");
+    const cancelEditBtn = document.getElementById("cancelEditBtn");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = nameInput.value.trim();
+      const subject = subjectInput.value.trim();
+      const email = emailInput.value.trim();
+
+      if (!name || !subject || !email) return;
+
+      if (editingIndex !== null) {
+        teachers[editingIndex] = { name, subject, email };
+        editingIndex = null;
+        submitBtn.textContent = "Thêm giáo viên";
+        cancelEditBtn.classList.add("d-none");
+      } else {
+        teachers.push({ name, subject, email });
+      }
+
+      form.reset();
+      renderTable();
+    });
+
+    cancelEditBtn.addEventListener("click", () => {
+      form.reset();
+      editingIndex = null;
+      submitBtn.textContent = "Thêm giáo viên";
+      cancelEditBtn.classList.add("d-none");
+    });
+
+    function renderTable() {
+      tableBody.innerHTML = "";
+      teachers.forEach((teacher, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${teacher.name}</td>
+          <td>${teacher.subject}</td>
+          <td>${teacher.email}</td>
+          <td class="table-actions">
+            <i class="bi bi-pencil-square text-primary" onclick="editTeacher(${index})"></i>
+            <i class="bi bi-trash text-danger" onclick="deleteTeacher(${index})"></i>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    function editTeacher(index) {
+      const teacher = teachers[index];
+      nameInput.value = teacher.name;
+      subjectInput.value = teacher.subject;
+      emailInput.value = teacher.email;
+
+      editingIndex = index;
+      submitBtn.textContent = "Cập nhật";
+      cancelEditBtn.classList.remove("d-none");
+    }
+
+    function deleteTeacher(index) {
+      if (confirm("Bạn có chắc chắn muốn xóa giáo viên này?")) {
+        teachers.splice(index, 1);
+        renderTable();
+      }
+    }
+  </script>
+</body>
+</html>
