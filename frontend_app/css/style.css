@@ -1,0 +1,126 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      background-color: #f4fafd;
+    }
+
+    header {
+      background-color: #d0eaff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    header img {
+      height: 40px;
+      border-radius: 8px;
+    }
+
+    header .right-icons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .icon {
+      width: 30px;
+      height: 30px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+
+    main {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    nav.sidebar {
+      width: 300px;
+      background-color: #e5f4ff;
+      padding: 10px;
+      box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+    }
+
+    nav.sidebar .menu-item {
+      padding: 10px;
+      margin-bottom: 6px;
+      border-radius: 12px;
+      background-color: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    section.content-area {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .menu-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: transparent;
+        padding: 10px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s;
+    }
+
+    .menu-title:hover {
+        background: #a8ddff;
+    }
+
+    .arrow {
+        transition: transform 0.3s;
+    }
+
+    .submenu {
+        display: none;
+        padding-left: 15px;
+        margin-top: 5px;
+    }
+
+    .submenu-item {
+        padding: 8px;
+        border-radius: 6px;
+        background: #f0faff;
+        margin-top: 5px;
+        cursor: pointer;
+        transition: background 0.2s;
+    }
+
+    .submenu-item:hover {
+        background: #d9f0ff;
+    }
+
+    .menu-item.active .submenu {
+        display: block;
+    }
+
+    .menu-item.active .arrow {
+        transform: rotate(90deg); /* ▶ → ▼ */
+    }
