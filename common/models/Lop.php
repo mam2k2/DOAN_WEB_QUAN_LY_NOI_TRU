@@ -16,7 +16,7 @@ use Yii;
  * @property int $created_at
  * @property int $updated_at
  */
-class Lop extends \yii\db\ActiveRecord
+class Lop extends BaseModel
 {
     /**
      * {@inheritdoc}
@@ -47,11 +47,11 @@ class Lop extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'khoa_id' => Yii::t('app', 'Khoa ID'),
-            'chu_nghiem_id' => Yii::t('app', 'Chu Nghiem ID'),
-            'ten_lop' => Yii::t('app', 'Ten Lop'),
-            'ngay_bat_dau' => Yii::t('app', 'Ngay Bat Dau'),
-            'ghi_chu' => Yii::t('app', 'Ghi Chu'),
+            'khoa_id' => Yii::t('app', 'Mã khóa'),
+            'chu_nghiem_id' => Yii::t('app', 'Giáo viên chủ nghiệm'),
+            'ten_lop' => Yii::t('app', 'Tên lớp'),
+            'ngay_bat_dau' => Yii::t('app', 'Ngày bắt đầu'),
+            'ghi_chu' => Yii::t('app', 'Ghi chú'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

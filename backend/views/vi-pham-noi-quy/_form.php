@@ -31,7 +31,7 @@ use backend\widgets\ActiveForm;
                         <?= $form->field($model, 'mo_ta')->textarea(['rows' => 6]) ?>
                         <div class="hr-line-dashed"></div>
 
-                        <?= $form->field($model, 'ngay_vi_pham')->textInput() ?>
+                        <?= $form->field($model, 'ngay_vi_pham')->textInput(['type' => 'date']) ?>
                         <div class="hr-line-dashed"></div>
 
                         <?= $form->field($model, 'hinh_thuc_xu_ly')->textInput(['maxlength' => true]) ?>

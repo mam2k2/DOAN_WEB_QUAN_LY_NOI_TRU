@@ -17,7 +17,7 @@ use Yii;
  *
  * @property PhongO[] $phongOs
  */
-class KhuKtx extends \yii\db\ActiveRecord
+class KhuKtx extends BaseModel
 {
     /**
      * {@inheritdoc}

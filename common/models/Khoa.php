@@ -15,7 +15,7 @@ use yii\behaviors\TimestampBehavior;
  *
  * @property Lop[] $lops
  */
-class Khoa extends \yii\db\ActiveRecord
+class Khoa extends BaseModel
 {
     /**
      * {@inheritdoc}
@@ -50,7 +50,7 @@ class Khoa extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'ten_khoa' => Yii::t('app', 'Ten Khoa'),
+            'ten_khoa' => Yii::t('app', 'Tên khoa'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

@@ -18,7 +18,7 @@ use Yii;
  * @property PhongO $phong
  * @property ThongTinHocSinh $hocSinh
  */
-class DiemDanh extends \yii\db\ActiveRecord
+class DiemDanh extends BaseModel
 {
     /**
      * {@inheritdoc}
@@ -49,10 +49,10 @@ class DiemDanh extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'hoc_sinh_id' => Yii::t('app', 'Hoc Sinh ID'),
-            'phong_id' => Yii::t('app', 'Phong ID'),
-            'ngay_diem_danh' => Yii::t('app', 'Ngay Diem Danh'),
-            'thoi_gian' => Yii::t('app', 'Thoi Gian'),
+            'hoc_sinh_id' => Yii::t('app', 'Mã học sinh'),
+            'phong_id' => Yii::t('app', 'Mã phòng'),
+            'ngay_diem_danh' => Yii::t('app', 'Ngày điểm danh'),
+            'thoi_gian' => Yii::t('app', 'Thời gian'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

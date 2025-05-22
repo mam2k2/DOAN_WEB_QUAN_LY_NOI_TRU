@@ -18,7 +18,7 @@ use Yii;
  * @property KhoanPhi $khoanPhi
  * @property ThuPhiNoiTru $thuPhiNoiTru
  */
-class ChiTietKhoanThu extends \yii\db\ActiveRecord
+class ChiTietKhoanThu extends BaseModel
 {
     /**
      * {@inheritdoc}
@@ -50,10 +50,10 @@ class ChiTietKhoanThu extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'thu_phi_noi_tru_id' => Yii::t('app', 'Thu Phi Noi Tru ID'),
-            'khoan_phi_id' => Yii::t('app', 'Khoan Phi ID'),
+            'thu_phi_noi_tru_id' => Yii::t('app', 'Mã phiếu thu id'),
+            'khoan_phi_id' => Yii::t('app', 'Khoản phí'),
             'so_tien' => Yii::t('app', 'So Tien'),
-            'ghi_chu' => Yii::t('app', 'Ghi Chu'),
+            'ghi_chu' => Yii::t('app', 'Ghi chú'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

@@ -13,7 +13,9 @@ use yii\helpers\Html;
 use frontend\assets\AppAsset;
 use yii\helpers\Url;
 use frontend\widgets\MenuView;
-
+$this->registerCssFile('https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css', [
+    'depends' => [\yii\web\JqueryAsset::class], // Đảm bảo jQuery load trước nếu cần
+]);
 AppAsset::register($this);
 
 ?>
@@ -39,117 +41,27 @@ AppAsset::register($this);
             roll: [4,]
         }
     </script>
+
 </head>
 <?php $this->beginBody() ?>
 <body class="home blog">
 <?= $this->render('_flash') ?>
-<header id="masthead" class="site-header">
-    <nav id="top-header">
-        <div class="top-nav">
-            <div id="user-profile">
-                <span class="nav-set">
-                    <span class="nav-login">
-                        <?php
-                        if (Yii::$app->getUser()->getIsGuest()) {
-                            ?>
-                            <a href="<?= Url::to(['site/login']) ?>" class="signin-loader"><?= Yii::t('frontend', 'Hi, Log in') ?></a>&nbsp; &nbsp;
-                            <a href="<?= Url::to(['site/signup']) ?>" class="signup-loader"><?= Yii::t('frontend', 'Sign up') ?></a>
-                        <?php } else { ?>
-                            <?=Yii::t("frontend", "Welcome")?>, <?= Html::encode(Yii::$app->user->identity->username) ?>
-                            <a href="<?= Url::to(['site/logout']) ?>" class="signup-loader"><?= Yii::t('frontend', 'Log out') ?></a>
-                        <?php } ?>
-                    </span>
-                </span>
-            </div>
-            <div class="menu-container">
-                <ul id="menu-page" class="top-menu">
-                    <a target="_blank" href="<?=Url::to(['page/view', 'name'=>'about'])?>"><?= Yii::t('frontend', 'About us') ?></a>
-                    |
-                    <a target="_blank" href="<?=Url::to(['page/view', 'name'=>'contact'])?>"><?= Yii::t('frontend', 'Contact us') ?></a>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div id="nav-header" class="">
-        <div id="top-menu">
-            <div id="top-menu_1">
-                <span class="nav-search"><i class="fa fa-search"></i></span>
-                <span class="nav-search_1"><i class="fa fa-navicon"></i></span>
-                <hgroup class="logo-site" style="margin-top: 10px;">
-                    <h1 class="site-title">
-                        <a href="<?= Yii::$app->getHomeUrl() ?>"><img src="<?=Yii::$app->getRequest()->getBaseUrl()?>/static/images/logo.png" alt="<?= Yii::$app->feehi->website_title ?>"></a>
-                    </h1>
-                </hgroup>
-                <div id="site-nav-wrap">
-                    <nav id="site-nav" class="main-nav">
-                        <div>
-                            <?= MenuView::widget() ?>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
+<header class="bg-primary text-white text-center py-4">
+    <div class="text-center mb-4">
+        <img  src="http://quanlynoitru.local//admin/static/img/logoNgang.png" style="height: 100px" alt="Ảnh học sinh" class="avatar img-thumbnail">
+        <h1> Trường Cao đẳng GTVT Đường Thủy I</h1>
+
     </div>
-    <?= MenuView::widget([
-        'template' => '<nav><ul class="nav_sj" id="nav-search_1">{lis}</ul></nav>',
-        'liTemplate' => "<li class='menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-{menu_id}'><a href='{url}'>{title}</a>{sub_menu}</li>"
-    ]) ?>
+    <h1 class="mt-2">Hệ thống Tra cứu Thông tin</h1>
 </header>
-
-<div id="search-main">
-    <div class="searchbar">
-        <form class="searchform" action="<?= Url::toRoute('search/index') ?>" method="get">
-            <?= Yii::$app->getUrlManager()->enablePrettyUrl ? "" : "<input type='hidden' name='" . Yii::$app->getUrlManager()->routeParam . "' value='search/index'>" ?>
-            <input type="text" name="q" value="<?= Html::encode(Yii::$app->getRequest()->get('q')) ?>" required="" placeholder="<?= Yii::t('frontend', 'Please input keywords') ?>">
-            <button class="searchsubmit" type="submit"><?= Yii::t('frontend', 'Search') ?></button>
-        </form>
-    </div>
-    <div class="searchbar">
-        <form class="searchform" target="_blank" action="https://www.baidu.com/s" method="get">
-            <input type="hidden" name="entry" value="1">
-            <input class="swap_value" name="w" placeholder="<?= Yii::t('frontend', 'Please input keywords') ?>">
-            <button class="searchsubmit" type="submit"><?= Yii::t('frontend', 'Baidu') ?></button>
-        </form>
-    </div>
-    <div class="clear"></div>
-</div>
-
-<section class="container">
-    <div class="speedbar"></div>
+<main class="container my-5">
     <?= $content ?>
-</section>
+</main>
 
-<div class="branding branding-black">
-    <div class="container_f">
-        <h2><?= Yii::t('frontend', 'Effective,Professional,Conform to SEO') ?></h2>
-        <a class="btn btn-lg" href="http://www.feehi.com/page/contact" target="_blank"><?= Yii::t('frontend', 'Contact us') ?></a>
-    </div>
-</div>
 
-<footer class="footer">
-    <div class="footer-inner">
-        <p>
-            <a href="http://www.feehi.com/" title="Feehi CMS">Feehi CMS</a> <?= Yii::t('frontend', 'Copyright, all rights reserved') ?> © 2015-<?=date('Y')?>&nbsp;&nbsp;
-            <select onchange="location.href=this.options[this.selectedIndex].value;" style="height: 30px">
-                <?php
-                foreach (Yii::$app->params['supportLanguages'] as $language => $languageDescription){
-                    $selected = "";
-                    if (Yii::$app->language == $language){
-                        $selected = "selected";
-                    }
-                    $url = Url::to(['site/language', 'lang' => $language]);
-                    echo "<option $selected value='{$url}'>{$languageDescription}</option>";
-                }
-                ?>
-            </select>
-        </p>
-        <p><?=Yii::$app->feehi->website_icp?> Powered by Feehi CMS <a title="飞嗨" target="_blank" href="http://blog.feehi.com">飞嗨</a></p>
-    </div>
+<footer class="text-center text-white bg-dark py-3 mt-5">
+    &copy; 2025 Trường Cao đẳng GTVT Đường Thủy I
 </footer>
-
-<div class="rollto" style="display: none;">
-    <button class="btn btn-inverse" data-type="totop" title="back to top"><i class="fa fa-arrow-up"></i></button>
-</div>
 
 </body>
 <?php $this->endBody() ?>

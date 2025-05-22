@@ -62,6 +62,10 @@ class SiteController extends Controller
      *
      * @return mixed
      */
+    public function actionsIndex(){
+        return $this->render('index', [
+        ]);
+    }
     public function actionLogin()
     {
         if (! Yii::$app->getUser()->getIsGuest()) {
@@ -69,11 +73,12 @@ class SiteController extends Controller
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->getRequest()->post()) && $model->login()) {
-            return $this->goBack();
+        if ($model->load(Yii::$app->getRequest()->post()) && $model->login())
+        {
+            return $this->goHome();
         } else {
             Yii::$app->getUser()->setReturnUrl(Yii::$app->getRequest()->getHeaders()->get('referer'));
-            return $this->render('login', [
+            return $this->renderPartial('login', [
                 'model' => $model,
             ]);
         }

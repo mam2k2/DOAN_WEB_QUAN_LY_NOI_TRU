@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Thong Tin Hoc Sinh');
                 <?= Bar::widget() ?>
                 <?=$this->render('_search', ['model' => $searchModel]); ?>
                 <?= GridView::widget([
+                        'rowOptions' => ['style' => 'height: 100px;'],
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
                     'columns' => [

@@ -22,20 +22,20 @@ use backend\widgets\ActiveForm;
                         <?= $form->field($model, 'noi_dung')->textarea(['rows' => 6]) ?>
                         <div class="hr-line-dashed"></div>
 
-                        <?= $form->field($model, 'nguoi_gui_id')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
+<!--                        --><?php //= $form->field($model, 'nguoi_gui_id')->textInput() ?>
+<!--                        <div class="hr-line-dashed"></div>-->
 
-                        <?= $form->field($model, 'ngay_gui')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
+<!--                        --><?php //= $form->field($model, 'ngay_gui')->textInput() ?>
+<!--                        <div class="hr-line-dashed"></div>-->
 
-                        <?= $form->field($model, 'user_id')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
-
-                        <?= $form->field($model, 'created_at')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
-
-                        <?= $form->field($model, 'updated_at')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
+<!--                        --><?php //= $form->field($model, 'user_id')->textInput() ?>
+<!--                        <div class="hr-line-dashed"></div>-->
+<!---->
+<!--                        --><?php //= $form->field($model, 'created_at')->textInput() ?>
+<!--                        <div class="hr-line-dashed"></div>-->
+<!---->
+<!--                        --><?php //= $form->field($model, 'updated_at')->textInput() ?>
+<!--                        <div class="hr-line-dashed"></div>-->
 
                         <?= $form->defaultButtons() ?>
                     <?php ActiveForm::end(); ?>

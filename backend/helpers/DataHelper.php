@@ -38,4 +38,7 @@ class DataHelper
             'class' => $class,
         ]);
     }
+    public static function formatMoneyVnd($money) {
+        return number_format($money, 0, ',', '.') . ' đ';
+    }
 }

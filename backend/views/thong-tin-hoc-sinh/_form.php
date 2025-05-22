@@ -19,6 +19,7 @@ use backend\widgets\ActiveForm;
                 <?php
                     if(!$model instanceof \yii\db\ActiveRecord){
                        echo $model;
+                       $model = new \common\models\ThongTinHocSinh();
                     }
                 ?>
                 <?= $form->field($model, 'anh_chan_dung')->imgInput() ?>
@@ -26,6 +27,7 @@ use backend\widgets\ActiveForm;
                 <?= $form->field($model, 'ho_va_ten')->textInput(['id' => 'ho_va_ten']) ?>
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'email')->textInput(['type' => 'email']) ?>
+                <?= $form->field($model, 'emailPH')->textInput(['type' => 'email'])->label('Email phụ huynh') ?>
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'cccd')->textInput(['type' => 'number']) ?>
                 <div class="hr-line-dashed"></div>
@@ -49,6 +51,10 @@ use backend\widgets\ActiveForm;
                         <?= $form->field($model, 'username')->textInput(['id' => 'username', 'readonly' => true]) ?>
                             <div class="hr-line-dashed"></div>
                     <?= $form->field($model, 'password')->textInput() ?>
+                <div class="hr-line-dashed"></div>
+                <?= $form->field($model, 'usernamePH')->textInput(['id' => 'usernamePH', 'readonly' => true])->label("Username phụ huynh") ?>
+                <div class="hr-line-dashed"></div>
+                <?= $form->field($model, 'passwordPH')->textInput()->label("Mật khẩu phụ huynh") ?>
                 <div class="hr-line-dashed"></div>
 
                         <?= $form->field($model, 'ngay_sinh')->textInput(['type' => 'date']) ?>
@@ -100,6 +106,7 @@ use backend\widgets\ActiveForm;
 </div>
 
 <?php
+if($model->id == 0){
 $this->registerJs(<<<JS
 
     function generateUsername(fullName) {
@@ -120,7 +127,8 @@ $this->registerJs(<<<JS
         if (fullName) {
             let username = generateUsername(fullName);
             $('#username').val(username);
+            $('#usernamePH').val('ph_'+username);
         }
     });
 JS);
-?>
+}

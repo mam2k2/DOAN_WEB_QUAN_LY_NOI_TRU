@@ -26,10 +26,15 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Y Te');
                         ['class' => CheckboxColumn::className()],
 
                         'id',
-                        'hoc_sinh_id',
+                        [
+                                'attribute' => 'hoc_sinh_id',
+                                'value' => function ($model) {
+                                     return $model->hocSinh->ho_va_ten;
+                                }
+                        ],
                         'ngay_bi_benh',
                         'ghi_chu:ntext',
-                        'created_at',
+//                        'created_at',
                         // 'updated_at',
 
                         ['class' => ActionColumn::className(),],

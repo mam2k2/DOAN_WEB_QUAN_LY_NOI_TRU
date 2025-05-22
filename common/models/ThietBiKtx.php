@@ -20,7 +20,7 @@ use yii\web\UploadedFile;
  * @property int $created_at
  * @property int $updated_at
  */
-class ThietBiKtx extends \yii\db\ActiveRecord
+class ThietBiKtx extends BaseModel
 {
     /**
      * {@inheritdoc}
@@ -54,12 +54,12 @@ class ThietBiKtx extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'ma_thiet_bi' => Yii::t('app', 'Ma Thiet Bi'),
-            'ten_thiet_bi' => Yii::t('app', 'Ten Thiet Bi'),
-            'phong_o_id' => Yii::t('app', 'Phong O ID'),
-            'tinh_trang' => Yii::t('app', 'Tinh Trang'),
-            'ngay_bao_tri' => Yii::t('app', 'Ngay Bao Tri'),
-            'ghi_chu' => Yii::t('app', 'Ghi Chu'),
+            'ma_thiet_bi' => Yii::t('app', 'Mã thiết bị'),
+            'ten_thiet_bi' => Yii::t('app', 'Tên thiết bị'),
+            'phong_o_id' => Yii::t('app', 'Mã phòng ở'),
+            'tinh_trang' => Yii::t('app', 'Tình trạng'),
+            'ngay_bao_tri' => Yii::t('app', 'Ngày bảo trì'),
+            'ghi_chu' => Yii::t('app', 'Ghi chú'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

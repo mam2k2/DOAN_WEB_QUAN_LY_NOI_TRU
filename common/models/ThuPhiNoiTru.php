@@ -23,8 +23,23 @@ use Yii;
  * @property PhongO $phong
  * @property ThongTinHocSinh $hocSinh
  */
-class ThuPhiNoiTru extends \yii\db\ActiveRecord
+class ThuPhiNoiTru extends BaseModel
 {
+    public const TRANGTHAI_DATHU = 1;
+    public const TRANGTHAI_CHUATHU = 0;
+    public static function getOptionsTrangThai()
+    {
+        return [
+            self::TRANGTHAI_DATHU => 'Đã thu',
+            self::TRANGTHAI_CHUATHU =>  'Chưa thu',
+        ];
+    }
+    public static function getOptionsTrangThaiThaiText(){
+        return [
+            self::TRANGTHAI_DATHU => '<b class="text-success">Đã thu</b>',
+            self::TRANGTHAI_CHUATHU =>  '<b class="text-danger">Chưa thu</b>',
+        ];
+    }
     /**
      * {@inheritdoc}
      */
@@ -57,13 +72,13 @@ class ThuPhiNoiTru extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'hoc_sinh_id' => Yii::t('app', 'Hoc Sinh ID'),
-            'phong_id' => Yii::t('app', 'Phong ID'),
-            'so_tien' => Yii::t('app', 'So Tien'),
-            'ngay_thu' => Yii::t('app', 'Ngay Thu'),
-            'nguoi_thu' => Yii::t('app', 'Nguoi Thu'),
-            'trang_thai' => Yii::t('app', '0-Chưa thu,1-Đã thu'),
-            'ghi_chu' => Yii::t('app', 'Ghi Chu'),
+            'hoc_sinh_id' => Yii::t('app', 'Mã học sinh'),
+            'phong_id' => Yii::t('app', 'Mã phòng'),
+            'so_tien' => Yii::t('app', 'Số tiền'),
+            'ngay_thu' => Yii::t('app', 'Ngày thu'),
+            'nguoi_thu' => Yii::t('app', 'Người Thu'),
+            'trang_thai' => Yii::t('app', 'Trạng thái'),
+            'ghi_chu' => Yii::t('app', 'Ghi chú'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

@@ -66,46 +66,11 @@ class ArticleController extends Controller
      */
     public function actionIndex($cat = '')
     {
-        if ($cat == '') {
-            $cat = Yii::$app->getRequest()->getPathInfo();
+        if(Yii::$app->user->isGuest){
+
+            return $this->redirect(['site/login']);
         }
-        $where = ['type' => Article::ARTICLE, 'status' => Article::ARTICLE_PUBLISHED];
-        if ($cat != '' && $cat != 'index') {
-            if ($cat == Yii::t('app', 'UnClassified')) {
-                $where['cid'] = 0;
-            } else {
-                if (! $category = Category::findOne(['alias' => $cat])) {
-                    throw new NotFoundHttpException(Yii::t('frontend', 'None category named {name}', ['name' => $cat]));
-                }
-                $descendants = $category->getDescendants($category['id']);
-                if( empty($descendants) ) {
-                    $where['cid'] = $category['id'];
-                }else{
-                    $cids = ArrayHelper::getColumn($descendants, 'id');
-                    $cids[] = $category['id'];
-                    $where['cid'] = $cids;
-                }
-            }
-        }
-        $query = Article::find()->with('category')->where($where);
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'sort' => [
-                'defaultOrder' => [
-                    'sort' => SORT_ASC,
-                    'created_at' => SORT_DESC,
-                    'id' => SORT_DESC,
-                ]
-            ]
-        ]);
-        $template = "index";
-        isset($category) && $category->template != "" && $template = $category->template;
-        $data = array_merge([
-            'dataProvider' => $dataProvider,
-            'type' => ( !empty($cat) ? Yii::t('frontend', 'Category {cat} articles', ['cat'=>$cat]) : Yii::t('frontend', 'Latest Articles') ),
-            'category' => isset($category) ? $category->name : "",
-        ], Helper::getCommonInfos());
-        return $this->render($template, $data);
+        return $this->render('index', []);
     }
 
     /**

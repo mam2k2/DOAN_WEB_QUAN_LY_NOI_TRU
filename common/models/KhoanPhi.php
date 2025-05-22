@@ -17,7 +17,7 @@ use Yii;
  *
  * @property ThuPhiNoiTru[] $thuPhiNoiTrus
  */
-class KhoanPhi extends \yii\db\ActiveRecord
+class KhoanPhi extends BaseModel
 {
     /**
      * {@inheritdoc}
@@ -48,10 +48,9 @@ class KhoanPhi extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'ten_khoan_phi' => Yii::t('app', 'Ten Khoan Phi'),
-            'loai_phi' => Yii::t('app', '0-Cố định,1-Linh hoạt'),
-            'so_tien' => Yii::t('app', 'So Tien'),
-            'ghi_chu' => Yii::t('app', 'Ghi Chu'),
+            'ten_khoan_phi' => Yii::t('app', 'Tên khoản phí'),
+            'so_tien' => Yii::t('app', 'Số tền'),
+            'ghi_chu' => Yii::t('app', 'Ghi chú'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

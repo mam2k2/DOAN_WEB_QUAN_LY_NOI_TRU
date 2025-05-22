@@ -16,7 +16,7 @@ use Yii;
  *
  * @property ThongTinHocSinh $hocSinh
  */
-class YTe extends \yii\db\ActiveRecord
+class YTe extends BaseModel
 {
     /**
      * {@inheritdoc}
@@ -32,9 +32,9 @@ class YTe extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['hoc_sinh_id', 'ngay_bi_benh', 'created_at', 'updated_at'], 'integer'],
+            [['hoc_sinh_id', 'created_at', 'updated_at'], 'integer'],
             [['ngay_bi_benh'], 'required'],
-            [['ghi_chu'], 'string'],
+            [['ghi_chu','ngay_bi_benh'], 'string'],
             [['hoc_sinh_id'], 'exist', 'skipOnError' => true, 'targetClass' => ThongTinHocSinh::className(), 'targetAttribute' => ['hoc_sinh_id' => 'id']],
         ];
     }
@@ -45,12 +45,12 @@ class YTe extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'hoc_sinh_id' => Yii::t('app', 'Hoc Sinh ID'),
-            'ngay_bi_benh' => Yii::t('app', 'Ngay Bi Benh'),
-            'ghi_chu' => Yii::t('app', 'Ghi Chu'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            'id' => Yii::t('app', 'Mã'),
+            'hoc_sinh_id' => Yii::t('app', 'Mã học sinh'),
+            'ngay_bi_benh' => Yii::t('app', 'Ngày bị bệnh'),
+            'ghi_chu' => Yii::t('app', 'Ghi chú'),
+            'created_at' => Yii::t('app', 'Thời gian tạo'),
+            'updated_at' => Yii::t('app', 'Thời gian cập nhật'),
         ];
     }
 

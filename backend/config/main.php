@@ -31,7 +31,10 @@ return [
         'user' => [
             'identityClass' => common\models\AdminUser::className(),
             'enableAutoLogin' => false,
-            'identityCookie' => ['name' => '_backend_identity'],
+            'identityCookie' => [
+                'name' => '_backend_identity',
+                'path' => '/admin',
+            ],
             'idParam' => '__backend__id',
             'returnUrlParam' => '_backend_returnUrl',
         ],

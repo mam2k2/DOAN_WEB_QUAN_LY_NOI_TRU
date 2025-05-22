@@ -45,8 +45,8 @@ $this->title = Yii::t('app', 'VODY Manage');
                 <div class="navbar-brand app-brand demo d-none d-xl-flex py-0 me-4">
                     <a href="/admin" class="app-brand-link gap-2">
                         <span class="app-brand-text demo menu-text fw-bold">
-                            <img class="logo-name" style="width: 60%"  src="<?=Yii::$app->params['site']['url'].'/admin/static/img/logoVodyNgang.png'?>"/>
-
+                            <img class="logo-name" style="height: 50px"  src="<?=Yii::$app->params['site']['url'].'/admin/static/img/logoNgang.png'?>"/>
+                            Trường cao đẳng giao thông vận tải đường thủy I
                         </span>
                     </a>
                     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-xl-none">

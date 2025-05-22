@@ -20,7 +20,7 @@ use yii\helpers\VarDumper;
  * @property PhongO $phong
  * @property ThongTinHocSinh $hocSinh
  */
-class PhongOHocSinh extends \yii\db\ActiveRecord
+class PhongOHocSinh extends BaseModel
 {
     /**
      * {@inheritdoc}

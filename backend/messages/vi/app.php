@@ -429,4 +429,5 @@ return [
     'Sales' => 'Doanh số bán hàng',
     'Deposit/Withdraw' => 'Nạp/Rút',
     'NFT Commission' => 'Hoa hồng NFT',
+
 ];

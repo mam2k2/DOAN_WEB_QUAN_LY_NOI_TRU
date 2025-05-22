@@ -107,10 +107,6 @@ class MenuController extends Controller
                         "url" => 'lop/index',
                     ],
                     [
-                        "label" => 'Quản lý Giáo Viên',
-                        "url" => 'giao-vien/index',
-                    ],
-                    [
                         "label" => 'Backend Menu',
                         "url" => 'menu/index',
                     ]

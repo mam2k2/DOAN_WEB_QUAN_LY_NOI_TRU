@@ -1,6 +1,66 @@
-.bdsharebuttonbox a{border-bottom:0;width:28px;height:28px;line-height:28px;color: #fff;}
-.bds_renren{background:#94b3eb;}
-.bds_qzone{background:#fac33f;}
-.bds_more{background:#40a57d;}
-.bds_weixin{background:#7ad071;}
-.bdsharebuttonbox a:hover{background-color:#7fb4ab;color: #fff;border-bottom:0;}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+header {
+    background-color: #003366;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.avatar {
+    width: 120px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #003366;
+    color: white;
+    margin-top: 40px;
+}
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+main {
+    flex: 1;
+}
+a {
+    text-decoration: none !important;
+}
+a:hover{
+    text-decoration: none !important;
+
+}

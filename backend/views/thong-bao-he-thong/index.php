@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Thong Bao He Thong');
                         'id',
                         'tieu_de',
                         'noi_dung:ntext',
-                        'nguoi_gui_id',
+//                        'nguoi_gui_id',
                         'ngay_gui',
                         // 'user_id',
                         // 'created_at',

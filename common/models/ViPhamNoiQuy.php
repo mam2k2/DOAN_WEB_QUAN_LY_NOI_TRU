@@ -52,12 +52,12 @@ class ViPhamNoiQuy extends BaseModel
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'hoc_sinh_id' => Yii::t('app', 'Hoc Sinh ID'),
-            'loai_vi_pham' => Yii::t('app', 'Loai Vi Pham'),
-            'mo_ta' => Yii::t('app', 'Mo Ta'),
-            'ngay_vi_pham' => Yii::t('app', 'Ngay Vi Pham'),
-            'hinh_thuc_xu_ly' => Yii::t('app', 'Hinh Thuc Xu Ly'),
-            'nguoi_xu_ly' => Yii::t('app', 'Nguoi Xu Ly'),
+            'hoc_sinh_id' => Yii::t('app', 'Mã học sinh'),
+            'loai_vi_pham' => Yii::t('app', 'Loại vi phạm'),
+            'mo_ta' => Yii::t('app', 'Mô tả'),
+            'ngay_vi_pham' => Yii::t('app', 'Ngày vi phạm'),
+            'hinh_thuc_xu_ly' => Yii::t('app', 'Hình thức xử lý'),
+            'nguoi_xu_ly' => Yii::t('app', 'Người xử lý'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

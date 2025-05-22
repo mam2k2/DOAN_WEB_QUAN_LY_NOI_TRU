@@ -10,6 +10,7 @@ namespace frontend\models\form;
 
 use Yii;
 use common\models\User;
+use yii\helpers\VarDumper;
 
 /**
  * Login form
@@ -82,7 +83,8 @@ class LoginForm extends yii\base\Model
      */
     public function login()
     {
-        if ($this->validate()) {
+        if ($this->validate())
+        {
             return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         } else {
             return false;

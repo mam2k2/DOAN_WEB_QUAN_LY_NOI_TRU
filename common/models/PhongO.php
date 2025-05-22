@@ -23,7 +23,7 @@ use yii\web\UploadedFile;
  *
  * @property KhuKtx $khu
  */
-class PhongO extends \yii\db\ActiveRecord
+class PhongO extends BaseModel
 {
     /**
      * {@inheritdoc}

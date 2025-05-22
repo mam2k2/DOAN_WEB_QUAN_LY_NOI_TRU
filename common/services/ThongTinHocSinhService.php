@@ -42,6 +42,14 @@ class ThongTinHocSinhService extends Service implements ThongTinHocSinhServiceIn
             if($model->password != ""){
                 $model->user->password = $model->password;
             }
+            $phuHuynh = User::findOne($model->phu_huynh_user_id);
+            if($phuHuynh!= null){
+                $phuHuynh->email = $model->emailPH;
+                if($model->passwordPH != ""){
+                    $phuHuynh->password = $model->passwordPH;
+                }
+                $phuHuynh->save();
+            }
             if($model->user->save()){
 
                 return true;
@@ -50,6 +58,7 @@ class ThongTinHocSinhService extends Service implements ThongTinHocSinhServiceIn
                 exit();
                 return $model;
             }
+
         }
         return $model;
     }
@@ -65,6 +74,12 @@ class ThongTinHocSinhService extends Service implements ThongTinHocSinhServiceIn
 
         try
         {
+            if($model->password == ""){
+                $model->addError("password","Vui lòng nhập password");
+            }
+            if($model->passwordPH == ""){
+                $model->addError("passwordPH","Vui lòng nhập password");
+            }
             if( $model->load($postData) && $model->save() )
             {
 //            return true;
@@ -72,11 +87,17 @@ class ThongTinHocSinhService extends Service implements ThongTinHocSinhServiceIn
 //            /** @var User $modelUser */
 //            $userSevice =  \Yii::$app->get(UserServiceInterface::ServiceName);
                 $modelUser = new User();
+                $modelUserPH = new User();
 
                 if(User::findOne(['email' => $model->email]) !== null){
                     $model->addError('email', 'Email này đã tồn tại trong hệ thống.');
                     return $model;
                 }
+                if(User::findOne(['email' => $model->emailPH]) !== null){
+                    $model->addError('email', 'Email này đã tồn tại trong hệ thống.');
+                    return $model;
+                }
+
                 $modelUser->load(['User'=>[
                     'username' => str_replace('{{ID}}',$model->id, $model->username),
                     'password' => $model->password,
@@ -85,17 +106,36 @@ class ThongTinHocSinhService extends Service implements ThongTinHocSinhServiceIn
                     'created_at' => time(),
                     'updated_at' => time(),
                 ]]);
+                $modelUserPH->load(['User'=>[
+                    'username' => str_replace('{{ID}}',$model->id, $model->usernamePH),
+                    'password' => $model->passwordPH,
+                    'email' => $model->emailPH,
+                    'access_token'  => 'A',
+                    'created_at' => time(),
+                    'updated_at' => time(),
+                ]]);
+
 //            $modelUser->load();
-                if ($modelUser->save()) {
+                if ($modelUser->save() && $modelUserPH->save()) {
                     $model->user_id = $modelUser->id;
-                    if ($model->save())
+                    $model->phu_huynh_user_id = $modelUserPH->id;
+//                    VarDumper::dump($model,10,true);
+//                    exit();
+                    if ($model->save(false))
                     {
                         $transaction->commit();
+                        return true;
+                    }
+                    else{
+                        VarDumper::dump($model->getErrors());
+                        exit();
                     }
                 }else{
                     VarDumper::dump($modelUser->getErrors());
                     exit();
                 }
+                VarDumper::dump($modelUserPH->getErrors());
+                exit();
                 return $model;
             }
 

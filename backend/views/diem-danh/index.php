@@ -26,8 +26,19 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Diem Danh');
                         ['class' => CheckboxColumn::className()],
 
                         'id',
-                        'hoc_sinh_id',
-                        'phong_id',
+                        [
+                                'attribute' => 'hoc_sinh_id',
+                                'value' => function ($model) {
+                                    return $model->hocSinh->ho_va_ten;
+                                }
+                        ],
+                        [
+                                'attribute' => 'phong_id',
+                            'label' => 'Tên phòng',
+                            'value' => function ($model) {
+                                return $model->phong->ten_phong ?? "";
+                            }
+                        ],
                         'ngay_diem_danh',
                         'thoi_gian',
                         // 'created_at',

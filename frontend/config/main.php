@@ -13,11 +13,25 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'locale' => 'vi-VN',
+            'currencyCode' => 'VND',
+            'numberFormatterSymbols' => [
+            ],
+        ],
         'user' => [
             'identityClass' => common\models\User::className(),
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
+            'identityCookie' => [
+                'name' => '_frontend_identity',
+                'path' => '/frontend',
+            ],
+            'idParam' => '__frontend__id',
         ],
         'session' => [
+            'name' => 'FRONTEND_FEEHICMS',
             'timeout' => 1440,//session expiration, unit: seconds. session过期时间，单位为秒
         ],
         'log' => [
@@ -119,7 +133,7 @@ return [
                 frontend\assets\AppAsset::className() => [
                     'sourcePath' => '@frontend/web/static',
                     'css' => [
-                        'a' => 'css/style.css',
+                        'a' => 'css/share.css',
                         'b' => 'plugins/toastr/toastr.min.css',
                     ],
                     'js' => [

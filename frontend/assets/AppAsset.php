@@ -12,7 +12,7 @@ class AppAsset extends \yii\web\AssetBundle
 {
 
     public $css = [
-        'static/css/style.css',
+        'static/css/share.css',
         'static/plugins/toastr/toastr.min.css',
     ];
 

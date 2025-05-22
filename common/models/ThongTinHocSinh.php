@@ -29,6 +29,7 @@ use yii\web\UploadedFile;
  * @property string $ngay_bat_dau
  * @property string $ghi_chu
  * @property int $created_at
+ * @property int $phu_huynh_user_id
  * @property int $updated_at
  *
  * @property DiemDanh[] $diemDanhs
@@ -39,10 +40,13 @@ use yii\web\UploadedFile;
  * @property ViPhamNoiQuy[] $viPhamNoiQuies
  * @property YTe[] $yTes
  */
-class ThongTinHocSinh extends \yii\db\ActiveRecord
+class ThongTinHocSinh extends BaseModel
 {
+    public $usernamePH;
     public $username;
+    public $emailPH;
     public $email;
+    public $passwordPH;
     public $password;
     /**
      * {@inheritdoc}
@@ -58,16 +62,18 @@ class ThongTinHocSinh extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'lop_id', 'trang_thai', 'created_at', 'updated_at','phong_id'], 'integer'],
-            [['ho_va_ten', 'ngay_sinh', 'ngay_bat_dau','email','cccd','username'], 'required'],
+            [['user_id', 'lop_id', 'trang_thai', 'created_at', 'updated_at','phong_id','phu_huynh_user_id'], 'integer'],
+            [['ho_va_ten', 'ngay_sinh', 'ngay_bat_dau','email','emailPH','cccd','username','usernamePH'], 'required'],
             [['ngay_sinh', 'ngay_bat_dau'], 'safe'],
             [['diem_trung_binh'], 'number'],
             [['ghi_chu'], 'string'],
             [['anh_chan_dung','anh_cccd_sau','anh_cccd_truoc'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, gif, webp'],
-            [['ho_va_ten', 'cccd', 'email','dia_chi', 'sdt_ca_nhan', 'sdt_gia_dinh', 'ten_day_du', 'que_quan','username','password'], 'string', 'max' => 255],
+            [['ho_va_ten', 'cccd', 'email','dia_chi', 'sdt_ca_nhan', 'sdt_gia_dinh', 'ten_day_du', 'que_quan','username','password','passwordPH'], 'string', 'max' => 255],
             [['lop_id'], 'exist', 'skipOnError' => true, 'targetClass' => Lop::className(), 'targetAttribute' => ['lop_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [['phu_huynh_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['phu_huynh_user_id' => 'id']],
             ['password', 'string', 'min' => 6, 'skipOnEmpty' => true],
+            ['passwordPH', 'string', 'min' => 6, 'skipOnEmpty' => true],
         ];
     }
 
@@ -77,26 +83,27 @@ class ThongTinHocSinh extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'ID'),
-            'user_id' => Yii::t('app', 'User ID'),
-            'lop_id' => Yii::t('app', 'Lop ID'),
-            'ho_va_ten' => Yii::t('app', 'Ho Va Ten'),
-            'ngay_sinh' => Yii::t('app', 'Ngay Sinh'),
-            'cccd' => Yii::t('app', 'Cccd'),
-            'dia_chi' => Yii::t('app', 'Dia Chi'),
-            'sdt_ca_nhan' => Yii::t('app', 'Sdt Ca Nhan'),
-            'sdt_gia_dinh' => Yii::t('app', 'Sdt Gia Dinh'),
-            'ten_day_du' => Yii::t('app', 'Ten Day Du'),
-            'que_quan' => Yii::t('app', 'Que Quan'),
-            'anh_cccd_truoc' => Yii::t('app', 'Anh Cccd Truoc'),
-            'anh_cccd_sau' => Yii::t('app', 'Anh Cccd Sau'),
-            'anh_chan_dung' => Yii::t('app', 'Anh Chan Dung'),
+            'id' => Yii::t('app', 'Mã'),
+            'user_id' => Yii::t('app', 'Mã học sinh'),
+            'lop_id' => Yii::t('app', 'Mã lớp'),
+            'ho_va_ten' => Yii::t('app', 'Họ và tên'),
+            'ngay_sinh' => Yii::t('app', 'Ngày sinh'),
+            'cccd' => Yii::t('app', 'Số CCCD'),
+            'dia_chi' => Yii::t('app', 'Địa chỉ'),
+            'sdt_ca_nhan' => Yii::t('app', 'Sdt cá nhân'),
+            'sdt_gia_dinh' => Yii::t('app', 'Sđt gia đình'),
+            'ten_day_du' => Yii::t('app', 'Tên đầy đủ'),
+            'que_quan' => Yii::t('app', 'Quê quán'),
+            'anh_cccd_truoc' => Yii::t('app', 'Anh căn cước công dân trước'),
+            'anh_cccd_sau' => Yii::t('app', 'Ảnh căn cước công dân sau'),
+            'anh_chan_dung' => Yii::t('app', 'Ảnh chân dung'),
             'trang_thai' => Yii::t('app', 'Trạng thái'),
-            'diem_trung_binh' => Yii::t('app', 'Diem Trung Binh'),
-            'ngay_bat_dau' => Yii::t('app', 'Ngay Bat Dau'),
-            'ghi_chu' => Yii::t('app', 'Ghi Chu'),
+            'diem_trung_binh' => Yii::t('app', 'Điểm trung binh'),
+            'ngay_bat_dau' => Yii::t('app', 'Ngày bt đầu'),
+            'ghi_chu' => Yii::t('app', 'Ghi chú'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'phu_huynh_user_id' => Yii::t('app', 'Phụ huynh'),
         ];
     }
 
@@ -161,6 +168,7 @@ class ThongTinHocSinh extends \yii\db\ActiveRecord
     }
     public function beforeValidate()
     {
+
         if($this->anh_chan_dung !== "0") {//为0表示需要删除图片，Util::handleModelSingleFileUpload()会有判断删除图片
             $this->anh_chan_dung = UploadedFile::getInstance($this, "anh_chan_dung");
         }
@@ -177,6 +185,7 @@ class ThongTinHocSinh extends \yii\db\ActiveRecord
         Util::handleModelSingleFileUpload($this, 'anh_chan_dung', $insert, '@webroot/../uploads/avatar/');
         Util::handleModelSingleFileUpload($this, 'anh_cccd_truoc', $insert, '@webroot/../uploads/avatar/');
         Util::handleModelSingleFileUpload($this, 'anh_cccd_sau', $insert, '@webroot/../uploads/avatar/');
+
         return parent::beforeSave($insert); // TODO: Change the autogenerated stub
     }
     public function getEmail()
@@ -189,6 +198,11 @@ class ThongTinHocSinh extends \yii\db\ActiveRecord
         if ($this->user) {
             $this->email = $this->user->email;
             $this->username = $this->user->username;
+        }
+        $phuHuynh = User::findOne($this->phu_huynh_user_id);
+        if ($phuHuynh) {
+            $this->emailPH = $phuHuynh->email;
+            $this->usernamePH = $phuHuynh->username;
         }
         parent::afterFind(); // TODO: Change the autogenerated stub
     }
@@ -262,9 +276,19 @@ class ThongTinHocSinh extends \yii\db\ActiveRecord
     }
     public function getTrangThaiText()
     {
-        return $this->TrangThaiList()[$this->trang_thai];
+        return self::TrangThaiList()[$this->trang_thai] ?? 'Không xác định';
     }
-    public function TrangThaiList()
+    public function getTrangThaiBadgeColor()
+    {
+        switch ($this->trang_thai) {
+            case 1: return 'success';     // Đang học
+            case 2: return 'warning';     // Bảo lưu
+            case 3: return 'info';        // Chờ duyệt
+            case 0: return 'secondary';   // Đã tốt nghiệp
+            default: return 'dark';
+        }
+    }
+    public static function TrangThaiList()
     {
         return [
             0 => 'Đã tốt nghiệp',
