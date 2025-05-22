@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý vi phạm nội quy</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <style>
+    .table-actions i {
+      cursor: pointer;
+      margin: 0 5px;
+    }
+    .table th, .table td {
+      vertical-align: middle !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h3>Quản lý vi phạm nội quy</h3>
+
+    <!-- Bộ lọc -->
+    <div class="row my-3">
+      <div class="col-md-2">
+        <label>ID</label>
+        <input type="text" class="form-control" id="filterID">
+      </div>
+      <div class="col-md-2">
+        <label>Học sinh ID</label>
+        <input type="text" class="form-control" id="filterStudentID">
+      </div>
+      <div class="col-md-2">
+        <label>Loại vi phạm</label>
+        <input type="text" class="form-control" id="filterType">
+      </div>
+      <div class="col-md-4">
+        <label>Mô tả</label>
+        <input type="text" class="form-control" id="filterDesc">
+      </div>
+      <div class="col-md-2">
+        <label>Ngày vi phạm</label>
+        <input type="date" class="form-control" id="filterDate">
+      </div>
+    </div>
+    <div class="text-end mb-3">
+      <button class="btn btn-primary" onclick="searchViolation()">Tìm kiếm</button>
+    </div>
+
+    <!-- Bảng kết quả -->
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th><input type="checkbox" onclick="toggleAll(this)"></th>
+          <th>Học sinh ID</th>
+          <th>Loại vi phạm</th>
+          <th>Mô tả</th>
+          <th>Ngày vi phạm</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody id="violationTable">
+        <tr>
+          <td><input type="checkbox"></td>
+          <td>HS001</td>
+          <td>Đi học muộn</td>
+          <td>Vào lớp sau giờ điểm danh</td>
+          <td>2025-05-01</td>
+          <td class="table-actions">
+            <i class="bi bi-pencil-square text-primary" onclick="editViolation(this)"></i>
+            <i class="bi bi-trash text-danger" onclick="deleteViolation(this)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Tổng cộng: <span id="totalViolations">1</span> vi phạm</p>
+  </div>
+
+  <script>
+    function toggleAll(source) {
+      const checkboxes = document.querySelectorAll('#violationTable input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = source.checked);
+    }
+
+    function searchViolation() {
+      alert("Chức năng tìm kiếm đang được phát triển.");
+    }
+
+    function editViolation(btn) {
+      alert("Chức năng chỉnh sửa đang được phát triển.");
+    }
+
+    function deleteViolation(btn) {
+      if (confirm("Bạn có chắc chắn muốn xóa vi phạm này?")) {
+        const row = btn.closest('tr');
+        row.remove();
+        updateTotal();
+      }
+    }
+
+    function updateTotal() {
+      const rows = document.querySelectorAll('#violationTable tr');
+      document.getElementById('totalViolations').textContent = rows.length;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý học sinh</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <style>
+    .table-actions i {
+      cursor: pointer;
+      margin: 0 5px;
+    }
+    .search-row input, .search-row select {
+      width: 100%;
+      padding: 5px;
+    }
+    .table th, .table td {
+      vertical-align: middle !important;
+    }
+    .student-img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h3>Danh sách học sinh</h3>
+
+    <!-- Bộ lọc -->
+    <div class="row my-3">
+      <div class="col-md-3">
+        <label>Quận/Quận Huyện</label>
+        <input type="text" class="form-control" id="filterDistrict" placeholder="VD: Quận 1">
+      </div>
+      <div class="col-md-2">
+        <label>User ID</label>
+        <input type="text" class="form-control" id="filterUserID">
+      </div>
+      <div class="col-md-2">
+        <label>Log ID</label>
+        <input type="text" class="form-control" id="filterLogID">
+      </div>
+      <div class="col-md-3">
+        <label>Ngày sinh</label>
+        <input type="date" class="form-control" id="filterDOB">
+      </div>
+      <div class="col-md-2 d-flex align-items-end">
+        <button class="btn btn-primary w-100" onclick="filterStudents()">Tìm kiếm</button>
+      </div>
+    </div>
+
+    <!-- Nút thêm học sinh -->
+    <div class="d-flex justify-content-end mb-2">
+      <button class="btn btn-success" onclick="addStudent()">
+        <i class="bi bi-plus-circle"></i> Thêm học sinh
+      </button>
+    </div>
+
+    <!-- Bảng danh sách học sinh -->
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th><input type="checkbox" onclick="toggleAll(this)"></th>
+          <th>Ảnh</th>
+          <th>Họ và tên</th>
+          <th>Mã HS</th>
+          <th>Tên phòng</th>
+          <th>Giới tính</th>
+          <th>Ngày sinh</th>
+          <th>Trạng thái</th>
+          <th>Ngày ghi danh</th>
+          <th>Ghi chú</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody id="studentTable">
+        <tr>
+          <td><input type="checkbox"></td>
+          <td><img src="https://via.placeholder.com/40" class="student-img" alt="Ảnh"></td>
+          <td>Nguyễn Văn A</td>
+          <td>HS001</td>
+          <td>Phòng 101</td>
+          <td>Nam</td>
+          <td>2005-05-20</td>
+          <td><span class="badge bg-success">Đang học</span></td>
+          <td>2022-09-01</td>
+          <td></td>
+          <td class="table-actions">
+            <i class="bi bi-pencil-square text-primary" onclick="editStudent(this)"></i>
+            <i class="bi bi-trash text-danger" onclick="deleteStudent(this)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Tổng cộng: <span id="totalStudents">1</span> học sinh</p>
+  </div>
+
+  <script>
+    function toggleAll(source) {
+      const checkboxes = document.querySelectorAll('#studentTable input[type="checkbox"]');
+      checkboxes.forEach(cb => cb.checked = source.checked);
+    }
+
+    function filterStudents() {
+      alert("Chức năng lọc đang được phát triển.");
+    }
+
+    function editStudent(btn) {
+      alert("Chức năng chỉnh sửa đang được phát triển.");
+    }
+
+    function deleteStudent(btn) {
+      if (confirm("Bạn có chắc chắn muốn xóa học sinh này?")) {
+        const row = btn.closest('tr');
+        row.remove();
+        updateTotal();
+      }
+    }
+
+    function addStudent() {
+      const table = document.getElementById('studentTable');
+      const newRow = document.createElement('tr');
+
+      newRow.innerHTML = `
+        <td><input type="checkbox"></td>
+        <td><img src="https://via.placeholder.com/40" class="student-img" alt="Ảnh"></td>
+        <td>Học sinh mới</td>
+        <td>HS00X</td>
+        <td>Phòng XYZ</td>
+        <td>Nữ</td>
+        <td>2000-01-01</td>
+        <td><span class="badge bg-warning text-dark">Chờ duyệt</span></td>
+        <td>2025-01-01</td>
+        <td>Ghi chú mới</td>
+        <td class="table-actions">
+          <i class="bi bi-pencil-square text-primary" onclick="editStudent(this)"></i>
+          <i class="bi bi-trash text-danger" onclick="deleteStudent(this)"></i>
+        </td>
+      `;
+
+      table.appendChild(newRow);
+      updateTotal();
+    }
+
+    function updateTotal() {
+      const rows = document.querySelectorAll('#studentTable tr');
+      document.getElementById('totalStudents').textContent = rows.length;
+    }
+  </script>
+</body>
+</html>

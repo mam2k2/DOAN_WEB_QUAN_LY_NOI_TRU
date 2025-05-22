@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Chi phí của học sinh</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .paid { color: green; font-weight: bold; }
+    .unpaid { color: red; font-weight: bold; }
+    .summary { font-size: 1.2rem; }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h3 class="mb-4 text-center">💸 Chi phí sinh hoạt của học sinh</h3>
+
+    <!-- Bảng chi phí -->
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>Tháng</th>
+          <th>Loại chi phí</th>
+          <th>Số tiền (VNĐ)</th>
+          <th>Trạng thái</th>
+        </tr>
+      </thead>
+      <tbody id="costTable">
+        <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+      </tbody>
+    </table>
+
+    <!-- Tổng kết -->
+    <div class="summary mt-4">
+      <p><strong>Tổng chi phí:</strong> <span id="totalCost">0</span> VNĐ</p>
+      <p><strong>Chưa thanh toán:</strong> <span id="unpaidTotal">0</span> VNĐ</p>
+    </div>
+  </div>
+
+  <script>
+    // Dữ liệu mẫu (có thể thay bằng dữ liệu thực)
+    const costs = [
+      { month: '01/2025', type: 'Tiền điện', amount: 120000, paid: true },
+      { month: '01/2025', type: 'Tiền nước', amount: 90000, paid: true },
+      { month: '01/2025', type: 'Tiền phòng', amount: 500000, paid: false },
+      { month: '02/2025', type: 'Tiền điện', amount: 130000, paid: false },
+      { month: '02/2025', type: 'Tiền nước', amount: 95000, paid: false },
+      { month: '02/2025', type: 'Tiền phòng', amount: 500000, paid: false },
+    ];
+
+    const tableBody = document.getElementById('costTable');
+    let totalCost = 0;
+    let unpaidTotal = 0;
+
+    costs.forEach(cost => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${cost.month}</td>
+        <td>${cost.type}</td>
+        <td>${cost.amount.toLocaleString()} VNĐ</td>
+        <td class="${cost.paid ? 'paid' : 'unpaid'}">
+          ${cost.paid ? 'Đã thanh toán' : 'Chưa thanh toán'}
+        </td>
+      `;
+      tableBody.appendChild(row);
+
+      totalCost += cost.amount;
+      if (!cost.paid) unpaidTotal += cost.amount;
+    });
+
+    document.getElementById('totalCost').textContent = totalCost.toLocaleString();
+    document.getElementById('unpaidTotal').textContent = unpaidTotal.toLocaleString();
+  </script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Thông tin học sinh</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .profile-img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #0d6efd;
+    }
+    .info-label {
+      font-weight: bold;
+      background-color: #f8f9fa;
+      width: 30%;
+    }
+    .tab-content .table td, .tab-content .table th {
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="text-center mb-4">
+      <img src="https://via.placeholder.com/100" class="profile-img" alt="Ảnh đại diện">
+      <h4 class="mt-2">Nguyễn Văn A</h4>
+      <p class="text-muted">Mã học sinh: <strong>HS001</strong></p>
+    </div>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs" id="studentTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button">Thông tin cá nhân</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="violation-tab" data-bs-toggle="tab" data-bs-target="#violation" type="button">Vi phạm</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="bill-tab" data-bs-toggle="tab" data-bs-target="#bill" type="button">Hóa đơn</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="notice-tab" data-bs-toggle="tab" data-bs-target="#notice" type="button">Thông báo</button>
+      </li>
+    </ul>
+
+    <!-- Tab content -->
+    <div class="tab-content mt-3" id="studentTabContent">
+      <!-- Thông tin cá nhân -->
+      <div class="tab-pane fade show active" id="info" role="tabpanel">
+        <table class="table table-bordered">
+          <tbody>
+            <tr><td class="info-label">Họ và tên</td><td>Nguyễn Văn A</td></tr>
+            <tr><td class="info-label">Giới tính</td><td>Nam</td></tr>
+            <tr><td class="info-label">Ngày sinh</td><td>20/05/2005</td></tr>
+            <tr><td class="info-label">Phòng học</td><td>Phòng 101</td></tr>
+            <tr><td class="info-label">Trạng thái</td><td><span class="badge bg-success">Đang học</span></td></tr>
+            <tr><td class="info-label">Ngày ghi danh</td><td>01/09/2022</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Vi phạm -->
+      <div class="tab-pane fade" id="violation" role="tabpanel">
+        <table class="table table-bordered table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>#</th>
+              <th>Ngày</th>
+              <th>Nội dung vi phạm</th>
+              <th>Hình thức xử lý</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>12/03/2024</td>
+              <td>Đi học muộn</td>
+              <td>Nhắc nhở</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>05/04/2024</td>
+              <td>Không mặc đồng phục</td>
+              <td>Trừ điểm thi đua</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Hóa đơn -->
+      <div class="tab-pane fade" id="bill" role="tabpanel">
+        <table class="table table-bordered table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>Tháng</th>
+              <th>Mục</th>
+              <th>Số tiền</th>
+              <th>Trạng thái</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Tháng 4/2024</td>
+              <td>Học phí</td>
+              <td>1,200,000đ</td>
+              <td><span class="badge bg-success">Đã thanh toán</span></td>
+            </tr>
+            <tr>
+              <td>Tháng 5/2024</td>
+              <td>Học phí</td>
+              <td>1,200,000đ</td>
+              <td><span class="badge bg-warning text-dark">Chưa thanh toán</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Thông báo -->
+      <div class="tab-pane fade" id="notice" role="tabpanel">
+        <div class="list-group">
+          <div class="list-group-item">
+            <h6 class="mb-1">📢 Nghỉ học ngày 30/04 và 01/05</h6>
+            <small>Đăng ngày: 25/04/2024</small>
+            <p class="mb-0">Nhà trường thông báo nghỉ học lễ Giải phóng miền Nam và Quốc tế Lao động.</p>
+          </div>
+          <div class="list-group-item">
+            <h6 class="mb-1">📢 Hạn nộp học phí tháng 5</h6>
+            <small>Đăng ngày: 02/05/2024</small>
+            <p class="mb-0">Vui lòng hoàn tất học phí tháng 5 trước ngày 10/05/2024.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

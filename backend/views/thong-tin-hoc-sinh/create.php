@@ -15,5 +15,6 @@ $this->params['breadcrumbs'] = [
     'model' => $model,
     'listLop' => $listLop,
     'phongList' => $phongList,
+    // 'khoaList' => $khoaList,
 ]) ?>
 

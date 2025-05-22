@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang Chủ - Quản Lý Nội Trú</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<script src="../js/script.js" defer></script>
+<body>
+    <header>
+        <img src="../img/logo.png" alt="Logo" />
+        <div class="header-container">
+            <div class="logo">
+            <h1>Trường Cao đẳng GTVT Đường thủy I</h1>
+            </div>
+            <div class="right-icons">
+            <div class="icon">🔔</div>
+            <div class="user-menu">
+                <div class="icon user-icon" onclick="toggleUserMenu()">👤</div>
+                <div class="dropdown" id="userDropdown">
+                    <div onclick="goToProfile()">Hồ sơ</div>
+                    <div onclick="logout()">Logout</div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <nav class="sidebar">
+            <div class="menu-item collapsible">
+                <div class="menu-title">
+                <span>Quản lý KTX</span>
+                <span class="arrow">❯</span>
+                </div>
+                <div class="submenu">
+                    <div class="submenu-item"onclick="loadPage('quan_ly_khu.html')">Quản lý khu</div>
+                    <div class="submenu-item"onclick="loadPage('quan_ly_phong_o_ktx.html')">Quản lý phòng ở</div>
+                    <div class="submenu-item"onclick="loadPage('thu_phi.html')">Quản lý thiết bị</div>
+                </div>
+            </div>
+            <div class="menu-item collapsible">
+                <div class="menu-title">
+                <span>Quản lý thu phí nội trú</span>
+                <span class="arrow">❯</span>
+                </div>
+                <div class="submenu">
+                    <div class="submenu-item" onclick="loadPage('thu_phi.html')">Thu phí</div>
+                    <div class="submenu-item" onclick="loadPage('khoan_phi.html')">Khoản phí</div>
+                </div>
+            </div>
+            <div class="menu-item collapsible">
+                <div class="menu-title">
+                <span>Quản lý học sinh</span>
+                <span class="arrow">❯</span>
+                </div>
+                <div class="submenu">
+                    <div class="submenu-item" onclick="loadPage('quan_ly_hoc_sinh.html')">Danh sách học sinh</div>
+                    <div class="submenu-item" onclick="loadPage('quan_ly_y_te.html')">Quản lý y tế</div>
+                    <div class="submenu-item" onclick="loadPage('quan_ly_vi_pham.html')">Vi phạm</div>
+                </div>
+            </div>
+            <div class="menu-item collapsible">
+                <div class="menu-title" onclick="loadPage('quan_ly_thong_bao.html')">
+                <span>Quản lý thông báo</span>
+            </div>
+            </div>
+            <div class="menu-item collapsible">
+                <div class="menu-title">
+                <span>Quản lý danh mục</span>
+                <span class="arrow">❯</span>
+                </div>
+                <div class="submenu">
+                    <div class="submenu-item" onclick="loadPage('danh_muc.html')">Danh mục</div>
+                    <div class="submenu-item" onclick="loadPage('quan_ly_khoa.html')">Quản lý khóa</div>
+                    <div class="submenu-item" onclick="loadPage('quan_ly_lop.html')">Quản lý lớp</div>
+                    <div class="submenu-item" onclick="loadPage('quan_ly_giao_vien.html')">Quản lý giáo viên</div>
+                </div>
+            </div>
+            <div class="menu-item collapsible">
+                <div class="menu-title">
+                <span>Phân quyền</span>
+                <span class="arrow">❯</span>
+                </div>
+                <div class="submenu">
+                    <div class="submenu-item" onclick="loadPage('phan_quyen.html')">Permissions</div>
+                    <div class="submenu-item" onclick="loadPage('roles.html')">Roles</div>
+                    <div class="submenu-item" onclick="loadPage('admin_user.html')">Admin user</div>
+                </div>
+            </div>
+
+        <!-- Các mục khác nếu có -->
+        </nav>
+
+        <section class="content-area">
+            <iframe id="page-frame" src="" frameborder="0"></iframe>
+        </section>
+    </main>
+</body>
+</html>
