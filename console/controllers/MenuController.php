@@ -73,6 +73,10 @@ class MenuController extends Controller
                         "url" => 'thong-tin-hoc-sinh/index',
                     ],
                     [
+                        "label" => 'Danh sách học sinh chờ duyệt',
+                        "url" => 'thong-tin-hoc-sinh/danh-sach-cho-duyet',
+                    ],
+                    [
                         "label" => 'Quản lý Y tế',
                         "url" => 'y-te/index',
                     ],
@@ -91,8 +95,8 @@ class MenuController extends Controller
                 "url" => 'thong-bao-he-thong/index',
             ],
             [
-                "label" => 'Quản lý Phản ánh / Kiến nghị /',
-                "url" => 'thong-bao-he-thong/index',
+                "label" => 'Quản lý Phản ánh / Kiến nghị ',
+                "url" => 'tickets/index',
             ],
             [
                 "label" => 'Quản lý danh mục',

@@ -137,4 +137,5 @@ class User extends BaseModel implements \yii\web\IdentityInterface
         $this->save();
         return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
     }
+
 }

@@ -31,6 +31,10 @@ use backend\widgets\ActiveForm;
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'cccd')->textInput(['type' => 'number']) ?>
                 <div class="hr-line-dashed"></div>
+                <?= $form->field($model, 'sdt_ca_nhan')->textInput(['type' => 'number']) ?>
+                <div class="hr-line-dashed"></div>
+                <?= $form->field($model, 'sdt_gia_dinh')->textInput(['type' => 'number']) ?>
+                <div class="hr-line-dashed"></div>
                 <?=$form->field($model, 'phong_id')->widget(\kartik\select2\Select2::class, [
                     'data' => $phongList,
                     'options' => ['placeholder' => 'Chọn phòng'],
@@ -48,6 +52,22 @@ use backend\widgets\ActiveForm;
                     ],
                 ]);?>
                 <div class="hr-line-dashed"></div>
+                <?= $form->field($model, 'truong_thcs')->textInput() ?>
+                <div class="hr-line-dashed"></div>
+                <?= $form->field($model, 'truong_thpt')->textInput() ?>
+                <div class="hr-line-dashed"></div>
+                <?=$form->field($model, 'trinh_do_dao_tao')->label('Hệ đào tạo')->widget(\kartik\select2\Select2::class, [
+                    'data' => [
+                        "Cao đẳng" =>  "Cao đẳng",
+                        "Trung cấp" =>  "Trung cấp",
+                        "Cấp 3" =>  "Cấp 3",
+                    ],
+                    'options' => ['placeholder' => 'Hệ đào tạo'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]);?>
+                <div class="hr-line-dashed"></div>
                         <?= $form->field($model, 'username')->textInput(['id' => 'username', 'readonly' => true]) ?>
                             <div class="hr-line-dashed"></div>
                     <?= $form->field($model, 'password')->textInput() ?>
@@ -56,6 +76,7 @@ use backend\widgets\ActiveForm;
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'passwordPH')->textInput()->label("Mật khẩu phụ huynh") ?>
                 <div class="hr-line-dashed"></div>
+
 
                         <?= $form->field($model, 'ngay_sinh')->textInput(['type' => 'date']) ?>
                         <div class="hr-line-dashed"></div>

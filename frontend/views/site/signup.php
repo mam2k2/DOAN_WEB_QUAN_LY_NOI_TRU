@@ -70,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                             $model = new \common\models\ThongTinHocSinh();
                                         }
                                         ?>
-                                        <?= $form->field($model, 'anh_chan_dung')->textInput(['type' => 'file']) ?>
+                                        <?= $form->field($model, 'anh_chan_dung')->fileInput(['class' => 'form-control']) ?>
                                         <div class="hr-line-dashed"></div>
                                         <?= $form->field($model, 'ho_va_ten')->textInput(['id' => 'ho_va_ten']) ?>
                                         <div class="hr-line-dashed"></div>
@@ -79,45 +79,27 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <div class="hr-line-dashed"></div>
                                         <?= $form->field($model, 'cccd')->textInput(['type' => 'number']) ?>
                                         <div class="hr-line-dashed"></div>
-
+                                        <?= $form->field($model, 'sdt_ca_nhan')->textInput(['type' => 'number']) ?>
                                         <div class="hr-line-dashed"></div>
-
-<!--                                        --><?php //=$form->field($model, 'lop_id')->widget(\kartik\select2\Select2::class, [
-//                                            'data' => $listLop,
-//                                            'options' => ['placeholder' => 'Chọn khoa'],
-//                                            'pluginOptions' => [
-//                                                'allowClear' => true
-//                                            ],
-//                                        ]);?>
-<!--                                        <div class="hr-line-dashed"></div>-->
-<!--                                        --><?php //= $form->field($model, 'username')->textInput(['id' => 'username', 'readonly' => true]) ?>
-<!--                                        <div class="hr-line-dashed"></div>-->
-<!--                                        --><?php //= $form->field($model, 'password')->textInput() ?>
-<!--                                        <div class="hr-line-dashed"></div>-->
-<!--                                        --><?php //= $form->field($model, 'usernamePH')->textInput(['id' => 'usernamePH', 'readonly' => true])->label("Username phụ huynh") ?>
-<!--                                        <div class="hr-line-dashed"></div>-->
-<!--                                        --><?php //= $form->field($model, 'passwordPH')->textInput()->label("Mật khẩu phụ huynh") ?>
-<!--                                        <div class="hr-line-dashed"></div>-->
-
+                                        <?= $form->field($model, 'sdt_gia_dinh')->textInput(['type' => 'number']) ?>
+                                        <div class="hr-line-dashed"></div>
                                         <?= $form->field($model, 'ngay_sinh')->textInput(['type' => 'date']) ?>
                                         <div class="hr-line-dashed"></div>
 
                                         <?= $form->field($model, 'que_quan')->textInput(['maxlength' => true]) ?>
                                         <div class="hr-line-dashed"></div>
-                                        <!--                '0-Đã Tốt nghiệp,1-Đã rời đi, 2 chờ duyệt-->
-
-<!--                                        --><?php //= $form->field($model, 'diem_trung_binh')->textInput(['maxlength' => true]) ?>
-<!--                                        <div class="hr-line-dashed"></div>-->
-
-                                        <?= $form->field($model, 'ngay_bat_dau')->textInput(['type' => 'date']) ?>
-                                        <?= $form->field($model, 'ngay_bat_dau')->textInput()->label("Trường THPT") ?>
-                                        <?= $form->field($model, 'ngay_bat_dau')->textInput()->label("Trường THCS") ?>
-                                        <?=$form->field($model, 'trang_thai')->label('Hệ đào tạo')->widget(\kartik\select2\Select2::class, [
+                                        <?= $form->field($model, 'truong_thcs')->textInput() ?>
+                                        <div class="hr-line-dashed"></div>
+                                        <?= $form->field($model, 'truong_thpt')->textInput() ?>
+                                        <div class="hr-line-dashed"></div>
+                                        <?php
+                                        $model->trinh_do_dao_tao = "Cao đẳng";
+                                        ?>
+                                        <?=$form->field($model, 'trinh_do_dao_tao')->label('Hệ đào tạo')->widget(\kartik\select2\Select2::class, [
                                             'data' => [
-                                                0=>"Đã Tốt nghiệp",
-                                                1 => "Đang học",
-                                                2 => "Bảo lưu",
-                                                3 => "Chờ duyệt",
+                                                "Cao đẳng" =>  "Cao đẳng",
+                                                "Trung cấp" =>  "Trung cấp",
+                                                "Cấp 3" =>  "Cấp 3",
                                             ],
                                             'options' => ['placeholder' => 'Hệ đào tạo'],
                                             'pluginOptions' => [
@@ -125,17 +107,33 @@ $this->params['breadcrumbs'][] = $this->title;
                                             ],
                                         ]);?>
                                         <div class="hr-line-dashed"></div>
+                                        <?=$form->field($model, 'lop_id')->label('Lớp')->widget(\kartik\select2\Select2::class, [
+                                            'data' => $lopList,
+                                            'options' => ['placeholder' => 'Lớp'],
+                                            'pluginOptions' => [
+                                                'allowClear' => true
+                                            ],
+                                        ]);?>
+                                        <div class="hr-line-dashed"></div>
+                                        <!--                '0-Đã Tốt nghiệp,1-Đã rời đi, 2 chờ duyệt-->
+
+<!--                                        --><?php //= $form->field($model, 'diem_trung_binh')->textInput(['maxlength' => true]) ?>
+<!--                                        <div class="hr-line-dashed"></div>-->
+
+                                        <?= $form->field($model, 'ngay_bat_dau')->textInput(['type' => 'date']) ?>
+
+                                        <div class="hr-line-dashed"></div>
 
                                         <?= $form->field($model, 'ghi_chu')->textarea(['rows' => 6]) ?>
                                         <div class="hr-line-dashed"></div>
 
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <?= $form->field($model, 'anh_cccd_truoc')->textInput(['type' => 'file']) ?>
+                                                <?= $form->field($model, 'anh_cccd_truoc')->fileInput(['class' => 'form-control']) ?>
                                                 <div class="hr-line-dashed"></div>
                                             </div>
                                             <div class="col-md-6">
-                                                <?= $form->field($model, 'anh_cccd_sau')->textInput(['type' => 'file']) ?>
+                                                <?= $form->field($model, 'anh_cccd_sau')->fileInput(['class' => 'form-control']) ?>
                                                 <div class="hr-line-dashed"></div>
                                             </div>
                                         </div>

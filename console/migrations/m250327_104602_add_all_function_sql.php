@@ -34,7 +34,7 @@ class m250327_104602_add_all_function_sql extends Migration
             'anh_chan_dung' => $this->string(),
             'trang_thai' => $this->smallInteger()->defaultValue(0)->comment('0-Đã Tốt nghiệp,1-Đã rời đi, 2 chờ duyệt'),
             'diem_trung_binh' => $this->decimal(),
-            'ngay_bat_dau' => $this->dateTime()->notNull(),
+            'ngay_bat_dau' => $this->date()->notNull(),
             'ghi_chu' => $this->text(),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),

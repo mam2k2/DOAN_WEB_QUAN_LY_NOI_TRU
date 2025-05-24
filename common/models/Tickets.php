@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\helpers\VarDumper;
 
 /**
  * This is the model class for table "{{%tickets}}".
@@ -24,6 +25,7 @@ use Yii;
  */
 class Tickets extends \yii\db\ActiveRecord
 {
+    public $isAnDanh;
     /**
      * {@inheritdoc}
      */
@@ -43,6 +45,7 @@ class Tickets extends \yii\db\ActiveRecord
             [['user_id', 'assigned_to'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['tieu_de'], 'string', 'max' => 255],
+            [['isAnDanh'], 'boolean'],
             [['assigned_to'], 'exist', 'skipOnError' => true, 'targetClass' => AdminUser::className(), 'targetAttribute' => ['assigned_to' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -55,15 +58,16 @@ class Tickets extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app', 'ID'),
-            'tieu_de' => Yii::t('app', 'Tieu De'),
-            'noi_dung' => Yii::t('app', 'Noi Dung'),
-            'danh_muc' => Yii::t('app', 'Danh Muc'),
-            'trang_thai' => Yii::t('app', 'Trang Thai'),
-            'do_khan_cap' => Yii::t('app', 'Do Khan Cap'),
+            'tieu_de' => Yii::t('app', 'Tiêu đề'),
+            'noi_dung' => Yii::t('app', 'Nội dung'),
+            'danh_muc' => Yii::t('app', 'Danh mục'),
+            'trang_thai' => Yii::t('app', 'Trạng thái'),
+            'do_khan_cap' => Yii::t('app', 'Độ khẩn cấp'),
             'user_id' => Yii::t('app', 'User ID'),
             'assigned_to' => Yii::t('app', 'Assigned To'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
+            'isAnDanh' => Yii::t('app', 'Ẩn danh'),
         ];
     }
 
@@ -89,5 +93,24 @@ class Tickets extends \yii\db\ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+    public static function getRateTicketsArray()
+    {
+        return [
+            'low' => 'Thấp',
+            'medium' => 'Trung bình',
+            'high' => 'Cao',
+            'urgent' => 'Khẩn cấp'
+        ];
+
+    }
+    public static function getTrangThaiTicketsArray()
+    {
+        return [
+            'open' => 'Mở',
+            'in_progress' => 'Đang xử lý',
+            'closed' => 'Đóng',
+        ];
+
     }
 }

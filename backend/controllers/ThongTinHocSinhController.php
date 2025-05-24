@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\models\DiemDanh;
 use common\models\ThongTinHocSinh;
+use common\models\User;
 use common\services\DiemDanhServiceInterface;
 use common\services\LopServiceInterface;
 use common\services\PhongOServiceInterface;
@@ -17,6 +18,8 @@ use backend\actions\DeleteAction;
 use backend\actions\SortAction;
 use backend\actions\ViewAction;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use yii\helpers\VarDumper;
 
 /**
  * ThongTinHocSinhController implements the CRUD actions for ThongTinHocSinh model.
@@ -43,11 +46,22 @@ class ThongTinHocSinhController extends \yii\web\Controller
             'index' => [
                 'class' => IndexAction::className(),
                 'data' => function($query, $indexAction) use($service){
+
                     $result = $service->getList($query);
                     return [
                         'dataProvider' => $result['dataProvider'],
                         'searchModel' => $result['searchModel'],                    ];
                 }
+            ],
+            'danh-sach-cho-duyet' => [
+                'class' => IndexAction::className(),
+                'data' => function($query, $indexAction) use($service){
+
+                    $result = $service->getListChoDuyet();
+                    return [
+                        'dataProvider' => $result['dataProvider'],
+                        'searchModel' => $result['searchModel'],                    ];
+                },
             ],
             'create' => [
                 'class' => CreateAction::className(),
@@ -69,6 +83,28 @@ class ThongTinHocSinhController extends \yii\web\Controller
                     ];
                 }
             ],
+            'update-cho-duyet' => [
+                'class' => UpdateAction::className(),
+                'doUpdate' => function($id, $postData, $updateAction) use($service){
+                    return $service->update($id, $postData);
+                },
+                'data' => function($id, $updateResultModel, $updateAction) use($service){
+                    $model = $updateResultModel === null ? $service->getDetail($id) : $updateResultModel;
+                    /** @var LopServiceInterface $lopService */
+                    $lopService = Yii::$app->get(LopServiceInterface::ServiceName);
+                    $lopList = $lopService->getLopOptions();
+                    /** @var PhongOServiceInterface $PhongOService */
+                    $PhongOService = Yii::$app->get(PhongOServiceInterface::ServiceName);
+                    $phongList = $PhongOService->getAllNamePhong();
+                    return [
+                        'model' => $model,
+                        'listLop' => $lopList,
+                        'phongList' => $phongList,
+                    ];
+                },
+                'successRedirect' => ['thong-tin-hoc-sinh/danh-sach-cho-duyet'],
+
+            ],
             'update' => [
                 'class' => UpdateAction::className(),
                 'doUpdate' => function($id, $postData, $updateAction) use($service){
@@ -87,7 +123,7 @@ class ThongTinHocSinhController extends \yii\web\Controller
                         'listLop' => $lopList,
                         'phongList' => $phongList,
                     ];
-                }
+                },
             ],
             'delete' => [
                 'class' => DeleteAction::className(),
@@ -137,5 +173,31 @@ class ThongTinHocSinhController extends \yii\web\Controller
             }
         }
         return Yii::$app->getResponse()->redirect(['thong-tin-hoc-sinh/index']);
+    }
+    public function actionActive($id)
+    {
+        /** @var DiemDanhServiceInterface $diemDanhService */
+
+        $diemDanhService = Yii::$app->get(DiemDanhServiceInterface::ServiceName);
+        /** @var ThongTinHocSinhServiceInterface $service */
+        $service = Yii::$app->get(ThongTinHocSinhServiceInterface::ServiceName);
+        /** @var ThongTinHocSinh $tTHS */
+        $tTHS = $service->getDetail($id);
+        $tTHS->trang_thai = 1;
+        $tTHS->save(false);
+//        VarDumper::dump($tTHS,10,true);
+//        exit();
+        $user = $tTHS->user;
+        $userPH = User::findOne(['id' => $tTHS->phu_huynh_user_id]);
+        if($user != null){
+            $user->status = User::STATUS_ACTIVE;
+            $user->save();
+        }
+        if($userPH != null)
+        {
+            $userPH->status = User::STATUS_ACTIVE;
+            $userPH->save();
+        }
+        return Yii::$app->getResponse()->redirect(['thong-tin-hoc-sinh/danh-sach-cho-duyet']);
     }
 }

@@ -207,7 +207,6 @@ return [
     'Tag' => '',
     'Target' => '',
     'Thumb' => '',
-    'Ticket' => '',
     'Ticket Commission' => '',
     'Tips' => '',
     'Title' => '',

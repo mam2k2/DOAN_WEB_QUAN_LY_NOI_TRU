@@ -25,23 +25,22 @@ use backend\widgets\ActiveForm;
                         <?= $form->field($model, 'danh_muc')->dropDownList([ 'Sửa chữa' => 'Sửa chữa', 'Vệ sinh' => 'Vệ sinh', 'Khác' => 'Khác', ], ['prompt' => '']) ?>
                         <div class="hr-line-dashed"></div>
 
-                        <?= $form->field($model, 'trang_thai')->dropDownList([ 'open' => 'Open', 'in_progress' => 'In progress', 'closed' => 'Closed', ], ['prompt' => '']) ?>
-                        <div class="hr-line-dashed"></div>
+                <?= $form->field($model, 'danh_muc')->dropDownList([
+                    'sửa chữa' => 'Sửa chữa',
+                    'vệ sinh' => 'Vệ sinh',
+                    'khác' => 'Khác',
+                ], ['prompt' => 'Chọn danh mục']) ?>
+                <div class="hr-line-dashed"></div>
 
-                        <?= $form->field($model, 'do_khan_cap')->dropDownList([ 'low' => 'Low', 'medium' => 'Medium', 'high' => 'High', 'urgent' => 'Urgent', ], ['prompt' => '']) ?>
-                        <div class="hr-line-dashed"></div>
-
-                        <?= $form->field($model, 'user_id')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
-
-                        <?= $form->field($model, 'assigned_to')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
-
-                        <?= $form->field($model, 'created_at')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
-
-                        <?= $form->field($model, 'updated_at')->textInput() ?>
-                        <div class="hr-line-dashed"></div>
+                <?= $form->field($model, 'do_khan_cap')->dropDownList([
+                    'low' => 'Thấp',
+                    'medium' => 'Trung bình',
+                    'high' => 'Cao',
+                    'urgent' => 'Khẩn cấp'
+                ], ['prompt' => 'Chọn trạng thái']) ?>
+                       <div class="hr-line-dashed"></div>
+                <?= $form->field($model, 'trang_thai')->dropDownList(\common\models\Tickets::getTrangThaiTicketsArray(), ['prompt' => 'Chọn mức độ khẩn cấp']) ?>
+                <div class="hr-line-dashed"></div>
 
                         <?= $form->defaultButtons() ?>
                     <?php ActiveForm::end(); ?>

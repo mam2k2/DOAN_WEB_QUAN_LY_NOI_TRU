@@ -23,10 +23,37 @@ $this->params['breadcrumbs'][] = $this->title;
             'danh_muc',
             'trang_thai',
             'do_khan_cap',
-            'user_id',
-            'assigned_to',
-            'created_at',
-            'updated_at',
+            [
+                    'attribute' => 'user_id',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    $User = \common\models\User::findOne($model->user_id);
+                    return $User->username;
+                }
+            ],
+            [
+                'attribute' => 'trang_thai',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    if ($model->trang_thai !== "") {
+                        return \common\models\Tickets::getTrangThaiTicketsArray()[$model->trang_thai];
+                    }
+                }
+            ],
+            [
+                'attribute' => 'do_khan_cap',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    if ($model->do_khan_cap !== "") {
+                        return \common\models\Tickets::getRateTicketsArray()[$model->do_khan_cap];
+                    }
+                }
+            ],
+            [
+                    'attribute' => 'created_at',
+                'format' => 'datetime',
+                
+            ]
         ],
     ]) ?>
 

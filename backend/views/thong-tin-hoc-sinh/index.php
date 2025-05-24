@@ -9,8 +9,8 @@ use backend\grid\GridView;
 /* @var $searchModel backend\models\search\ThongTinHocSinhSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Thong Tin Hoc Sinhs');
-$this->params['breadcrumbs'][] = yii::t('app', 'Thong Tin Hoc Sinh');
+$this->title = Yii::t('app', 'Thông tin học sinh');
+$this->params['breadcrumbs'][] = yii::t('app', 'Thông tin hoc sinh');
 ?>
 <div class="row">
     <div class="col-sm-12">
@@ -93,13 +93,17 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Thong Tin Hoc Sinh');
                                 'view' => function ($url, $model, $key) {
                                     return \yii\helpers\Html::a('<i class="fa fa-folder"></i>', 'javascript:void(0)', [
                                         'class' => 'btn-sm',
-                                        'title' => 'Xem thiết bị',
+                                        'title' => 'Xem thông tin',
                                         'data-pjax' => '0',
-                                        'onclick' => "viewLayer('/admin/index.php?r=phong-o/view-layer&id={$model->id}', $(this))",
+                                        'onclick' => "viewLayer('/admin/index.php?r=thong-tin-hoc-sinh/view-layer&id={$model->id}', $(this))",
                                     ]);
                                 },
 
                                 'hocsinh' => function ($url, $model, $key) {
+                                    if($model->trang_thai == 3)
+                                    {
+                                        return "";
+                                    }
                                     return \yii\helpers\Html::a(
                                         '<i class="glyphicon glyphicon-user"></i>', "javascript:void(0)"// icon hoặc text
                                         , // đường dẫn
@@ -113,6 +117,18 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Thong Tin Hoc Sinh');
                                     );
                                 },
                                 'check' => function ($url, $model, $key) {
+                                    if($model->trang_thai == 3)
+                                    {
+                                        return \yii\helpers\Html::a(
+                                            '<i class="glyphicon glyphicon-check"></i>',
+                                            "/admin/index.php?r=thong-tin-hoc-sinh/active&id={$model->id}",
+                                            [
+                                                'title' => 'Xác nhận',
+                                                'data-pjax' => '0',
+                                                'class' => 'btn-sm',
+                                            ]
+                                        );
+                                    }
                                     if ($model->daDiemDanh) {
                                         return ''; // không hiển thị nút nếu đã điểm danh
                                     }

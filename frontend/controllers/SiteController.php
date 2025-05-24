@@ -9,6 +9,7 @@
 namespace frontend\controllers;
 
 use common\models\ThongTinHocSinh;
+use common\services\LopServiceInterface;
 use common\services\ThongTinHocSinhServiceInterface;
 use Yii;
 use frontend\models\form\SignupForm;
@@ -17,6 +18,7 @@ use frontend\models\form\PasswordResetRequestForm;
 use frontend\models\form\ResetPasswordForm;
 use yii\base\InvalidParamException;
 use yii\helpers\Html;
+use yii\helpers\VarDumper;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -106,17 +108,25 @@ class SiteController extends Controller
      */
     public function actionSignup()
     {
+        Yii::setAlias('@webroot',str_replace('frontend/web', 'admin', Yii::getAlias('@webroot')));
+
+        /** @var LopServiceInterface $lopService */
+        $lopService = Yii::$app->get(LopServiceInterface::ServiceName);
+        $lopList = $lopService->getLopOptions();
         $model = new ThongTinHocSinh();
         if ($model->load(Yii::$app->getRequest()->post())) {
             /** @var ThongTinHocSinhServiceInterface $service */
             $service = Yii::$app->get(ThongTinHocSinhServiceInterface::ServiceName);
-             $service->create($_POST);
+//            VarDumper::dump($_FILES,10,true  );
+//            exit();
+            $service->createPending($_POST);
             return $this->renderPartial('thanks', [
             ]);
         }
 
         return $this->renderPartial('signup', [
             'model' => $model,
+            'lopList' => $lopList,
         ]);
     }
 

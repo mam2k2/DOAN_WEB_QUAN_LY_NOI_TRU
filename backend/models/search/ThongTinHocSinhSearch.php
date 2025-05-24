@@ -74,8 +74,50 @@ class ThongTinHocSinhSearch extends ThongTinHocSinh implements \backend\models\s
         ]);
 
         $query->andFilterWhere(['like', self::tableName().'.que_quan', $this->que_quan])
-            ->andFilterWhere(['like', self::tableName().'.ghi_chu', $this->ghi_chu]);
+            ->andFilterWhere(['like', self::tableName().'.ghi_chu', $this->ghi_chu])
+            ->andFilterWhere(['not in', self::tableName().'.trang_thai', 3]);
 
         return $dataProvider;
     }
+    public function searchDuyet(array $params = [], array $options = [])
+    {
+        $query = ThongTinHocSinh::find();
+
+        // add conditions that should always apply here
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+            'sort' => ['defaultOrder' => ['created_at'=> SORT_DESC]],
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        // grid filtering conditions
+        $query->andFilterWhere([
+            self::tableName().'.id' => $this->id,
+            self::tableName().'.user_id' => $this->user_id,
+            self::tableName().'.lop_id' => $this->lop_id,
+            self::tableName().'.phong_id' => $this->phong_id,
+            self::tableName().'.ngay_sinh' => $this->ngay_sinh,
+            self::tableName().'.trang_thai' => $this->trang_thai,
+            self::tableName().'.diem_trung_binh' => $this->diem_trung_binh,
+            self::tableName().'.ngay_bat_dau' => $this->ngay_bat_dau,
+            self::tableName().'.created_at' => $this->created_at,
+            self::tableName().'.updated_at' => $this->updated_at,
+        ]);
+
+        $query->andFilterWhere(['like', self::tableName().'.que_quan', $this->que_quan])
+            ->andFilterWhere(['like', self::tableName().'.ghi_chu', $this->ghi_chu])
+            ->andFilterWhere([ self::tableName().'.trang_thai'=>  3]);
+
+
+        return $dataProvider;
+    }
+
 }
