@@ -9,8 +9,8 @@ use backend\grid\GridView;
 /* @var $searchModel backend\models\search\ThongTinHocSinhSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Thong Tin Hoc Sinhs');
-$this->params['breadcrumbs'][] = yii::t('app', 'Thong Tin Hoc Sinh');
+$this->title = Yii::t('app', 'Danh sách đăng kí nội trú');
+$this->params['breadcrumbs'][] = yii::t('app', 'Danh sách đăng kí nội trú');
 ?>
 <div class="row">
     <div class="col-sm-12">

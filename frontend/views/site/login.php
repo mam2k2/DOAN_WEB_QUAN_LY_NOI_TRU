@@ -74,7 +74,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
 
                     <?php ActiveForm::end(); ?>
-
+                    <div class="mt-3">
+                        <?=Html::a('Đăng kí nội trú ?',['site/signup'],['class'=>'btn btn-primary w-100'])?>
+                    </div>
                 </div>
                 <div class="card-footer text-muted text-center">
                     &copy; 2025 Trường Cao đẳng GTVT Đường Thủy I
