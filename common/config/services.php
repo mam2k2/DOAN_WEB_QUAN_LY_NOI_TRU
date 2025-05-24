@@ -129,4 +129,10 @@ return [
     \common\services\ThongBaoHeThongServiceInterface::ServiceName=>[
         'class' => \common\services\ThongBaoHeThongService::className(),
     ],
+    \common\services\TicketsServiceInterface::ServiceName=>[
+        'class' => \common\services\TicketsService::className(),
+    ],
+    \common\services\TicketsServiceInterface::ServiceName=>[
+        'class' => \common\services\TicketsService::className(),
+    ],
 ];

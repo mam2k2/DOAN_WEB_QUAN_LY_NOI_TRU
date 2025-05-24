@@ -91,6 +91,10 @@ class MenuController extends Controller
                 "url" => 'thong-bao-he-thong/index',
             ],
             [
+                "label" => 'Quản lý Phản ánh / Kiến nghị /',
+                "url" => 'thong-bao-he-thong/index',
+            ],
+            [
                 "label" => 'Quản lý danh mục',
                 "url" => '',
                 'child' => [

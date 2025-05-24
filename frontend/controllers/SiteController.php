@@ -8,6 +8,8 @@
 
 namespace frontend\controllers;
 
+use common\models\ThongTinHocSinh;
+use common\services\ThongTinHocSinhServiceInterface;
 use Yii;
 use frontend\models\form\SignupForm;
 use frontend\models\form\LoginForm;
@@ -104,16 +106,16 @@ class SiteController extends Controller
      */
     public function actionSignup()
     {
-        $model = new SignupForm();
+        $model = new ThongTinHocSinh();
         if ($model->load(Yii::$app->getRequest()->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
-            }
+            /** @var ThongTinHocSinhServiceInterface $service */
+            $service = Yii::$app->get(ThongTinHocSinhServiceInterface::ServiceName);
+             $service->create($_POST);
+            return $this->renderPartial('thanks', [
+            ]);
         }
 
-        return $this->render('signup', [
+        return $this->renderPartial('signup', [
             'model' => $model,
         ]);
     }

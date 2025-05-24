@@ -156,6 +156,27 @@ class ThongTinCaNhanController extends Controller
             'thongTin' => $thongTin,
         ]);
     }
+    public function actionPhanAnhYKien($id)
+    {
+        $thongTin = ThongTinHocSinh::find()
+            ->where(['user_id' => \Yii::$app->user->id])
+            ->orWhere(['phu_huynh_user_id' => \Yii::$app->user->id])
+            ->one();
+        $thuPhi = ThuPhiNoiTru::findOne(['id' => $id]);
+        if($thuPhi == null){
+            $this->goBack();
+        }
+        if($thuPhi->hoc_sinh_id != $thongTin->id)
+        {
+            $this->goBack();
+        }
+        $thongTinChiTiets = ChiTietKhoanThu::findAll(['thu_phi_noi_tru_id' => $thuPhi->id]);
+        return $this->render('lich-su-chi-tiet', [
+            'thuPhi' => $thuPhi,
+            'thongTinChiTiets' => $thongTinChiTiets,
+            'thongTin' => $thongTin,
+        ]);
+    }
 
 
 }
