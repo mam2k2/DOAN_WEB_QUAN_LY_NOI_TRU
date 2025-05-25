@@ -31,6 +31,7 @@ use yii\web\UploadedFile;
  * @property string $truong_thpt
  * @property string $truong_thcs
  * @property string $trinh_do_dao_tao
+ * @property int $uu_tien
  * @property int $created_at
  * @property int $phu_huynh_user_id
  * @property int $updated_at
@@ -45,6 +46,10 @@ use yii\web\UploadedFile;
  */
 class ThongTinHocSinh extends BaseModel
 {
+    const KHONG_UU_IEN = 0;
+    const HO_NGHEO_VUNG_CAO = 10;
+    const THUONG_BINH_LIET_SI = 100;
+
     public $usernamePH;
     public $username;
     public $emailPH;
@@ -58,15 +63,22 @@ class ThongTinHocSinh extends BaseModel
     {
         return '{{%thong_tin_hoc_sinh}}';
     }
-
+    public static function getUuTien()
+    {
+        return [
+            self::KHONG_UU_IEN => "Không",
+            self::HO_NGHEO_VUNG_CAO => "Hộ nghèo & Vùng cao",
+            self::THUONG_BINH_LIET_SI => "Thương binh/ liệt sĩ"
+        ];
+    }
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['user_id', 'lop_id', 'trang_thai', 'created_at', 'updated_at','phong_id','phu_huynh_user_id'], 'integer'],
-            [['ho_va_ten', 'ngay_sinh', 'ngay_bat_dau','email','emailPH','cccd','truong_thcs',"truong_thpt","trinh_do_dao_tao"], 'required'],
+            [['user_id', 'lop_id', 'trang_thai', 'created_at', 'updated_at','phong_id','phu_huynh_user_id','uu_tien'], 'integer'],
+            [['ho_va_ten', 'ngay_sinh', 'ngay_bat_dau','email','uu_tien','emailPH','cccd','truong_thcs',"truong_thpt","trinh_do_dao_tao"], 'required'],
             [['anh_chan_dung','anh_cccd_sau','anh_cccd_truoc'], 'required','when' => function ($model) {
                 return $model->isNewRecord;
             }, 'whenClient' => "function (attribute, value) {
@@ -116,6 +128,7 @@ class ThongTinHocSinh extends BaseModel
             'trinh_do_dao_tao' => 'Trình độ đào tạo',
             'truong_thcs' => 'Trường THCS',
             'truong_thpt' => 'Trường THPT',
+            "uu_tien" => "Ưu tiên"
         ];
     }
 

@@ -51,6 +51,17 @@ use backend\widgets\ActiveForm;
                         'allowClear' => true
                     ],
                 ]);?>
+                <?php
+                $model->uu_tien = 0;
+                ?>
+                <?=$form->field($model, 'uu_tien')->label('Ưu tiên')->widget(\kartik\select2\Select2::class, [
+                    'data' => \common\models\ThongTinHocSinh::getUuTien(),
+                    'options' => ['placeholder' => 'Ưu tiên'],
+                    'pluginOptions' => [
+                        'allowClear' => true
+                    ],
+                ]);?>
+                <div class="hr-line-dashed"></div>
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'truong_thcs')->textInput() ?>
                 <div class="hr-line-dashed"></div>

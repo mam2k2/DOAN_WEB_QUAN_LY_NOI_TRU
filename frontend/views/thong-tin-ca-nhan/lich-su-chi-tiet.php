@@ -45,8 +45,12 @@ $tongTien = 0;
                 <?php $tongTien += $ct->so_tien; ?>
             <?php endforeach; ?>
             <tr class="table-primary">
+                <td colspan="2" class="text-end">Ưu tiên : <?=\common\models\ThongTinHocSinh::getUuTien( )[$thongTin->uu_tien]?><strong></strong></td>
+                <td class="text-end"><strong><?= DataHelper::formatMoneyVnd(-($tongTien /100 * $thongTin->uu_tien)). " (".$thongTin->uu_tien."%)"?></strong></td>
+            </tr>
+            <tr class="table-primary">
                 <td colspan="2" class="text-end"><strong>Tổng cộng</strong></td>
-                <td class="text-end"><strong><?= DataHelper::formatMoneyVnd($tongTien) ?></strong></td>
+                <td class="text-end"><strong><?= DataHelper::formatMoneyVnd($tongTien-($tongTien /100 * $thongTin->uu_tien)) ?></strong></td>
             </tr>
             </tbody>
         </table>

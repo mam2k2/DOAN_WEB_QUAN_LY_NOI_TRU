@@ -7,6 +7,7 @@ namespace common\services;
 use backend\models\search\ThuPhiNoiTruSearch;
 use common\models\BaseModel;
 use common\models\ChiTietKhoanThu;
+use common\models\ThongTinHocSinh;
 use common\models\ThuPhiNoiTru;
 use yii\base\Model;
 use yii\db\ActiveRecord;
@@ -33,7 +34,7 @@ class ThuPhiNoiTruService extends Service implements ThuPhiNoiTruServiceInterfac
     public function create(array $postData, array $options = [])
     {
 
-        /** @var ActiveRecord $model */
+        /** @var ThuPhiNoiTru $model */
         $model = $this->newModel($options);
         $model->so_tien = 0;
         if( $model->load($postData) && $model->save() ){
@@ -51,7 +52,9 @@ class ThuPhiNoiTruService extends Service implements ThuPhiNoiTruServiceInterfac
                     exit();
                 }
             }
+            $hs = ThongTinHocSinh::find()->where(['id' => $model->hoc_sinh_id]);
             $model->so_tien = $soTien;
+            $model->so_tien -= $model->so_tien / 100 * $hs->uu_tien;
             $model->save();
             return true;
         }

@@ -41,7 +41,7 @@ class m250402_071027_create_update_something2 extends Migration
             'id' => $this->primaryKey(),
             'hoc_sinh_id' => $this->integer()->unsigned(),
             'phong_id' => $this->integer(),
-            'ngay_diem_danh' => $this->dateTime()->notNull(),
+            'ngay_diem_danh' => $this->date()->notNull(),
             'thoi_gian' => $this->dateTime(),
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
