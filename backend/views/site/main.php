@@ -8,15 +8,7 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\search\YTeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-$topVang = [
-    ['ho_va_ten' => 'Nguyễn Văn A', 'lop' => '12A1', 'so_vang' => 10],
-    ['ho_va_ten' => 'Trần Thị B', 'lop' => '11B2', 'so_vang' => 9],
-];
 
-$topVipham = [
-    ['ho_va_ten' => 'Lê Văn C', 'lop' => '10A3', 'so_vp' => 6],
-    ['ho_va_ten' => 'Phạm Thị D', 'lop' => '12C1', 'so_vp' => 5],
-];
 $this->title = 'Tổng quan';
 $this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
 ?>
@@ -36,7 +28,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
                                 </div>
                                 <div>
                                     <h6 class="mb-0 text-muted">Số học sinh</h6>
-                                    <h4 class="mb-0">120</h4>
+                                    <h4 class="mb-0"><?= $soHocSinh?></h4>
                                 </div>
                             </div>
                         </div>
@@ -51,7 +43,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
                                 </div>
                                 <div>
                                     <h6 class="mb-0 text-muted">Đã thu tháng này</h6>
-                                    <h4 class="mb-0">75.000.000đ</h4>
+                                    <h4 class="mb-0"><?=\backend\helpers\DataHelper::formatMoneyVnd($thucNhan)?></h4>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +58,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
                                 </div>
                                 <div>
                                     <h6 class="mb-0 text-muted">Số tiền còn nợ</h6>
-                                    <h4 class="mb-0">12.000.000đ</h4>
+                                    <h4 class="mb-0"><?=\backend\helpers\DataHelper::formatMoneyVnd($tongTienDangNo)?></h4>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +73,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
                                 </div>
                                 <div>
                                     <h6 class="mb-0 text-muted">Tổng doanh thu (thu + nợ)</h6>
-                                    <h4 class="mb-0">87.000.000đ</h4>
+                                    <h4 class="mb-0"><?=\backend\helpers\DataHelper::formatMoneyVnd($tongTienThu)?></h4>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +88,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
                                 </div>
                                 <div>
                                     <h6 class="mb-0 text-muted">Tổng vi phạm tháng</h6>
-                                    <h4 class="mb-0">18 lượt</h4>
+                                    <h4 class="mb-0"><?=$tongViPham?> lượt</h4>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +117,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
                                             <tr>
                                                 <td><?= $i + 1 ?></td>
                                                 <td><?= \yii\helpers\Html::encode($hs['ho_va_ten']) ?></td>
-                                                <td><?= \yii\helpers\Html::encode($hs['lop']) ?></td>
+                                                <td><?= \yii\helpers\Html::encode($hs['ten_lop']) ?></td>
                                                 <td><span class="badge bg-warning text-dark"><?= $hs['so_vang'] ?> ngày</span></td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -142,6 +134,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
                                     <i class="fas fa-user-shield"></i> Top 10 học sinh vi phạm nhiều nhất
                                 </div>
                                 <div class="card-body p-0">
+
                                     <table class="table table-striped mb-0">
                                         <thead>
                                         <tr>
@@ -152,11 +145,11 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php foreach ($topVipham as $i => $hs): ?>
+                                        <?php foreach ($topViPham as $i => $hs): ?>
                                             <tr>
                                                 <td><?= $i + 1 ?></td>
                                                 <td><?= \yii\helpers\Html::encode($hs['ho_va_ten']) ?></td>
-                                                <td><?= \yii\helpers\Html::encode($hs['lop']) ?></td>
+                                                <td><?= \yii\helpers\Html::encode($hs['ten_lop']) ?></td>
                                                 <td><span class="badge bg-danger"><?= $hs['so_vp'] ?> lần</span></td>
                                             </tr>
                                         <?php endforeach; ?>

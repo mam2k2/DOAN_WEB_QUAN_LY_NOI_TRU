@@ -8,6 +8,11 @@
 
 namespace backend\controllers;
 
+use common\models\DiemDanh;
+use common\models\Lop;
+use common\models\ThongTinHocSinh;
+use common\models\ThuPhiNoiTru;
+use common\models\ViPhamNoiQuy;
 use common\services\OrderServiceInterface;
 use common\services\ProductServiceInterface;
 use common\services\UnitTransactionServiceInterface;
@@ -18,9 +23,11 @@ use common\services\MenuService;
 use backend\models\form\LoginForm;
 use common\libs\ServerInfo;
 use yii\base\UserException;
+use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\helpers\Html;
+use yii\helpers\VarDumper;
 use yii\web\HttpException;
 use yii\captcha\CaptchaAction;
 
@@ -105,10 +112,97 @@ class SiteController extends \yii\web\Controller
      * @return string
      * @throws yii\base\InvalidConfigException
      */
-    public function actionMain()
+    function getNgayHocThucTe($startDate, $endDate)
     {
+        $ds = [];
+        $cur = strtotime($startDate);
+        $end = strtotime($endDate);
+        while ($cur <= $end) {
+            $thu = date('N', $cur); // 1=Thứ 2, 7=CN
+            if ($thu <= 5) $ds[] = date('Y-m-d', $cur);
+            $cur = strtotime('+1 day', $cur);
+        }
+        return $ds;
+    }
 
+    public function actionMain($startDate = null, $endDate = null)
+    {
+        $start = date('Y-m-01');
+        $end = date('Y-m-d');
+
+        $tongTienThu = ThuPhiNoiTru::find() // bảng chứa dữ liệu thu tiền
+            ->where(['between', 'ngay_thu', date('Y-m-01'), date('Y-m-t')])
+            ->sum('so_tien') ?: 0;
+        $tongTienDangNo = ThuPhiNoiTru::find() // bảng chứa dữ liệu thu tiền
+            ->where(['between', 'ngay_thu', date('Y-m-01'), date('Y-m-t')])
+            ->andWhere(['trang_thai' => 0])
+            ->sum('so_tien') ?: 0;
+        $thucNhan = ThuPhiNoiTru::find() // bảng chứa dữ liệu thu tiền
+            ->where(['between', 'ngay_thu', date('Y-m-01'), date('Y-m-t')])
+            ->andWhere(['trang_thai' => 1])
+            ->sum('so_tien') ?: 0;
+        $topViPham = ViPhamNoiQuy::find()
+            ->alias('vp')
+            // JOIN học sinh
+            ->innerJoin(ThongTinHocSinh::tableName() . ' hs', 'hs.id = vp.hoc_sinh_id')
+            // JOIN lớp qua học sinh
+            ->innerJoin(Lop::tableName() . ' l', 'l.id = hs.lop_id')
+            ->select([
+                'hs.ho_va_ten',
+                'l.ten_lop',
+                'COUNT(*) AS so_vp',
+            ])
+//            ->where(['between', 'vp.ngay_vi_pham', $start, $end])
+            ->groupBy('vp.hoc_sinh_id')
+            ->orderBy(['so_vp' => SORT_DESC])
+            ->limit(10)
+            ->asArray()
+            ->all();
+        $raw = DiemDanh::find()
+            ->select(['hoc_sinh_id', 'COUNT(DISTINCT ngay_diem_danh) AS so_co_mat'])
+            ->where(['between', 'ngay_diem_danh', $start, $end])
+            ->groupBy('hoc_sinh_id')
+            ->orderBy(['so_co_mat' => SORT_DESC])
+            ->limit(10)
+            ->asArray()
+            ->all();
+        $ngayHocThucTe = $this->getNgayHocThucTe($start, $end);
+        $tongNgayHoc = count($ngayHocThucTe);
+        $ids = array_column($raw, 'hoc_sinh_id');
+        $hocSinhs = ThongTinHocSinh::find()
+            ->with('lop')
+            ->where(['id' => $ids])
+            ->indexBy('id')
+            ->all();
+
+// B4: Tổng hợp dữ liệu
+        $topVang = [];
+        foreach ($raw as $row) {
+            $hs = $hocSinhs[$row['hoc_sinh_id']] ?? null;
+            if (!$hs) continue;
+
+            $soCoMat = (int)$row['so_co_mat'];
+            $soVang = max(0, $tongNgayHoc - $soCoMat);
+
+            $topVang[] = [
+                'ho_va_ten' => $hs->ho_va_ten,
+                'ten_lop' => $hs->lop->ten_lop ?? '-',
+                'so_co_mat' => $soCoMat,
+                'so_vang' => $soVang,
+
+            ];
+        }
+        $soHocSinh = ThongTinHocSinh::find()->where(['trang_thai' => 1])->count();
+//        echo $soHocSinh;
+        $tongViPham = ViPhamNoiQuy::find()->where(['between', 'ngay_vi_pham', $start, $end])->count();
         return $this->render('main', [
+            'topViPham' => $topViPham,
+            'topVang' => $topVang,
+            'tongViPham' => $tongViPham,
+            'tongTienThu' => $tongTienThu,
+            'tongTienDangNo' => $tongTienDangNo,
+            'thucNhan' => $thucNhan,
+            'soHocSinh' => $soHocSinh,
 
         ]);
     }

@@ -183,6 +183,7 @@ class ThongTinHocSinhService extends Service implements ThongTinHocSinhServiceIn
             ThongTinHocSinh::find()
                 ->select(['id', 'cccd', 'ho_va_ten'])
                 ->where($options)
+                ->andWhere(['trang_thai' => 1])
                 ->asArray()
                 ->all(),
             'id',
