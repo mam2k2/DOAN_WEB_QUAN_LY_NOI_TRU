@@ -51,6 +51,7 @@ class ThongTinHocSinh extends BaseModel
     const THUONG_BINH_LIET_SI = 100;
 
     public $usernamePH;
+    public $acceptRules;
     public $username;
     public $emailPH;
     public $email;
@@ -77,6 +78,8 @@ class ThongTinHocSinh extends BaseModel
     public function rules()
     {
         return [
+            [['acceptRules'], 'boolean'],
+            [['acceptRules'], 'compare', 'compareValue' => true, 'message' => 'Bạn phải đồng ý với nội quy.'],
             [['user_id', 'lop_id', 'trang_thai', 'created_at', 'updated_at','phong_id','phu_huynh_user_id','uu_tien'], 'integer'],
             [['ho_va_ten', 'ngay_sinh', 'ngay_bat_dau','email','uu_tien','emailPH','cccd','truong_thcs',"truong_thpt","trinh_do_dao_tao"], 'required'],
             [['anh_chan_dung','anh_cccd_sau','anh_cccd_truoc'], 'required','when' => function ($model) {

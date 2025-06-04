@@ -1,3 +1,4 @@
+
 <div class="card shadow mx-auto" >
     <div class="card-body text-center">
         <img src="<?= $thongtin->anh_chan_dung ?>" alt="Ảnh học sinh"
