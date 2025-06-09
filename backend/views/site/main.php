@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
                         <div class="card shadow border-left-primary h-100">
                             <div class="card-body d-flex align-items-center">
                                 <div class="me-3 text-primary">
-                                    <i class="fas fa-users fa-2x"></i>
+                                    <i class="fa fa-users"></i>
                                 </div>
                                 <div>
                                     <h6 class="mb-0 text-muted">Số học sinh</h6>
@@ -39,7 +39,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
                         <div class="card shadow border-left-success h-100">
                             <div class="card-body d-flex align-items-center">
                                 <div class="me-3 text-success">
-                                    <i class="fas fa-wallet fa-2x"></i>
+                                    <i class="fa fa-usd"></i>
                                 </div>
                                 <div>
                                     <h6 class="mb-0 text-muted">Đã thu tháng này</h6>
@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
                         <div class="card shadow border-left-danger h-100">
                             <div class="card-body d-flex align-items-center">
                                 <div class="me-3 text-danger">
-                                    <i class="fas fa-money-bill-wave fa-2x"></i>
+                                    <i class="fa fa-credit-card"></i>
                                 </div>
                                 <div>
                                     <h6 class="mb-0 text-muted">Số tiền còn nợ</h6>
@@ -69,7 +69,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
                         <div class="card shadow border-left-dark h-100">
                             <div class="card-body d-flex align-items-center">
                                 <div class="me-3 text-dark">
-                                    <i class="fas fa-coins fa-2x"></i>
+                                    <i class="fa fa-money"></i>
                                 </div>
                                 <div>
                                     <h6 class="mb-0 text-muted">Tổng doanh thu (thu + nợ)</h6>
@@ -84,7 +84,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
                         <div class="card shadow border-left-warning h-100">
                             <div class="card-body d-flex align-items-center">
                                 <div class="me-3 text-warning">
-                                    <i class="fas fa-exclamation-triangle fa-2x"></i>
+                                    <i class="fa fa-exclamation-triangle"></i>
                                 </div>
                                 <div>
                                     <h6 class="mb-0 text-muted">Tổng vi phạm tháng</h6>
@@ -100,7 +100,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
                         <div class="col-md-6">
                             <div class="card shadow">
                                 <div class="card-header bg-warning text-white">
-                                    <i class="fas fa-user-clock"></i> Top 10 học sinh vắng mặt nhiều nhất
+                                    <i class="fa fa-user-times"></i> Top 10 học sinh vắng mặt nhiều nhất
                                 </div>
                                 <div class="card-body p-0">
                                     <table class="table table-striped mb-0">
@@ -131,7 +131,7 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Tổng quan');
                         <div class="col-md-6">
                             <div class="card shadow">
                                 <div class="card-header bg-danger text-white">
-                                    <i class="fas fa-user-shield"></i> Top 10 học sinh vi phạm nhiều nhất
+                                    <i class="fa fa-user-secret"></i> Top 10 học sinh vi phạm nhiều nhất
                                 </div>
                                 <div class="card-body p-0">
 
