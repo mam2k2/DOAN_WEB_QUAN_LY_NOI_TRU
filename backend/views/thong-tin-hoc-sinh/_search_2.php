@@ -12,7 +12,7 @@ use yii\helpers\Url;
 <div class="thong-tin-hoc-sinh-search ibox-heading row search" style="margin-top: 5px;padding-top:5px">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'action' => ['danh-sach-cho-duyet'],
         'method' => 'get',
     ]); ?>
 
@@ -63,7 +63,7 @@ use yii\helpers\Url;
             <?= Html::submitButton(Yii::t("app", Yii::t('app', 'Search')), ['class' => 'btn btn-primary btn-block']) ?>
         </div>
         <div class="col-sm-6">
-            <?= Html::a(Yii::t("app", Yii::t('app', 'Reset')), Url::to(['index']), ['class' => 'btn btn-default btn-block']) ?>
+            <?= Html::a(Yii::t("app", Yii::t('app', 'Reset')), Url::to(['danh-sach-cho-duyet']), ['class' => 'btn btn-default btn-block']) ?>
         </div>
     </div>
 

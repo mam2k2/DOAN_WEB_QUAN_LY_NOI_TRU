@@ -77,9 +77,7 @@ class ThongTinHocSinhController extends \yii\web\Controller
                     /** @var LopServiceInterface $lopService */
                     $lopService = Yii::$app->get(LopServiceInterface::ServiceName);
                     $lopList = $lopService->getLopOptions();
-                    $result = $service->getList($query);
-
-                    $result = $service->getListChoDuyet();
+                    $result = $service->getListChoDuyet($query);
                     return [
                         'dataProvider' => $result['dataProvider'],
                         'searchModel' => $result['searchModel'],
