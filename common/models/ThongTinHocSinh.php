@@ -82,6 +82,14 @@ class ThongTinHocSinh extends BaseModel
             [['acceptRules'], 'compare', 'compareValue' => true, 'message' => 'Bạn phải đồng ý với nội quy.'],
             [['user_id', 'lop_id', 'trang_thai', 'created_at', 'updated_at','phong_id','phu_huynh_user_id','uu_tien'], 'integer'],
             [['ho_va_ten', 'ngay_sinh', 'ngay_bat_dau','email','uu_tien','emailPH','cccd','truong_thcs',"truong_thpt","trinh_do_dao_tao"], 'required'],
+                    [['cccd'], 'match', 'pattern' => '/^(\d{9}|\d{12})$/', 'message' => 'CMND/CCCD phải gồm 9 hoặc 12 chữ số'],
+             [['sdt_ca_nhan','sdt_gia_dinh'], 'match', 
+            'pattern' => '/^(03|05|07|08|09|01[2|6|8|9])[0-9]{8}$/', 
+            'message' => 'Số điện thoại không hợp lệ '
+            ],
+            [['cccd'], 'filter', 'filter' => function ($value) {
+            return preg_replace('/\D/', '', $value); // chỉ giữ lại số
+            }],
             [['anh_chan_dung','anh_cccd_sau','anh_cccd_truoc'], 'required','when' => function ($model) {
                 return $model->isNewRecord;
             }, 'whenClient' => "function (attribute, value) {
@@ -92,7 +100,7 @@ class ThongTinHocSinh extends BaseModel
             [['diem_trung_binh'], 'number'],
             [['ghi_chu'], 'string'],
             [['anh_chan_dung','anh_cccd_sau','anh_cccd_truoc'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, gif, webp'],
-            [['ho_va_ten', 'cccd', 'email','dia_chi', 'sdt_ca_nhan', 'sdt_gia_dinh', 'ten_day_du', 'que_quan','username','password','passwordPH','truong_thcs',"truong_thpt","trinh_do_dao_tao"], 'string', 'max' => 255],
+            [['ho_va_ten', 'cccd', 'email','dia_chi', 'sdt_ca_nhan', 'sdt_gia_dinh', 'ten_day_du', 'que_quan','username','usernamePH','password','passwordPH','truong_thcs',"truong_thpt","trinh_do_dao_tao"], 'string', 'max' => 255],
             [['lop_id'], 'exist', 'skipOnError' => true, 'targetClass' => Lop::className(), 'targetAttribute' => ['lop_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
             [['phu_huynh_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['phu_huynh_user_id' => 'id']],

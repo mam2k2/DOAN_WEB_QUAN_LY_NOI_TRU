@@ -35,7 +35,7 @@ use backend\widgets\ActiveForm;
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'sdt_gia_dinh')->textInput(['type' => 'number']) ?>
                 <div class="hr-line-dashed"></div>
-                <?=$form->field($model, 'phong_id')->widget(\kartik\select2\Select2::class, [
+                <?=$form->field($model, 'phong_id')->label("Phòng")->widget(\kartik\select2\Select2::class, [
                     'data' => $phongList,
                     'options' => ['placeholder' => 'Chọn phòng'],
                     'pluginOptions' => [
@@ -125,8 +125,7 @@ use backend\widgets\ActiveForm;
                         ]);?>
                         <div class="hr-line-dashed"></div>
 
-                        <?= $form->field($model, 'diem_trung_binh')->textInput(['maxlength' => true]) ?>
-                        <div class="hr-line-dashed"></div>
+                      
 
                         <?= $form->field($model, 'ngay_bat_dau')->textInput(['type' => 'date']) ?>
                         <div class="hr-line-dashed"></div>

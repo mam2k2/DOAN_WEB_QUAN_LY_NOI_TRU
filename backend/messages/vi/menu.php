@@ -7,7 +7,7 @@ return array (
     'Unit History' => 'Lịch sử thay đổi tỉ giá',
     'Menu' => 'Trình đơn',
     'Frontend Menu' => 'Trình đơn giao diện',
-    'Backend Menu' => 'Trình đơn quản trị',
+    'Backend Menu' => 'Menu hệ thống',
     'Finance' => 'Tài chính',
     'Deposit' => 'Tiền nạp',
     'Withdraw' => 'Tiền rút',
