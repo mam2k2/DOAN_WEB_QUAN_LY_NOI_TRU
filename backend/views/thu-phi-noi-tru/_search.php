@@ -18,12 +18,12 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'id', ['options'=>['class'=>'col-sm-3']]) ?>
 
-    <?= $form->field($model, 'hoc_sinh_id', ['options'=>['class'=>'col-sm-3']]) ?>
-
-
-    <?= $form->field($model, 'phong_id', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'so_tien', ['options'=>['class'=>'col-sm-3']]) ?>
+<!--    --><?php //= $form->field($model, 'hoc_sinh_id', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!---->
+<!--    --><?php //= $form->field($model, 'phong_id', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'so_tien', ['options'=>['class'=>'col-sm-3']]) ?>
 
     <?php // echo $form->field($model, 'ngay_thu', ['options'=>['class'=>'col-sm-3']]) ?>
 

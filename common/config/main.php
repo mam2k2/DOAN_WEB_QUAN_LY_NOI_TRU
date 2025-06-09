@@ -45,15 +45,15 @@ return [
             'useFileTransport' => true,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.xxx.com',
-                'username' => 'admin@xxx.com',
-                'password' => 'password',
-                'port' => '586',
+                'host' => 'smtp.gmail.com',
+                'username' => 'tqnovel@gmail.com',
+                'password' => 'qrbqbwvrwubgbrxi',
+                'port' => '587',
                 'encryption' => 'tls',
             ],
             'messageConfig' => [
                 'charset' => 'UTF-8',
-                'from' => ['admin@xxx.com' => 'Feehi CMS robot ']
+                'from' => ['tqnovel@gmail.com' => 'Feehi CMS robot ']
             ],
         ],
         'feehi' => [

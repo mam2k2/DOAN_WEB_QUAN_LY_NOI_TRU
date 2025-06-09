@@ -16,5 +16,8 @@ $this->params['breadcrumbs'] = [
     'listLop' => $listLop,
     'phongList' => $phongList,
     // 'khoaList' => $khoaList,
+    'thptList' => $thptList,
+    'thcsList' => $thcsList,
+    'tinhThanhList' => $tinhThanhList,
 ]) ?>
 

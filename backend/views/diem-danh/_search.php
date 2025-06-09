@@ -16,15 +16,15 @@ use yii\helpers\Url;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id', ['options'=>['class'=>'col-sm-3']]) ?>
+    <?= $form->field($model, 'id', ['options'=>['class'=>'col-sm-12']]) ?>
 
-    <?= $form->field($model, 'hoc_sinh_id', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'phong_id', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'ngay_diem_danh', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'thoi_gian', ['options'=>['class'=>'col-sm-3']]) ?>
+<!--    --><?php //= $form->field($model, 'hoc_sinh_id', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'phong_id', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'ngay_diem_danh', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'thoi_gian', ['options'=>['class'=>'col-sm-3']]) ?>
 
     <?php // echo $form->field($model, 'created_at', ['options'=>['class'=>'col-sm-3']]) ?>
 

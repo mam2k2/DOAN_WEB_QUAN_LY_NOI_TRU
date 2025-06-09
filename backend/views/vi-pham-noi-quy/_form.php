@@ -36,6 +36,18 @@ use backend\widgets\ActiveForm;
 
                         <?= $form->field($model, 'hinh_thuc_xu_ly')->textInput(['maxlength' => true]) ?>
                         <div class="hr-line-dashed"></div>
+                        <?=$form->field($model, 'trinh_do_dao_tao')->label('Bậc đào tạo')->widget(\kartik\select2\Select2::class, [
+                            'data' => [
+                               0 =>  "Chờ xử lý",
+                                1 =>  "Đang xử lý",
+                                2 =>  "Đã xử lý",
+                            ],
+                            'options' => ['placeholder' => 'Hệ đào tạo'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]);?>
+                        <div class="hr-line-dashed"></div>
 
 <!--                        --><?php //= $form->field($model, 'nguoi_xu_ly')->textInput(['maxlength' => true]) ?>
 <!--                        <div class="hr-line-dashed"></div>-->

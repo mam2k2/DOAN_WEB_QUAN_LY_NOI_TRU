@@ -123,7 +123,7 @@ class ThongTinHocSinh extends BaseModel
             'anh_chan_dung' => Yii::t('app', 'Ảnh chân dung'),
             'trang_thai' => Yii::t('app', 'Trạng thái'),
             'diem_trung_binh' => Yii::t('app', 'Điểm trung binh'),
-            'ngay_bat_dau' => Yii::t('app', 'Ngày bt đầu'),
+            'ngay_bat_dau' => Yii::t('app', 'Ngày bắt đầu'),
             'ghi_chu' => Yii::t('app', 'Ghi chú'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),

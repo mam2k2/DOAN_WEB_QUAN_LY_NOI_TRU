@@ -18,13 +18,13 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'id', ['options'=>['class'=>'col-sm-3']]) ?>
 
-    <?= $form->field($model, 'tieu_de', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'noi_dung', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'danh_muc', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'trang_thai', ['options'=>['class'=>'col-sm-3']]) ?>
+<!--    --><?php //= $form->field($model, 'tieu_de', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'noi_dung', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'danh_muc', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'trang_thai', ['options'=>['class'=>'col-sm-3']]) ?>
 
     <?php // echo $form->field($model, 'do_khan_cap', ['options'=>['class'=>'col-sm-3']]) ?>
 

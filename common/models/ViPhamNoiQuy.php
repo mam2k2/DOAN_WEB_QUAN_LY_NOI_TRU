@@ -14,6 +14,7 @@ use Yii;
  * @property string $ngay_vi_pham
  * @property string $hinh_thuc_xu_ly
  * @property string $nguoi_xu_ly
+ * @property int $trang_thai
  * @property int $created_at
  * @property int $updated_at
  *
@@ -35,7 +36,7 @@ class ViPhamNoiQuy extends BaseModel
     public function rules()
     {
         return [
-            [['hoc_sinh_id', 'created_at', 'updated_at'], 'integer'],
+            [['hoc_sinh_id', 'created_at', 'updated_at','trang_thai'], 'integer'],
             [['loai_vi_pham','hoc_sinh_id','ngay_vi_pham'], 'required'],
             [['mo_ta'], 'string'],
             [['ngay_vi_pham'], 'safe'],
@@ -58,6 +59,7 @@ class ViPhamNoiQuy extends BaseModel
             'ngay_vi_pham' => Yii::t('app', 'Ngày vi phạm'),
             'hinh_thuc_xu_ly' => Yii::t('app', 'Hình thức xử lý'),
             'nguoi_xu_ly' => Yii::t('app', 'Người xử lý'),
+            'trang_thai' => Yii::t('app', 'Trạng thái'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

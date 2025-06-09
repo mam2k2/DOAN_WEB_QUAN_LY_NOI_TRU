@@ -18,6 +18,7 @@ use yii\web\UploadedFile;
  * @property string $vi_tri
  * @property string $ghi_chu
  * @property int $created_at
+ * @property int $phan_loai
  * @property string $hinh_anh
  * @property int $updated_at
  *
@@ -39,8 +40,8 @@ class PhongO extends BaseModel
     public function rules()
     {
         return [
-            [['khu_id', 'suc_chua', 'so_luong_hien_tai', 'created_at', 'updated_at'], 'integer'],
-            [['ma_phong', 'ten_phong','khu_id'], 'required'],
+            [['khu_id', 'suc_chua', 'so_luong_hien_tai', 'created_at', 'updated_at','phan_loai'], 'integer'],
+            [['ma_phong', 'ten_phong','khu_id','phan_loai'], 'required'],
             [['ghi_chu'], 'string'],
             [['hinh_anh'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, gif, webp'],
             [['ma_phong'], 'string', 'max' => 50],
@@ -65,6 +66,7 @@ class PhongO extends BaseModel
             'so_luong_hien_tai' => Yii::t('app', 'Số lượng hiện tại'),
             'vi_tri' => Yii::t('app', 'Vị trí'),
             'ghi_chu' => Yii::t('app', 'Ghi chú'),
+            'phan_loai' => Yii::t('app', 'Phân loại'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
         ];

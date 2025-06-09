@@ -46,6 +46,17 @@ use backend\widgets\ActiveForm;
 
                         <?= $form->field($model, 'ghi_chu')->textarea(['rows' => 6]) ?>
                         <div class="hr-line-dashed"></div>
+                        <?=$form->field($model, 'phan_loai')->widget(\kartik\select2\Select2::class, [
+                            'data' => [
+                                0=> 'Nam',
+                                1 => 'Nữ'
+                            ],
+                            'options' => ['placeholder' => 'Phân loại'],
+                            'pluginOptions' => [
+                                'allowClear' => true
+                            ],
+                        ]);?>
+                        <div class="hr-line-dashed"></div>
 
                         <?= $form->defaultButtons() ?>
                     <?php ActiveForm::end(); ?>

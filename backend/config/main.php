@@ -22,6 +22,23 @@ return [
         ]
     ],
     'components' => [
+//        'mailer' => [
+//            'class' => yii\swiftmailer\Mailer::className(),
+//            'viewPath' => '@common/mail',
+//            'useFileTransport' => true,
+//            'transport' => [
+//                'class' => 'Swift_SmtpTransport',
+//                'host' => 'smtp.gmail.com',
+//                'username' => 'tqnovel@gmail.com',
+//                'password' => 'qrbqbwvrwubgbrxi',
+//                'port' => '465',
+//                'encryption' => 'ssl',
+//            ],
+//            'messageConfig' => [
+//                'charset' => 'UTF-8',
+//                'from' => ['tqnovel@gmail.com' => 'Feehi CMS robot ']
+//            ],
+//        ],
         'inertia' => [
             'class' => 'tebe\inertia\Inertia',
             'assetsDirs' => [

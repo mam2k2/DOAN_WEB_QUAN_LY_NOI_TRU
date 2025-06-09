@@ -12,6 +12,7 @@ namespace common\services;
 use common\models\Category;
 use yii\base\Exception;
 use yii\data\ArrayDataProvider;
+use yii\helpers\ArrayHelper;
 
 class CategoryService extends Service implements CategoryServiceInterface
 {
@@ -120,5 +121,16 @@ class CategoryService extends Service implements CategoryServiceInterface
             $data[$category['id']] = $category['name'];
         }
         return $data;
+    }
+    public function getCategoryMenu($options = []){
+        $list = ArrayHelper::map(
+            Category::find()
+                ->select([ 'name'])
+                ->where($options)
+                ->asArray()
+                ->all(),
+            'name',
+            'name');
+        return $list;
     }
 }

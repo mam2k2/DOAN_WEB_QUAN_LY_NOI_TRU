@@ -9,6 +9,7 @@
 namespace frontend\controllers;
 
 use common\models\ThongTinHocSinh;
+use common\services\CategoryServiceInterface;
 use common\services\LopServiceInterface;
 use common\services\ThongTinHocSinhServiceInterface;
 use Yii;
@@ -123,10 +124,17 @@ class SiteController extends Controller
             return $this->renderPartial('thanks', [
             ]);
         }
-
+        /** @var CategoryServiceInterface $categoryService */
+        $categoryService = Yii::$app->get(CategoryServiceInterface::ServiceName);
+        $thcsList = $categoryService->getCategoryMenu(['parent_id' => 57]);
+        $thptList = $categoryService->getCategoryMenu(['parent_id' => 4]);
+        $tinhThanhList = $categoryService->getCategoryMenu(['parent_id' => 98]);
         return $this->renderPartial('signup', [
             'model' => $model,
             'lopList' => $lopList,
+            'tinhThanhList' => $tinhThanhList,
+            'thcsList' => $thcsList,
+            'thptList' => $thptList,
         ]);
     }
 

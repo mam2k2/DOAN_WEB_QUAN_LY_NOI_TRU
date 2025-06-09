@@ -16,13 +16,13 @@ use yii\helpers\Url;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'ten_khoa', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'created_at', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'updated_at', ['options'=>['class'=>'col-sm-3']]) ?>
+    <?= $form->field($model, 'id', ['options'=>['class'=>'col-sm-12']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'ten_khoa', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'created_at', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'updated_at', ['options'=>['class'=>'col-sm-3']]) ?>
 
     <div class="col-sm-3">
         <div class="col-sm-6">

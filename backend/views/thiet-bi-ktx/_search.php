@@ -18,15 +18,15 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'id', ['options'=>['class'=>'col-sm-3']]) ?>
 
-    <?= $form->field($model, 'ma_thiet_bi', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'ten_thiet_bi', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'phong_o_id', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'tinh_trang', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?php // echo $form->field($model, 'ngay_bao_tri', ['options'=>['class'=>'col-sm-3']]) ?>
+<!--    --><?php //= $form->field($model, 'ma_thiet_bi', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'ten_thiet_bi', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'phong_o_id', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'tinh_trang', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //// echo $form->field($model, 'ngay_bao_tri', ['options'=>['class'=>'col-sm-3']]) ?>
 
     <?php // echo $form->field($model, 'ghi_chu', ['options'=>['class'=>'col-sm-3']]) ?>
 

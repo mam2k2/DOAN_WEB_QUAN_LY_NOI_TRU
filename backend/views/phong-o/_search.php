@@ -18,9 +18,9 @@ use yii\helpers\Url;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id', ['options'=>['class'=>'col-sm-3']]) ?>
+    <?= $form->field($model, 'id', ['options'=>['class'=>'col-sm-6']]) ?>
 
-    <?=$form->field($model, 'khu_id',['options'=>['class'=>'col-sm-3']])->widget(\kartik\select2\Select2::class, [
+    <?=$form->field($model, 'khu_id',['options'=>['class'=>'col-sm-6']])->widget(\kartik\select2\Select2::class, [
         'data' => $listKhu,
         'options' => ['placeholder' => 'Chọn khu'],
         'pluginOptions' => [
@@ -28,11 +28,11 @@ use yii\helpers\Url;
         ],
     ]);?>
 
-    <?= $form->field($model, 'ma_phong', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'ten_phong', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'suc_chua', ['options'=>['class'=>'col-sm-3']]) ?>
+<!--    --><?php //= $form->field($model, 'ma_phong', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'ten_phong', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'suc_chua', ['options'=>['class'=>'col-sm-3']]) ?>
 
     <?php // echo $form->field($model, 'so_luong_hien_tai', ['options'=>['class'=>'col-sm-3']]) ?>
 

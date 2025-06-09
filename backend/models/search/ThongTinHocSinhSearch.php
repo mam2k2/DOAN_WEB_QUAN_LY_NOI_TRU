@@ -6,6 +6,7 @@ use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use common\models\ThongTinHocSinh;
+use yii\helpers\VarDumper;
 
 /**
  * ThongTinHocSinhSearch represents the model behind the search form about `common\models\ThongTinHocSinh`.
@@ -73,7 +74,10 @@ class ThongTinHocSinhSearch extends ThongTinHocSinh implements \backend\models\s
             self::tableName().'.updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', self::tableName().'.que_quan', $this->que_quan])
+        $query
+//            ->andFilterWhere(['like', self::tableName().'.que_quan', $this->que_quan])
+//            ->andFilterWhere(['like', self::tableName().'.truong_thpt', $this->truong_thpt])
+//            ->andFilterWhere(['like', self::tableName().'.truong_thcs', $this->truong_thcs])
             ->andFilterWhere(['like', self::tableName().'.ghi_chu', $this->ghi_chu])
             ->andFilterWhere(['not in', self::tableName().'.trang_thai', 3]);
 
@@ -112,7 +116,8 @@ class ThongTinHocSinhSearch extends ThongTinHocSinh implements \backend\models\s
             self::tableName().'.updated_at' => $this->updated_at,
         ]);
 
-        $query->andFilterWhere(['like', self::tableName().'.que_quan', $this->que_quan])
+        $query
+            ->andFilterWhere(['like', self::tableName().'.que_quan', $this->que_quan])
             ->andFilterWhere(['like', self::tableName().'.ghi_chu', $this->ghi_chu])
             ->andFilterWhere([ self::tableName().'.trang_thai'=>  3]);
 

@@ -23,4 +23,5 @@ interface CategoryServiceInterface extends ServiceInterface
      * @return array
      */
     public function getCategoryOptions();
+    public function getCategoryMenu($options = []);
 }

@@ -135,7 +135,13 @@ HTML;
                                         <?= $form->field($model, 'ngay_sinh')->textInput(['type' => 'date']) ?>
                                         <div class="hr-line-dashed"></div>
 
-                                        <?= $form->field($model, 'que_quan')->textInput(['maxlength' => true]) ?>
+                                        <?=$form->field($model, 'que_quan')->label('Quê quán')->widget(\kartik\select2\Select2::class, [
+                                            'data' => $tinhThanhList,
+                                            'options' => ['placeholder' => 'Quê quán'],
+                                            'pluginOptions' => [
+                                                'allowClear' => true
+                                            ],
+                                        ]);?>
                                         <div class="hr-line-dashed"></div>
                                         <?php
                                         $model->uu_tien = 0;
@@ -148,18 +154,30 @@ HTML;
                                             ],
                                         ]);?>
                                         <div class="hr-line-dashed"></div>
-                                        <?= $form->field($model, 'truong_thcs')->textInput() ?>
+                                        <?=$form->field($model, 'truong_thcs')->label('Trường THCS')->widget(\kartik\select2\Select2::class, [
+                                            'data' => $thcsList,
+                                            'options' => ['placeholder' => 'Trường THCS'],
+                                            'pluginOptions' => [
+                                                'allowClear' => true
+                                            ],
+                                        ]);?>
                                         <div class="hr-line-dashed"></div>
-                                        <?= $form->field($model, 'truong_thpt')->textInput() ?>
+                                        <?=$form->field($model, 'truong_thpt')->label('Trường THPT')->widget(\kartik\select2\Select2::class, [
+                                            'data' => $thptList,
+                                            'options' => ['placeholder' => 'Trường THPT'],
+                                            'pluginOptions' => [
+                                                'allowClear' => true
+                                            ],
+                                        ]);?>
                                         <div class="hr-line-dashed"></div>
                                         <?php
                                         $model->trinh_do_dao_tao = "Cao đẳng";
                                         ?>
-                                        <?=$form->field($model, 'trinh_do_dao_tao')->label('Hệ đào tạo')->widget(\kartik\select2\Select2::class, [
+                                        <?=$form->field($model, 'trinh_do_dao_tao')->label('Bậc đào tạo')->widget(\kartik\select2\Select2::class, [
                                             'data' => [
                                                 "Cao đẳng" =>  "Cao đẳng",
                                                 "Trung cấp" =>  "Trung cấp",
-                                                "Cấp 3" =>  "Cấp 3",
+                                                "Sơ cấp" =>  "Sơ cấp",
                                             ],
                                             'options' => ['placeholder' => 'Hệ đào tạo'],
                                             'pluginOptions' => [

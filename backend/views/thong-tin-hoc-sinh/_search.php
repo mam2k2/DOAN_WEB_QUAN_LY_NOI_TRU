@@ -17,14 +17,34 @@ use yii\helpers\Url;
     ]); ?>
 
     <?= $form->field($model, 'id', ['options'=>['class'=>'col-sm-3']]) ?>
+    <div class="col-sm-3">
+        <?=$form->field($model, 'que_quan')->widget(\kartik\select2\Select2::class, [
+            'data' => $tinhThanhList,
+            'options' => ['placeholder' => 'Trường THCS','class'=>'col-sm-3'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]);?>
+    </div>
+    <div class="col-sm-3">
+        <?=$form->field($model, 'truong_thcs')->widget(\kartik\select2\Select2::class, [
+            'data' => $thcsList,
+            'options' => ['placeholder' => 'Trường THCS','class'=>'col-sm-3'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]);?>
+    </div>
+    <div class="col-sm-3">
+        <?=$form->field($model, 'truong_thpt')->widget(\kartik\select2\Select2::class, [
+            'data' => $thptList,
+            'options' => ['placeholder' => 'Trường THPT','class'=>'col-sm-3'],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]);?>
+    </div>
 
-    <?= $form->field($model, 'user_id', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'phong_id', ['options'=>['class'=>'col-sm-3']])->label('Tên Phòng') ?>
-
-    <?= $form->field($model, 'ngay_sinh', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'que_quan', ['options'=>['class'=>'col-sm-3']]) ?>
 
     <?php // echo $form->field($model, 'trang_thai', ['options'=>['class'=>'col-sm-3']]) ?>
 

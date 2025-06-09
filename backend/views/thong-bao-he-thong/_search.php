@@ -18,13 +18,13 @@ use yii\helpers\Url;
 
     <?= $form->field($model, 'id', ['options'=>['class'=>'col-sm-3']]) ?>
 
-    <?= $form->field($model, 'tieu_de', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'noi_dung', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'nguoi_gui_id', ['options'=>['class'=>'col-sm-3']]) ?>
-
-    <?= $form->field($model, 'ngay_gui', ['options'=>['class'=>'col-sm-3']]) ?>
+<!--    --><?php //= $form->field($model, 'tieu_de', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'noi_dung', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'nguoi_gui_id', ['options'=>['class'=>'col-sm-3']]) ?>
+<!---->
+<!--    --><?php //= $form->field($model, 'ngay_gui', ['options'=>['class'=>'col-sm-3']]) ?>
 
     <?php // echo $form->field($model, 'user_id', ['options'=>['class'=>'col-sm-3']]) ?>
 

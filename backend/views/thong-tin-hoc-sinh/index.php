@@ -18,7 +18,12 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Thông tin hoc sinh');
             <?= $this->render('/widgets/_ibox-title') ?>
             <div class="ibox-content">
                 <?= Bar::widget() ?>
-                <?=$this->render('_search', ['model' => $searchModel]); ?>
+                <?=$this->render('_search', ['model' => $searchModel,
+                    'lopList' => $lopList,
+                    'tinhThanhList' => $tinhThanhList,
+                    'thcsList' => $thcsList,
+                    'thptList' => $thptList,
+                ]); ?>
                 <?= GridView::widget([
                         'rowOptions' => ['style' => 'height: 100px;'],
                     'dataProvider' => $dataProvider,

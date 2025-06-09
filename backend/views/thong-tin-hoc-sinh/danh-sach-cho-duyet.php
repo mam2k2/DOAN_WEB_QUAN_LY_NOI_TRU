@@ -18,7 +18,12 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Danh sách đăng kí nội trú
             <?= $this->render('/widgets/_ibox-title') ?>
             <div class="ibox-content">
                 <?= Bar::widget() ?>
-                <?=$this->render('_search', ['model' => $searchModel]); ?>
+                <?=$this->render('_search', ['model' => $searchModel,
+                    'lopList' => $lopList,
+                    'tinhThanhList' => $tinhThanhList,
+                    'thcsList' => $thcsList,
+                    'thptList' => $thptList,
+                    ]); ?>
                 <?= GridView::widget([
                     'rowOptions' => ['style' => 'height: 100px;'],
                     'dataProvider' => $dataProvider,

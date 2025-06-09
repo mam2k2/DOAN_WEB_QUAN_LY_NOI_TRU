@@ -5,6 +5,7 @@ namespace backend\controllers;
 use common\models\DiemDanh;
 use common\models\ThongTinHocSinh;
 use common\models\User;
+use common\services\CategoryServiceInterface;
 use common\services\DiemDanhServiceInterface;
 use common\services\LopServiceInterface;
 use common\services\PhongOServiceInterface;
@@ -46,21 +47,47 @@ class ThongTinHocSinhController extends \yii\web\Controller
             'index' => [
                 'class' => IndexAction::className(),
                 'data' => function($query, $indexAction) use($service){
-
+                    /** @var CategoryServiceInterface $categoryService */
+                    $categoryService = Yii::$app->get(CategoryServiceInterface::ServiceName);
+                    $thcsList = $categoryService->getCategoryMenu(['parent_id' => 57]);
+                    $thptList = $categoryService->getCategoryMenu(['parent_id' => 4]);
+                    $tinhThanhList = $categoryService->getCategoryMenu(['parent_id' => 98]);
+                    /** @var LopServiceInterface $lopService */
+                    $lopService = Yii::$app->get(LopServiceInterface::ServiceName);
+                    $lopList = $lopService->getLopOptions();
                     $result = $service->getList($query);
                     return [
                         'dataProvider' => $result['dataProvider'],
-                        'searchModel' => $result['searchModel'],                    ];
+                        'searchModel' => $result['searchModel'],
+                        'lopList' => $lopList,
+                        'tinhThanhList' => $tinhThanhList,
+                        'thcsList' => $thcsList,
+                        'thptList' => $thptList,
+                    ];
                 }
             ],
             'danh-sach-cho-duyet' => [
                 'class' => IndexAction::className(),
                 'data' => function($query, $indexAction) use($service){
+                    /** @var CategoryServiceInterface $categoryService */
+                    $categoryService = Yii::$app->get(CategoryServiceInterface::ServiceName);
+                    $thcsList = $categoryService->getCategoryMenu(['parent_id' => 57]);
+                    $thptList = $categoryService->getCategoryMenu(['parent_id' => 4]);
+                    $tinhThanhList = $categoryService->getCategoryMenu(['parent_id' => 98]);
+                    /** @var LopServiceInterface $lopService */
+                    $lopService = Yii::$app->get(LopServiceInterface::ServiceName);
+                    $lopList = $lopService->getLopOptions();
+                    $result = $service->getList($query);
 
                     $result = $service->getListChoDuyet();
                     return [
                         'dataProvider' => $result['dataProvider'],
-                        'searchModel' => $result['searchModel'],                    ];
+                        'searchModel' => $result['searchModel'],
+                        'lopList' => $lopList,
+                        'tinhThanhList' => $tinhThanhList,
+                        'thcsList' => $thcsList,
+                        'thptList' => $thptList,
+                    ];
                 },
             ],
             'create' => [
@@ -73,6 +100,11 @@ class ThongTinHocSinhController extends \yii\web\Controller
                     /** @var LopServiceInterface $lopService */
                     $lopService = Yii::$app->get(LopServiceInterface::ServiceName);
                     $lopList = $lopService->getLopOptions();
+                    /** @var CategoryServiceInterface $categoryService */
+                    $categoryService = Yii::$app->get(CategoryServiceInterface::ServiceName);
+                    $thcsList = $categoryService->getCategoryMenu(['parent_id' => 57]);
+                    $thptList = $categoryService->getCategoryMenu(['parent_id' => 4]);
+                    $tinhThanhList = $categoryService->getCategoryMenu(['parent_id' => 98]);
                     /** @var PhongOServiceInterface $PhongOService */
                     $PhongOService = Yii::$app->get(PhongOServiceInterface::ServiceName);
                     $phongList = $PhongOService->getAllNamePhong();
@@ -80,6 +112,9 @@ class ThongTinHocSinhController extends \yii\web\Controller
                         'model' => $model,
                         'listLop' => $lopList,
                         'phongList' => $phongList,
+                        'tinhThanhList' => $tinhThanhList,
+                        'thcsList' => $thcsList,
+                        'thptList' => $thptList,
                     ];
                 }
             ],
@@ -96,10 +131,18 @@ class ThongTinHocSinhController extends \yii\web\Controller
                     /** @var PhongOServiceInterface $PhongOService */
                     $PhongOService = Yii::$app->get(PhongOServiceInterface::ServiceName);
                     $phongList = $PhongOService->getAllNamePhong();
+                    /** @var CategoryServiceInterface $categoryService */
+                    $categoryService = Yii::$app->get(CategoryServiceInterface::ServiceName);
+                    $thcsList = $categoryService->getCategoryMenu(['parent_id' => 57]);
+                    $thptList = $categoryService->getCategoryMenu(['parent_id' => 4]);
+                    $tinhThanhList = $categoryService->getCategoryMenu(['parent_id' => 98]);
                     return [
                         'model' => $model,
                         'listLop' => $lopList,
                         'phongList' => $phongList,
+                        'tinhThanhList' => $tinhThanhList,
+                        'thcsList' => $thcsList,
+                        'thptList' => $thptList,
                     ];
                 },
                 'successRedirect' => ['thong-tin-hoc-sinh/danh-sach-cho-duyet'],
@@ -118,10 +161,18 @@ class ThongTinHocSinhController extends \yii\web\Controller
                     /** @var PhongOServiceInterface $PhongOService */
                     $PhongOService = Yii::$app->get(PhongOServiceInterface::ServiceName);
                     $phongList = $PhongOService->getAllNamePhong();
+                    /** @var CategoryServiceInterface $categoryService */
+                    $categoryService = Yii::$app->get(CategoryServiceInterface::ServiceName);
+                    $thcsList = $categoryService->getCategoryMenu(['parent_id' => 57]);
+                    $thptList = $categoryService->getCategoryMenu(['parent_id' => 4]);
+                    $tinhThanhList = $categoryService->getCategoryMenu(['parent_id' => 98]);
                     return [
                         'model' => $model,
                         'listLop' => $lopList,
                         'phongList' => $phongList,
+                        'tinhThanhList' => $tinhThanhList,
+                        'thcsList' => $thcsList,
+                        'thptList' => $thptList,
                     ];
                 },
             ],
@@ -192,12 +243,26 @@ class ThongTinHocSinhController extends \yii\web\Controller
         if($user != null){
             $user->status = User::STATUS_ACTIVE;
             $user->save();
+            $res = Yii::$app->mailer->compose() // hoặc ->compose('template', ['param' => value])
+                ->setFrom(['quyetpro2k2@gmail.com' => 'Truong CĐ GTVT Đường Thủy I'])
+                ->setTo($user->email)
+                ->setSubject('Tài khoản của bạn đã được duyệt!')
+                ->setTextBody('Tài khoản của bạn là : '. $user->username. ' , mật khẩu : 123456A@b') // không bắt buộc nếu có HTML
+                ->send();
         }
         if($userPH != null)
         {
             $userPH->status = User::STATUS_ACTIVE;
             $userPH->save();
+            $res = Yii::$app->mailer->compose() // hoặc ->compose('template', ['param' => value])
+            ->setFrom(['quyetpro2k2@gmail.com' => 'Truong CĐ GTVT Đường Thủy I'])
+                ->setTo($userPH->email)
+                ->setSubject('Tài khoản của PH bạn đã được duyệt!')
+                ->setTextBody('Tài khoản của bạn là : '. $userPH->username. ' , mật khẩu : 123456A@b') // không bắt buộc nếu có HTML
+                ->send();
+
         }
+
         return Yii::$app->getResponse()->redirect(['thong-tin-hoc-sinh/danh-sach-cho-duyet']);
     }
 }

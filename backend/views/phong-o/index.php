@@ -57,6 +57,14 @@ $this->params['breadcrumbs'][] = yii::t('app', 'Quản lý phòng ở');
                         'ma_phong',
                         'ten_phong',
                         [
+                                'attribute' => 'phan_loai',
+                                'format' => 'raw',
+                                'value' => function ($model) {
+                                    return $model->phan_loai == 0 ? "Nam" : "Nữ";
+                                }
+
+                        ],
+                        [
                                 'attribute' => 'suc_chua',
                                 'format' => 'raw',
                                 'value' => function ($model) {
