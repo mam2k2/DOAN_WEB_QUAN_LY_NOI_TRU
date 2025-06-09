@@ -110,14 +110,6 @@ class ThongTinHocSinhService extends Service implements ThongTinHocSinhServiceIn
 //            $userSevice =  \Yii::$app->get(UserServiceInterface::ServiceName);
                 $modelUser = new User();
                 $modelUserPH = new User();
-                if($model->username == null || $model->username == ""){
-                    $model->addError('username', 'Không thể để trống username');
-                    return $model;
-                }
-                if($model->usernamePH == null || $model->usernamePH == ""){
-                    $model->addError('usernamePH', 'Không thể để trống username cu phụ huynh');
-                    return $model;
-                }
                 if(User::findOne(['email' => $model->email]) !== null){
                     $model->addError('email', 'Email này đã tồn tại trong hệ thống.');
                     return $model;

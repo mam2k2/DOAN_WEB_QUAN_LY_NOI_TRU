@@ -179,7 +179,7 @@ HTML;
                                                 "Trung cấp" =>  "Trung cấp",
                                                 "Sơ cấp" =>  "Sơ cấp",
                                             ],
-                                            'options' => ['placeholder' => 'Hệ đào tạo'],
+                                            'options' => ['placeholder' => 'Bậc đào tạo'],
                                             'pluginOptions' => [
                                                 'allowClear' => true
                                             ],

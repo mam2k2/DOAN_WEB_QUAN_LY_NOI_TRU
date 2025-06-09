@@ -2,6 +2,7 @@
 
 use backend\widgets\ActiveForm;
 use yii\web\JsExpression;
+use yii\helpers\VarDumper;
 
 
 /* @var $this yii\web\View */
@@ -45,6 +46,7 @@ if (!$('#ngay-thu-input').val()) {
 }
 JS);
 ?>
+
 <div class="row">
     <div class="col-sm-12">
         <div class="ibox">

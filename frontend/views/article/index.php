@@ -57,7 +57,7 @@ $user = \common\models\User::findOne(['id' => Yii::$app->user->id]);
     <?= \yii\helpers\Html::a(Yii::t('frontend', '📢 Thông báo'), ['thong-tin-ca-nhan/thong-bao'], ['class' => 'list-group-item list-group-item-action']) ?>
     <?= \yii\helpers\Html::a(Yii::t('frontend', '⚠️ Lịch sử vi phạm'), ['thong-tin-ca-nhan/lich-su-vi-pham'], ['class' => 'list-group-item list-group-item-action']) ?>
     <?= \yii\helpers\Html::a(Yii::t('frontend', '✅ Lịch sử điểm danh'), ['thong-tin-ca-nhan/lich-su-diem-danh'], ['class' => 'list-group-item list-group-item-action']) ?>
-    <a href="#" class='list-group-item list-group-item-action' data-bs-toggle="modal" data-bs-target="#rulesModal">📢 Nội quy ký túc xá</a>.
+    <a href="#" class='list-group-item list-group-item-action' data-bs-toggle="modal" data-bs-target="#rulesModal">📢 Nội quy ký túc xá</a>
     <?php if ($user && strpos($user->username, 'ph_') !== 0): ?>
         <?= \yii\helpers\Html::a(Yii::t('frontend', '✅ Phản ánh/Kiến nghị'), ['tickets/index'], ['class' => 'list-group-item list-group-item-action']) ?>
     <?php endif; ?>

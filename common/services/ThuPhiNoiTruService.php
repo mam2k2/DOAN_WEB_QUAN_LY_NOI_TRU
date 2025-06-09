@@ -52,10 +52,16 @@ class ThuPhiNoiTruService extends Service implements ThuPhiNoiTruServiceInterfac
                     exit();
                 }
             }
-            $hs = ThongTinHocSinh::find()->where(['id' => $model->hoc_sinh_id]);
-            $model->so_tien = $soTien;
-            $model->so_tien -= $model->so_tien / 100 * $hs->uu_tien;
-            $model->save();
+            
+                $hs = ThongTinHocSinh::find()->where(['id' => $model->hoc_sinh_id])->one();
+                
+                $model->so_tien = $soTien;
+                if($hs->uu_tien != null){
+                    $model->so_tien -= $model->so_tien / 100 * $hs->uu_tien;
+                }
+            
+                $model->save();
+
             return true;
         }
         VarDumper::dump($model,10,true);
